@@ -20,6 +20,8 @@ disablePathToLower = false
     ShowAllPagesInArchive = true
     ShowPageNums = true
     keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
+    defaultContentLanguage = "en"
+    defaultContentLanguageInSubdir = true
 
 [params.homeInfoParams]
     Title = "Welcome to Bob Pham's Dev Blog!"
@@ -47,9 +49,18 @@ disablePathToLower = false
     title = "Follow on X"
     url = "https://twitter.com/yourprofile"
 
-[languages.en]
+[languages]
+  [languages.en]
     languageName = "English"
     weight = 1
+    title = "Bob Pham's Dev Blog"
+    contentDir = "content/en"
+
+  [languages.vi]
+    languageName = "Tiếng Việt"
+    weight = 2
+    title = "Blog Dev của Bob Pham"
+    contentDir = "content/vi"
 
 [code]
     copy = true
@@ -60,6 +71,11 @@ disablePathToLower = false
     weight = 1
 
 [[menu.main]]
+    Name = "Projects"
+    URL = "/projects"
+    weight = 2
+
+[[menu.main]]
     Name = "About Me"
     URL = "/about"
-    weight = 2
+    weight = 3
