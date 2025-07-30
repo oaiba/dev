@@ -18,6 +18,8 @@ physics system, delivering a camera feel that is both highly professional and ea
 This isn't the old way of doing things in the Anim Blueprint or Player Controller; this is the modern, Epic-recommended
 method for building modular camera behaviors.
 
+#### Download: {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/CustomCameraNodeTopDown.h"/>}}
+
 * * *
 
 ### Part 1: The "What" - What are `UCameraNode` and the Camera Framework?
@@ -333,5 +335,3 @@ modern Camera Framework. By combining multiple layers of interpolation (springs 
 techniques like velocity prediction, we've created a camera node that is not only powerful but also incredibly flexible.
 
 Try experimenting with the `Stiffness` and `Mass` values to create a unique camera feel for your own project!
-
-Download: [header](/dev-blog/downloads/CustomCameraNodeTopDown.h)
