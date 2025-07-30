@@ -11,8 +11,7 @@ summary = "Create Custom Camera Node for Top-Down View by C++"
 A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel "alive"—it needs weight, inertia, and to move with a smooth, organic motion.
 
-Today, we'll dissect a high-end C++ solution to achieve that: creating a custom `UCameraNode` for Unreal Engine's *
-*Camera Framework** (introduced in UE 5.3). This node will simulate a top-down boom-arm with a sophisticated spring
+Today, we'll dissect a high-end C++ solution to achieve that: creating a custom `UCameraNode` for Unreal Engine's **Camera Framework** (introduced in UE 5.3). This node will simulate a top-down boom-arm with a sophisticated spring
 physics system, delivering a camera feel that is both highly professional and easy to customize.
 
 This isn't the old way of doing things in the Anim Blueprint or Player Controller; this is the modern, Epic-recommended
