@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hướng Dẫn on Blog Dev của Bob Pham</title>
+    <link>https://oaiba.github.io/dev-blog/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</link>
+    <description>Recent content in Hướng Dẫn on Blog Dev của Bob Pham</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>vi</language>
+    <lastBuildDate>Wed, 30 Jul 2025 10:13:42 +0700</lastBuildDate>
+    <atom:link href="https://oaiba.github.io/dev-blog/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chào Thế Giới: Hướng Dẫn Viết Bài Blog Markdown Đầu Tiên</title>
+      <link>https://oaiba.github.io/dev-blog/vi/posts/bai-viet-dau-tien/</link>
+      <pubDate>Wed, 30 Jul 2025 10:13:42 +0700</pubDate>
+      <guid>https://oaiba.github.io/dev-blog/vi/posts/bai-viet-dau-tien/</guid>
+      <description>Một bài viết mẫu chi tiết, hướng dẫn bạn cách sử dụng các yếu tố Markdown phổ biến nhất để tạo ra một bài blog đẹp mắt và đầy đủ thông tin.</description>
+    </item>
+  </channel>
+</rss>

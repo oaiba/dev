@@ -1,32 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://oaiba.github.io/dev-blog/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/categories/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/posts/bai-viet-dau-tien/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/tags/hugo/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/categories/k%E1%BB%B9-thu%E1%BA%ADt/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/tags/markdown/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/posts/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/tags/</loc>
-    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://oaiba.github.io/dev-blog/en/sitemap.xml</loc>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://oaiba.github.io/dev-blog/vi/sitemap.xml</loc>
+    
+      <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>
