@@ -1,0 +1,9 @@
+# hugo.toml
+
+baseURL = "https://your-username.github.io/your-repo-name/"
+title = "My Awesome Dev Blog"
+languageCode = "vi-vn"
+theme = "PaperMod"
+
+[params]
+  ShowReadingTime = true
