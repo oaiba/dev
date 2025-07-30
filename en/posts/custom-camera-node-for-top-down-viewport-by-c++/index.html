@@ -201,14 +201,48 @@
     <div class="post-meta"><span title='2025-07-30 10:13:42 +0700 +0700'>July 30, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Bob
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#part-1-the-what---what-are-ucameranode-and-the-camera-framework" aria-label="Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Camera Framework?">Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Camera Framework?</a></li>
+                <li>
+                    <a href="#part-2-the-header-h---defining-the-control-knobs" aria-label="Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;">Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;</a></li>
+                <li>
+                    <a href="#part-3-the-evaluator-cpp---the-core-logic-" aria-label="Part 3: The Evaluator (.cpp) - The Core Logic ⚙️">Part 3: The Evaluator (.cpp) - The Core Logic ⚙️</a></li>
+                <li>
+                    <a href="#1-member-variables" aria-label="1. Member Variables">1. Member Variables</a></li>
+                <li>
+                    <a href="#2-the-oninitialize-function" aria-label="2. The OnInitialize() Function">2. The OnInitialize() Function</a></li>
+                <li>
+                    <a href="#3-the-onrun-function" aria-label="3. The OnRun() Function">3. The OnRun() Function</a></li>
+                <li>
+                    <a href="#4-the-bridge-the-onbuildevaluator-function" aria-label="4. The Bridge: The OnBuildEvaluator() Function">4. The Bridge: The OnBuildEvaluator() Function</a><ul>
+                        
+                <li>
+                    <a href="#how-it-works" aria-label="How It Works">How It Works</a></li></ul>
+                </li>
+                <li>
+                    <a href="#part-4-how-to-use-it-in-the-editor" aria-label="Part 4: How to Use it in the Editor">Part 4: How to Use it in the Editor</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><p>A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel &ldquo;alive&rdquo;—it needs weight, inertia, and to move with a smooth, organic motion.</p>
 <p>Today, we&rsquo;ll dissect a high-end C++ solution to achieve that: creating a custom <code>UCameraNode</code> for Unreal Engine&rsquo;s <strong>Camera Framework</strong> (introduced in UE 5.3). This node will simulate a top-down boom-arm with a sophisticated spring
 physics system, delivering a camera feel that is both highly professional and easy to customize.</p>
 <p>This isn&rsquo;t the old way of doing things in the Anim Blueprint or Player Controller; this is the modern, Epic-recommended
 method for building modular camera behaviors.</p>
-<h4 id="download-hahahugoshortcode3s0hbhb">Download: 
+<h4 id="download-hahahugoshortcode2s0hbhb">Download: 
 <a class="hugo-shortcodes-download" href="/dev-blog/downloads/CustomCameraNodeTopDown.h" download="CustomCameraNodeTopDown.h">CustomCameraNodeTopDown.h</a>
 </h4>
 <hr>
