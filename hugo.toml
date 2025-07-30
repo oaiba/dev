@@ -57,6 +57,7 @@ defaultContentLanguageInSubdir = true
   ShowCodeCopyButtons = true
   ShowAllPagesInArchive = true
   ShowPageNums = true
+  ShowToc = true
   keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
   
 [[params.socialIcons]]
