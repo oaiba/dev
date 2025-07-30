@@ -3,7 +3,8 @@
 baseURL = "https://oaiba.github.io/dev-blog/"
 title = "Bob's Unreal Engine Dev Blog"
 languageCode = "en"
-theme = "PaperMod"
+#theme = "PaperMod"
+theme = [ 'PaperMod', 'hugo-shortcodes' ]
 disablePathToLower = false
 defaultContentLanguage = "vi"
 defaultContentLanguageInSubdir = true
