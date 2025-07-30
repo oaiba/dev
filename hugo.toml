@@ -1,6 +1,6 @@
 # hugo.toml
 
-baseURL = "https://your-username.github.io/your-repo-name/"
+baseURL = "https://github.com/oaiba/dev-blog.git"
 title = "My Awesome Dev Blog"
 languageCode = "vi-vn"
 theme = "PaperMod"
