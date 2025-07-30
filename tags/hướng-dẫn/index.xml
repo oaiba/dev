@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on Bob&#39;s Dev Blog</title>
-    <link>https://oaiba.github.io/dev-blog/posts/</link>
-    <description>Recent content in Posts on Bob&#39;s Dev Blog</description>
+    <title>Hướng Dẫn on Bob&#39;s Dev Blog</title>
+    <link>https://oaiba.github.io/dev-blog/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</link>
+    <description>Recent content in Hướng Dẫn on Bob&#39;s Dev Blog</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 30 Jul 2025 10:13:42 +0700</lastBuildDate>
-    <atom:link href="https://oaiba.github.io/dev-blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oaiba.github.io/dev-blog/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chào Thế Giới: Hướng Dẫn Viết Bài Blog Markdown Đầu Tiên</title>
       <link>https://oaiba.github.io/dev-blog/posts/bai-viet-dau-tien/</link>
