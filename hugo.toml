@@ -4,6 +4,43 @@ baseURL = "https://oaiba.github.io/dev-blog/"
 title = "Bob's Dev Blog"
 languageCode = "vi-vn"
 theme = "PaperMod"
+disablePathToLower = false
 
 [params]
-  ShowReadingTime = true
+    env = "production"
+    description = "Dev Blog of Bob Nguyen"
+    author = "Bob Nguyen"
+    defaultTheme = "auto"
+    ShowReadingTime = true
+    #ShowShareButtons = true
+    displayFullLangName = true
+    ShowPostNavLinks = true
+    ShowBreadCrumbs = true
+    ShowCodeCopyButtons = true
+    ShowRssButtonInSectionTermList = true
+    ShowAllPagesInArchive = true
+    ShowPageNums = true
+    #ShowToc = true
+
+[params.homeInfoParams]
+    Title = "Bob's First Demo Blog"
+    Content = """
+    👋 Welcome to demo page of Bob
+    """
+
+[[params.socialIcons]]
+    name = "github"
+    title = "View on Github"
+    url = "https://github.com/oaiba"
+
+[languages.en]
+    languageName = "English"
+    weight = 1
+
+[code]
+    copy = true
+
+[[menu.main]]
+    Name = "Google"
+    URL = "https://www.google.com/"
+    weight = -5
