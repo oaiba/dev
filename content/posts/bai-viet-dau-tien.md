@@ -2,7 +2,7 @@
 title = "Chào Thế Giới: Hướng Dẫn Viết Bài Blog Markdown Đầu Tiên"
 date = "2025-07-30T10:13:42+07:00"
 draft = false 
-author = "Bob Nguyen"
+author = "Bob"
 tags = ["hướng dẫn", "markdown", "hugo"]
 categories = ["Kỹ Thuật"]
 summary = "Một bài viết mẫu chi tiết, hướng dẫn bạn cách sử dụng các yếu tố Markdown phổ biến nhất để tạo ra một bài blog đẹp mắt và đầy đủ thông tin."

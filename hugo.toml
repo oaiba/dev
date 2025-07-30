@@ -1,37 +1,50 @@
 # hugo.toml
 
 baseURL = "https://oaiba.github.io/dev-blog/"
-title = "Bob's Dev Blog"
-languageCode = "vi-vn"
+title = "Bob's Unreal Engine Dev Blog"
+languageCode = "en"
 theme = "PaperMod"
 disablePathToLower = false
 
 [params]
     env = "production"
-    description = "Dev Blog of Bob Nguyen"
-    author = "Bob Nguyen"
+    description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
+    author = "Bob Pham"
     defaultTheme = "auto"
     ShowReadingTime = true
-    #ShowShareButtons = true
+    ShowShareButtons = true
     displayFullLangName = true
     ShowPostNavLinks = true
     ShowBreadCrumbs = true
     ShowCodeCopyButtons = true
-    ShowRssButtonInSectionTermList = true
     ShowAllPagesInArchive = true
     ShowPageNums = true
-    #ShowToc = true
+    keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
 
 [params.homeInfoParams]
-    Title = "Bob's First Demo Blog"
+    Title = "Welcome to Bob Pham's Dev Blog!"
     Content = """
-    👋 Welcome to demo page of Bob
+    👋 I'm Bob Pham, a programmer and Unreal Engine enthusiast.
+    This is where I share in-depth knowledge, experience, and practical guides on C++ and Blueprint,
+    helping you unlock the full potential of Unreal Engine to build amazing games and interactive applications.
+
+    Let's explore the vast world of Unreal Engine together!
     """
 
 [[params.socialIcons]]
     name = "github"
-    title = "View on Github"
+    title = "View on GitHub"
     url = "https://github.com/oaiba"
+
+[[params.socialIcons]]
+    name = "linkedin"
+    title = "Connect on LinkedIn"
+    url = "https://www.linkedin.com/in/yourprofile/"
+
+[[params.socialIcons]]
+    name = "twitter"
+    title = "Follow on X"
+    url = "https://twitter.com/yourprofile"
 
 [languages.en]
     languageName = "English"
@@ -41,6 +54,11 @@ disablePathToLower = false
     copy = true
 
 [[menu.main]]
-    Name = "Google"
-    URL = "https://www.google.com/"
-    weight = -5
+    Name = "Blogs"
+    URL = "/posts"
+    weight = 1
+
+[[menu.main]]
+    Name = "About Me"
+    URL = "/about"
+    weight = 2
