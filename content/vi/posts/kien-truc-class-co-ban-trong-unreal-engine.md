@@ -10,7 +10,8 @@ summary = "Làm quen với Kiến trúc Class cơ bản trong Unreal Engine"
 
 > Bài viết này giới thiệu các lớp cơ bản trong kiến trúc Unreal Engine – là yếu tố khác biệt chính so với Unity. Hiểu sâu kiến trúc giúp bạn xây dựng hệ thống liên lạc giữa các thành phần trong game một cách tối ưu hơn
 Epic Games Developers.
-
+> 
+https://kolosdev.com/2025/05/30/unreal-engine-base-classes-architecture
 * * *
 
 ## 1\. `Object`
