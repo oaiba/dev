@@ -1,0 +1,33 @@
+# .github/workflows/deploy.yml
+
+name: GitHub Pages Deploy
+
+on:
+  push:
+    branches:
+      - main # Chạy workflow mỗi khi có push lên nhánh main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # Quan trọng: Lấy cả code của theme (submodule)
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest' # Luôn dùng phiên bản Hugo mới nhất
+          extended: true
+
+      - name: Build
+        run: hugo # Lệnh build của Hugo
+
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public # Thư mục chứa kết quả build của Hugo
