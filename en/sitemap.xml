@@ -3,6 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://oaiba.github.io/dev-blog/en/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -15,6 +16,7 @@
                 />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/categories/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -26,7 +28,27 @@
                 href="https://oaiba.github.io/dev-blog/en/categories/"
                 />
   </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/devlog/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/posts/custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/posts/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/posts/"
+                />
+  </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -37,5 +59,11 @@
                 hreflang="en"
                 href="https://oaiba.github.io/dev-blog/en/tags/"
                 />
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/categories/tech/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/tutorial/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
   </url>
 </urlset>
