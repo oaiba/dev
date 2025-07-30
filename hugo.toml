@@ -1,23 +1,23 @@
 # hugo.toml
 
 baseURL = "https://oaiba.github.io/dev-blog/"
-title = "Bob's Unreal Engine Dev Blog"
+title = "Bob's Unreal Engine DevLogs"
 languageCode = "en"
 #theme = "PaperMod"
 theme = [ 'PaperMod', 'hugo-shortcodes' ]
 disablePathToLower = false
-defaultContentLanguage = "vi"
+defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 
 [languages]
   [languages.en]
     languageName = "English"
     weight = 1
-    title = "Bob Pham's Dev Blog"
+    title = "Bob Pham's DevLogs"
     contentDir = "content/en"
     
     [languages.en.params.homeInfoParams]
-      Title = "Welcome to Bob Pham's Dev Blog!"
+      Title = "Welcome to Bob Pham's DevLogs!"
       Content = """
       👋 I'm Bob Pham, a programmer and Unreal Engine enthusiast.
       This is where I share in-depth knowledge, experience, and practical guides
@@ -30,11 +30,11 @@ defaultContentLanguageInSubdir = true
   [languages.vi]
     languageName = "Tiếng Việt"
     weight = 2
-    title = "Blog Dev của Bob Phạm"
+    title = "Nhật ký phát triển của Bob Phạm"
     contentDir = "content/vi"
     
     [languages.vi.params.homeInfoParams]
-      Title = "Chào mừng đến blog Dev của Bob Phạm!"
+      Title = "Chào mừng đến DevLogs của Bob Phạm!"
       Content = """
       👋 Xin chào, mình là Bob Phạm – một lập trình viên đam mê Unreal Engine.
       Blog này chia sẻ kiến thức chuyên sâu, kinh nghiệm và hướng dẫn thực tiễn
