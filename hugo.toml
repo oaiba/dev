@@ -45,6 +45,7 @@ defaultContentLanguageInSubdir = true
 
 [params]
   env = "production"
+  favicon = "images/favicon.png"
   description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
   author = "Bob Pham"
   defaultTheme = "auto"
