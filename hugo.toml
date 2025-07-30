@@ -5,49 +5,8 @@ title = "Bob's Unreal Engine Dev Blog"
 languageCode = "en"
 theme = "PaperMod"
 disablePathToLower = false
-
-[params]
-    env = "production"
-    description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
-    author = "Bob Pham"
-    defaultTheme = "auto"
-    ShowReadingTime = true
-    ShowShareButtons = true
-    displayFullLangName = true
-    ShowPostNavLinks = true
-    ShowBreadCrumbs = true
-    ShowCodeCopyButtons = true
-    ShowAllPagesInArchive = true
-    ShowPageNums = true
-    keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
-    defaultContentLanguage = "en"
-    defaultContentLanguageInSubdir = true
-
-[params.homeInfoParams]
-    Title = "Welcome to Bob Pham's Dev Blog!"
-    Content = """
-    👋 I'm Bob Pham, a programmer and Unreal Engine enthusiast.
-    This is where I share in-depth knowledge, experience, and practical guides
-    on C++ and Blueprint, helping you unlock the full potential of Unreal Engine
-    to build amazing games and interactive applications.
-
-    Let's explore the vast world of Unreal Engine together!
-    """
-
-[[params.socialIcons]]
-    name = "github"
-    title = "View on GitHub"
-    url = "https://github.com/oaiba"
-
-[[params.socialIcons]]
-    name = "linkedin"
-    title = "Connect on LinkedIn"
-    url = "https://www.linkedin.com/in/yourprofile/"
-
-[[params.socialIcons]]
-    name = "twitter"
-    title = "Follow on X"
-    url = "https://twitter.com/yourprofile"
+defaultContentLanguage = "vi"
+defaultContentLanguageInSubdir = true
 
 [languages]
   [languages.en]
@@ -55,27 +14,79 @@ disablePathToLower = false
     weight = 1
     title = "Bob Pham's Dev Blog"
     contentDir = "content/en"
+    
+    [languages.en.params.homeInfoParams]
+      Title = "Welcome to Bob Pham's Dev Blog!"
+      Content = """
+      👋 I'm Bob Pham, a programmer and Unreal Engine enthusiast.
+      This is where I share in-depth knowledge, experience, and practical guides
+      on C++ and Blueprint, helping you unlock the full potential of Unreal Engine
+      to build amazing games and interactive applications.
+
+      Let's explore the vast world of Unreal Engine together!
+      """
 
   [languages.vi]
     languageName = "Tiếng Việt"
     weight = 2
-    title = "Blog Dev của Bob Pham"
+    title = "Blog Dev của Bob Phạm"
     contentDir = "content/vi"
+    
+    [languages.vi.params.homeInfoParams]
+      Title = "Chào mừng đến blog Dev của Bob Phạm!"
+      Content = """
+      👋 Xin chào, mình là Bob Phạm – một lập trình viên đam mê Unreal Engine.
+      Blog này chia sẻ kiến thức chuyên sâu, kinh nghiệm và hướng dẫn thực tiễn
+      về lập trình C++ và Blueprint, giúp bạn khai thác tối đa Unreal Engine
+      để phát triển game và ứng dụng tương tác chất lượng.
+
+      Cùng khám phá thế giới Unreal Engine nhé!
+      """
+
+[params]
+  env = "production"
+  description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
+  author = "Bob Pham"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  #ShowShareButtons = true
+  displayFullLangName = true
+  #ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowAllPagesInArchive = true
+  ShowPageNums = true
+  keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
+
+[[params.socialIcons]]
+  name = "github"
+  title = "View on GitHub"
+  url = "https://github.com/oaiba"
+
+[[params.socialIcons]]
+  name = "linkedin"
+  title = "Connect on LinkedIn"
+  url = "https://www.linkedin.com/in/yourprofile/"
+
+[[params.socialIcons]]
+  name = "twitter"
+  title = "Follow on X"
+  url = "https://twitter.com/yourprofile"
 
 [code]
-    copy = true
+  copy = true
 
 [[menu.main]]
-    Name = "Blogs"
-    URL = "/posts"
-    weight = 1
+  Name = "Blogs"
+  URL = "/posts"
+  weight = 1
 
 [[menu.main]]
-    Name = "Projects"
-    URL = "/projects"
-    weight = 2
+  Name = "Projects"
+  URL = "/projects"
+  weight = 2
 
 [[menu.main]]
-    Name = "About Me"
-    URL = "/about"
-    weight = 3
+  Name = "About Me"
+  URL = "/about"
+  weight = 3
