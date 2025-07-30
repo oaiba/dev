@@ -7,7 +7,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://oaiba.github.io/dev-blog/"
+                href="https://oaiba.github.io/dev-blog/en/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -20,7 +20,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://oaiba.github.io/dev-blog/categories/"
+                href="https://oaiba.github.io/dev-blog/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -37,6 +37,9 @@
     <loc>https://oaiba.github.io/dev-blog/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
   </url><url>
+    <loc>https://oaiba.github.io/dev-blog/vi/posts/kien-truc-class-co-ban-trong-unreal-engine/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+  </url><url>
     <loc>https://oaiba.github.io/dev-blog/vi/categories/k%E1%BB%B9-thu%E1%BA%ADt/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
   </url><url>
@@ -51,7 +54,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://oaiba.github.io/dev-blog/tags/"
+                href="https://oaiba.github.io/dev-blog/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
