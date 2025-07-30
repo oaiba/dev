@@ -51,7 +51,7 @@ Epic Games Developers.
 
 *   Kế thừa từ `Object`.
 
-*   Có liên kết đến `Actor chủ`.
+*   Có liên kết đến `Actor Owner`.
 
 *   Dùng để thêm chức năng modular (Inventory, Health, Weapon,...).
 
