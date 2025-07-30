@@ -1,7 +1,7 @@
 # hugo.toml
 
 baseURL = "https://oaiba.github.io/dev-blog/"
-title = "My Awesome Dev Blog"
+title = "Bob's Dev Blog"
 languageCode = "vi-vn"
 theme = "PaperMod"
 
