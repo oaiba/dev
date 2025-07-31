@@ -63,7 +63,7 @@ defaultContentLanguageInSubdir = true
   keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
   
 [assets]
-    favicon = "favicon.ico"
+    favicon = "/favicon.ico"
   
 [cover]
     linkFullImages = true
