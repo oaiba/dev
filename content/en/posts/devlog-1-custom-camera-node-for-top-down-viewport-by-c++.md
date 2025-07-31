@@ -61,7 +61,7 @@ next node in the stack.
 
 ### Part 2: The Header (`.h`) - Defining the "Control Knobs"
 
-Create CustomeCameraNodeTopDown class:
+Create CustomCameraNodeTopDown class:
 
 ![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
 
