@@ -11,15 +11,23 @@ summary = "Create Custom Camera Node for Top-Down View by C++"
 A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel "alive"—it needs weight, inertia, and to move with a smooth, organic motion.
 
-Today we'll dissect a high-end C++ solution to achieve that: creating a custom `UCameraNode` for Unreal Engine's **Gameplay Camera System**. This node will simulate a top-down boom-arm with a sophisticated spring
+Today we'll dissect a high-end C++ solution to achieve that: creating a custom `UCameraNode` for Unreal Engine's *
+*Gameplay Camera System**. This node will simulate a top-down boom-arm with a sophisticated spring
 physics system, delivering a camera feel that is both highly professional and easy to customize.
 
-> The **Gameplay Camera System** provides an intuitive way for developers and designers to create complex camera behaviors in the editor.  
-> This is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions inside a data asset, unlike the traditional workflow that uses a Blueprint component. This data asset can drive the camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.  
+> The **Gameplay Camera System** provides an intuitive way for developers and designers to create complex camera
+> behaviors in the editor.  
+> This is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions
+> inside a data asset, unlike the traditional workflow that uses a Blueprint component. This data asset can drive the
+> camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.
 
-> To learn more about the system, read the [Gameplay Camera System Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview) and [Gameplay Camera System Quick Start](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start) documentation of Epic Game.
+> To learn more about the system, read
+> the [Gameplay Camera System Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview)
+> and [Gameplay Camera System Quick Start](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start)
+> documentation of Epic Game.
 
-#### Download: 
+#### Download:
+
 * {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
 * {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
@@ -27,8 +35,11 @@ physics system, delivering a camera feel that is both highly professional and ea
 
 ### Part 1: The "What" - What are `UCameraNode` and the **Gameplay Camera System**?
 
-Think of the **Gameplay Camera System** as a stack-based system, designed to be modular, with Camera Assets that can be ingested by one or more Gameplay Camera actors and components. This means you can author your camera behavior once, and use it on many actors in your scene. 
-Each node performs a specific task (camera shake, changing FOV, following a target, ...) and passes its result to the next node in the stack.
+Think of the **Gameplay Camera System** as a stack-based system, designed to be modular, with Camera Assets that can be
+ingested by one or more Gameplay Camera actors and components. This means you can author your camera behavior once, and
+use it on many actors in your scene.
+Each node performs a specific task (camera shake, changing FOV, following a target, ...) and passes its result to the
+next node in the stack.
 
 * **`UCameraNode`** (the `.h` file): This is the UObject class that defines the properties and input pins you see in the
   Editor. It's like the "settings" panel.
@@ -103,7 +114,7 @@ public:
 ### Part 3: The Evaluator (`.cpp`) - The Core Logic ⚙️
 
 This code defines the `FCustomBoomOffsetTopDownCameraNodeEvaluator` class, which is the "brain" that executes the
-computational logic for a custom camera node within Unreal Engine's Camera Framework.
+computational logic for a custom camera node within Unreal Engine's **Gameplay Camera System**.
 
 ### 1\. Member Variables
 
@@ -269,12 +280,14 @@ FCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown::OnBuildEvaluator(FCameraNodeE
     return Builder.BuildEvaluator<FCustomBoomOffsetTopDownCameraNodeEvaluator>();
 }
 ```
+
 #### How It Works
 
-The `OnBuildEvaluator` function is called by the Camera Framework when it needs a "worker" to execute the logic for this
+The `OnBuildEvaluator` function is called by the **Gameplay Camera System** when it needs a "worker" to execute the
+logic for this
 specific node. Its job is basic:
 
-* It receives a `Builder` object from the framework.
+* It receives a `Builder` object from the **Gameplay Camera System**.
 
 * It tells the `Builder` to construct an instance of the logic class we wrote:
   `FCustomBoomOffsetTopDownCameraNodeEvaluator`.
@@ -333,7 +346,7 @@ Now, a designer can tweak these values and see the results instantly in-game wit
 ### Conclusion
 
 We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine's
-modern Camera Framework. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and
+**Gameplay Camera System**. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and
 techniques like velocity prediction, we've created a camera node that is not only powerful but also incredibly flexible.
 
 Try experimenting with the `Stiffness` and `Mass` values to create a unique camera feel for your own project!
