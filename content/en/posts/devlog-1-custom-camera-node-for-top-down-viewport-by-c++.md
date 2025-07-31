@@ -8,6 +8,8 @@ categories = ["Tech"]
 summary = "Create Custom Camera Node for Top-Down View by C++"
 +++
 
+![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
+
 A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel "alive"—it needs weight, inertia, and to move with a smooth, organic motion.
 
@@ -39,8 +41,6 @@ documentation of Epic Game.
 * {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
 * {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
-![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
-![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
 * * *
 
 ### Part 1: The "What" - What are `UCameraNode` and the **Gameplay Camera System**?
@@ -60,6 +60,10 @@ next node in the stack.
 * * *
 
 ### Part 2: The Header (`.h`) - Defining the "Control Knobs"
+
+Create CustomeCameraNodeTopDown class:
+
+![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
 
 Our header file defines the parameters that a designer can tweak in the Editor.
 
