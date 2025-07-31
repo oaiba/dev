@@ -58,7 +58,13 @@ defaultContentLanguageInSubdir = true
   ShowAllPagesInArchive = true
   ShowPageNums = true
   ShowToc = true
+  ShowWordCount = true
+  hideFooter = false
   keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
+  
+[cover]
+    linkFullImages = true
+    responsiveImages = true
   
 [[params.socialIcons]]
   name = "github"

@@ -6,10 +6,14 @@ author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
 summary = "Create Custom Camera Node for Top-Down View by C++"
+showtoc = true
+comments = true
+cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true'
+cover.caption = 'Custom Camera Node for Top-Down View by C++ Ouput'
+cover.alt = 'this is alter cover'
+cover.responsiveImages = true
+cover.hidden = false
 +++
-
-![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
-
 A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel "alive"—it needs weight, inertia, and to move with a smooth, organic motion.
 
