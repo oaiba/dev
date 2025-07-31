@@ -39,6 +39,7 @@ documentation of Epic Game.
 * {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
 * {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
+![](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-1/create-class.png)
 * * *
 
 ### Part 1: The "What" - What are `UCameraNode` and the **Gameplay Camera System**?
