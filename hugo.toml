@@ -64,9 +64,9 @@ defaultContentLanguageInSubdir = true
   
 [assets]
     favicon = "favicon.ico"
-    favicon16x16 = "/assets/wood-axe.png"
-    favicon32x32 = "/assets/wood-axe.png"
-    apple_touch_icon = "/assets/wood-axe.png"
+    favicon16x16 = "favicon.ico"
+    favicon32x32 = "favicon.ico"
+    apple_touch_icon = "favicon.ico"
   
 [cover]
     linkFullImages = true
