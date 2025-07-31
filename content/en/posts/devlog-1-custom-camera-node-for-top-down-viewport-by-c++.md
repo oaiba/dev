@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Create Custom Camera Node for Top-Down View by C++"
 +++
 
-![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
+![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
 
 A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
 the game world, the camera needs to feel "alive"—it needs weight, inertia, and to move with a smooth, organic motion.
@@ -346,18 +346,22 @@ with the high-performance runtime logic.
 
 The power of this method lies in how simple it is for designers to use.
 
-1. Create a new **Camera Stack** asset.
+1. Create a new **Camera Rig** asset.
+![Create Camera Rig Asset](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-camera-rig.png?raw=true)
 
-2. In the Camera Stack Editor, click **Add Node** and search for `Custom Camera Node Top Down `.
+2. In the Camera Rig Editor, click **Add Node** and search for `Custom Camera Node Top Down ` or just drag it from toolbox.
+![Implement our custom node to camera rig](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/implement-custom-node-to-camera-rig.png?raw=true)
 
 3. Select the newly added node. You will see all the properties (`Stiffness`, `Mass`, `DampingRatio`, etc.) we defined
    in the `.h` file appear in the Details Panel.
+![Property Detail](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/property-detail.png?raw=true)
 
-4. Assign this **Camera Stack** asset to your **Player Camera Manager**.
+4. Assign this **Camera Rig** asset to your **Camera Director** and active it.
+![Assign Camera Rig](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true)
 
-Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
+Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
 
-![GIF một chú chó vui mừng ngồi trước máy tính](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3lhOWtzbnZ2b25naTNqbnY5M3R6M2NxaGMxNndoOW16dWFkNzk4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bpeB3v2MZ7iJwVLBx1/giphy.gif)
+![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
 
 ### Conclusion
 
@@ -365,4 +369,4 @@ We have just analyzed a complete C++ solution for creating a professional-feelin
 **Gameplay Camera System**. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and
 techniques like velocity prediction, we've created a camera node that is not only powerful but also incredibly flexible.
 
-Try experimenting with the `Stiffness` and `Mass` values to create a unique camera feel for your own project!
+💡 Try experimenting with the `Stiffness` and `Mass` values to create a unique camera feel for your own project!
