@@ -16,7 +16,7 @@
 
 namespace UE::Cameras
 {
-	class FCustomBoomOffsetTopDownCameraNodeEvaluator : public FCameraNodeEvaluator
+	class FCustomCameraNodeTopDownEvaluator : public FCameraNodeEvaluator
 	{
 	protected:
 		virtual void OnInitialize(const FCameraNodeEvaluatorInitializeParams& Params,
@@ -42,7 +42,7 @@ namespace UE::Cameras
 		bool bIsFirstRun = true;
 	};
 
-	void FCustomBoomOffsetTopDownCameraNodeEvaluator::OnInitialize(const FCameraNodeEvaluatorInitializeParams& Params,
+	void FCustomCameraNodeTopDownEvaluator::OnInitialize(const FCameraNodeEvaluatorInitializeParams& Params,
 	                                                               FCameraNodeEvaluationResult& OutResult)
 	{
 		const UBoomArmCameraNodeTopDown* AttachNode = GetCameraNodeAs<UBoomArmCameraNodeTopDown>();
@@ -58,61 +58,61 @@ namespace UE::Cameras
 	void FCustomBoomOffsetTopDownCameraNodeEvaluator::OnRun(const FCameraNodeEvaluationParams& Params,
 	                                                        FCameraNodeEvaluationResult& OutResult)
 	{
-		const APlayerController* PlayerController = Params.EvaluationContext->GetPlayerController();
-		if (!PlayerController) return;
+	    const APlayerController* PlayerController = Params.EvaluationContext->GetPlayerController();
+	    if (!PlayerController) return;
 
-		const APawn* Pawn = PlayerController->GetPawnOrSpectator();
-		if (!Pawn) return;
+	    const APawn* Pawn = PlayerController->GetPawnOrSpectator();
+	    if (!Pawn) return;
 
-		// Lấy tất cả các giá trị mong muốn từ input
-		const FRotator DesiredRotation = RotationReader.Get(OutResult.VariableTable);
-		const float DesiredDistance = DistanceReader.Get(OutResult.VariableTable);
-		const float InterpSpeed = DistanceInterpSpeedReader.Get(OutResult.VariableTable);
-		const FVector PivotLocation = Pawn->GetActorLocation();
+	    // Get data from input
+	    const FRotator DesiredRotation = RotationReader.Get(OutResult.VariableTable);
+	    const float DesiredDistance = DistanceReader.Get(OutResult.VariableTable);
+	    const float InterpSpeed = DistanceInterpSpeedReader.Get(OutResult.VariableTable);
+	    const FVector PivotLocation = Pawn->GetActorLocation();
 
-		// Lấy các thông số của spring
-		const float Stiffness = StiffnessReader.Get(OutResult.VariableTable);
-		const float DampingRatio = DampingRatioReader.Get(OutResult.VariableTable);
-		const float Mass = MassReader.Get(OutResult.VariableTable);
+	    // Get data of Spring
+	    const float Stiffness = StiffnessReader.Get(OutResult.VariableTable);
+	    const float DampingRatio = DampingRatioReader.Get(OutResult.VariableTable);
+	    const float Mass = MassReader.Get(OutResult.VariableTable);
 
-		// Xử lý lần chạy đầu tiên để camera không bay từ gốc tọa độ
-		if (bIsFirstRun)
-		{
-			CurrentCameraRotation = DesiredRotation.Quaternion();
-			CurrentSmoothDistance = DesiredDistance; // Gán giá trị ban đầu
-			const FVector DirectionFromTarget = -CurrentCameraRotation.Vector();
-			CurrentCameraLocation = PivotLocation + DirectionFromTarget * CurrentSmoothDistance;
-			bIsFirstRun = false;
-		}
+	    // Handle the first run to prevent the camera from flying in from the world origin
+	    if (bIsFirstRun)
+	    {
+	        CurrentCameraRotation = DesiredRotation.Quaternion();
+	        CurrentSmoothDistance = DesiredDistance;
+	        const FVector DirectionFromTarget = -CurrentCameraRotation.Vector();
+	        CurrentCameraLocation = PivotLocation + DirectionFromTarget * CurrentSmoothDistance;
+	        bIsFirstRun = false;
+	    }
 
-		// --- BƯỚC 1: NỘI SUY GÓC QUAY (ROTATION) ---
-		CurrentCameraRotation = UKismetMathLibrary::QuaternionSpringInterp(
-			CurrentCameraRotation, DesiredRotation.Quaternion(),
-			CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass);
+	    // --- STEP 1: INTERPOLATE ROTATION ---
+	    CurrentCameraRotation = UKismetMathLibrary::QuaternionSpringInterp(
+	        CurrentCameraRotation, DesiredRotation.Quaternion(),
+	        CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass);
 
-		// --- BƯỚC 2: NỘI SUY KHOẢNG CÁCH (DISTANCE) ---
-		CurrentSmoothDistance = FMath::FInterpTo(
-			CurrentSmoothDistance, DesiredDistance,
-			Params.DeltaTime, InterpSpeed);
+	    // --- STEP 2: INTERPOLATE DISTANCE ---
+	    CurrentSmoothDistance = FMath::FInterpTo(
+	        CurrentSmoothDistance, DesiredDistance,
+	        Params.DeltaTime, InterpSpeed);
 
-		// --- BƯỚC 3: TÍNH TOÁN VỊ TRÍ MỤC TIÊU DỰA TRÊN CÁC GIÁ TRỊ ĐÃ ĐƯỢC LÀM MƯỢT ---
-		const FVector SmoothedDirectionFromTarget = -CurrentCameraRotation.Vector();
-		const FVector TargetLocation = PivotLocation + SmoothedDirectionFromTarget * CurrentSmoothDistance;
+	    // --- STEP 3: CALCULATE THE TARGET LOCATION BASED ON SMOOTHED VALUES ---
+	    const FVector SmoothedDirectionFromTarget = -CurrentCameraRotation.Vector();
+	    const FVector TargetLocation = PivotLocation + SmoothedDirectionFromTarget * CurrentSmoothDistance;
 
-		// --- BƯỚC 4: NỘI SUY VỊ TRÍ (LOCATION) ĐUỔI THEO MỤC TIÊU ---
-		const float TargetVelocityAmount = TargetVelocityAmountReader.Get(OutResult.VariableTable);
-		CurrentCameraLocation = UKismetMathLibrary::VectorSpringInterp(
-			CurrentCameraLocation, TargetLocation,
-			CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount);
+	    // --- STEP 4: INTERPOLATE LOCATION, CHASING THE TARGET ---
+	    const float TargetVelocityAmount = TargetVelocityAmountReader.Get(OutResult.VariableTable);
+	    CurrentCameraLocation = UKismetMathLibrary::VectorSpringInterp(
+	        CurrentCameraLocation, TargetLocation,
+	        CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount);
 
-		// --- BƯỚC 5: GÁN KẾT QUẢ CUỐI CÙNG ---
-		OutResult.CameraPose.SetLocation(CurrentCameraLocation);
-		OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator());
+	    // --- STEP 5: ASSIGN THE FINAL RESULT ---
+	    OutResult.CameraPose.SetLocation(CurrentCameraLocation);
+	    OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator());
 	}
 } // namespace UE::Cameras
 
 FCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown::OnBuildEvaluator(FCameraNodeEvaluatorBuilder& Builder) const
 {
 	using namespace UE::Cameras;
-	return Builder.BuildEvaluator<FCustomBoomOffsetTopDownCameraNodeEvaluator>();
+	return Builder.BuildEvaluator<FCustomCameraNodeTopDownEvaluator>();
 }

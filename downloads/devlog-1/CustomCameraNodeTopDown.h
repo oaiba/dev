@@ -6,7 +6,7 @@
 #include "Core/CameraNode.h"
 #include "Core/CameraParameters.h"
 
-#include "BoomArmCameraNodeTopDown.generated.h"
+#include "CustomCameraNodeTopDown.generated.h"
 
 class FCameraNodeEvaluator;
 
@@ -14,40 +14,39 @@ class FCameraNodeEvaluator;
  *
  */
 UCLASS()
-class GASEXTRACTION_API UBoomArmCameraNodeTopDown : public UCameraNode
+class YOURPROJECT_API UCustomCameraNodeTopDown : public UCameraNode
 {
 	GENERATED_BODY()
 
 protected:
-
-	// UCameraNode interface.
 	virtual FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder& Builder) const override;
 
 public:
-
+	// The Distance from target to camera view
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter DistanceFromTarget = 500.0f;
 
+	// The rotation of the camera
 	UPROPERTY(EditAnywhere, Category = Common)
 	FRotator3dCameraParameter Rotation = FRotator::ZeroRotator;
 
-	// Độ cứng của lò xo. Càng cao càng "cứng", bám sát hơn.
+	// The stiffness of the spring. Higher values are "stiffer" and follow more closely.
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter Stiffness = 45.0f;
 
-	// Tỉ lệ giảm chấn. 1.0 = tới hạn (không vọt lố).
+	// The damping ratio. 1.0 is critically damped (no overshoot).
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter DampingRatio = 1.0f;
 
-	// Khối lượng của camera, tạo cảm giác ì, đầm hơn.
+	// The mass of the camera, creating a heavier, more weighty feel.
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter Mass = 10.0f;
 
-	// Sử dụng 100% vận tốc của mục tiêu để dự đoán, giúp camera "đón đầu".
+	// Use 100% of the target's velocity for prediction, helping the camera "lead the target".
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter TargetVelocityAmount = 1.0f;
-	
+    
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter DistanceInterpolationSpeed = 5.0f;
-	
 };
+
