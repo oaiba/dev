@@ -351,8 +351,7 @@ The power of this method lies in how simple it is for designers to use.
 
 Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
 
-![GIF một chú chó vui mừng ngồi trước máy tính](https://media.giphy.com/media/slOhiKAVFgwr6/giphy.gif)
-![GIF một chú chó vui mừng ngồi trước máy tính](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-1/output-sample-low.gif)
+![GIF một chú chó vui mừng ngồi trước máy tính](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3lhOWtzbnZ2b25naTNqbnY5M3R6M2NxaGMxNndoOW16dWFkNzk4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bpeB3v2MZ7iJwVLBx1/giphy.gif)
 
 ### Conclusion
 
