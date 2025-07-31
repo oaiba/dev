@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Cameras/CustomNode/BoomArmCameraNodeTopDown.h"
+
+#include "Camera/CustomCameraNodeTopDown.h"
 
 #include "Core/CameraEvaluationContext.h"
 #include "Core/CameraParameterReader.h"
@@ -12,7 +13,7 @@
 #include "Math/Quat.h"
 #include "Math/Rotator.h"
 
-#include UE_INLINE_GENERATED_CPP_BY_NAME(BoomArmCameraNodeTopDown)
+#include UE_INLINE_GENERATED_CPP_BY_NAME(CustomCameraNodeTopDown)
 
 namespace UE::Cameras
 {
@@ -45,7 +46,7 @@ namespace UE::Cameras
 	void FCustomCameraNodeTopDownEvaluator::OnInitialize(const FCameraNodeEvaluatorInitializeParams& Params,
 	                                                               FCameraNodeEvaluationResult& OutResult)
 	{
-		const UBoomArmCameraNodeTopDown* AttachNode = GetCameraNodeAs<UBoomArmCameraNodeTopDown>();
+		const UCustomCameraNodeTopDown* AttachNode = GetCameraNodeAs<UCustomCameraNodeTopDown>();
 		DistanceReader.Initialize(AttachNode->DistanceFromTarget);
 		RotationReader.Initialize(AttachNode->Rotation);
 		StiffnessReader.Initialize(AttachNode->Stiffness);
@@ -55,7 +56,7 @@ namespace UE::Cameras
 		DistanceInterpSpeedReader.Initialize(AttachNode->DistanceInterpolationSpeed);
 	}
 
-	void FCustomBoomOffsetTopDownCameraNodeEvaluator::OnRun(const FCameraNodeEvaluationParams& Params,
+	void FCustomCameraNodeTopDownEvaluator::OnRun(const FCameraNodeEvaluationParams& Params,
 	                                                        FCameraNodeEvaluationResult& OutResult)
 	{
 	    const APlayerController* PlayerController = Params.EvaluationContext->GetPlayerController();
@@ -111,7 +112,7 @@ namespace UE::Cameras
 	}
 } // namespace UE::Cameras
 
-FCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown::OnBuildEvaluator(FCameraNodeEvaluatorBuilder& Builder) const
+FCameraNodeEvaluatorPtr UCustomCameraNodeTopDown::OnBuildEvaluator(FCameraNodeEvaluatorBuilder& Builder) const
 {
 	using namespace UE::Cameras;
 	return Builder.BuildEvaluator<FCustomCameraNodeTopDownEvaluator>();
