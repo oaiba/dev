@@ -30,6 +30,16 @@
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/devlog/</loc>
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/tags/devlog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/tags/devlog/"
+                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/posts/devlog-0-sample-layout/</loc>
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
@@ -62,9 +72,29 @@
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/categories/tech/</loc>
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/categories/tech/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/categories/tech/"
+                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/tutorial/</loc>
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/tags/tutorial/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/tags/tutorial/"
+                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
