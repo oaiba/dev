@@ -6,6 +6,7 @@ author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
 summary = "Sample Layout"
+weight = 1
 +++
 
 ### **Bố Cục Layout Chuẩn cho Dev Log Kỹ thuật**
