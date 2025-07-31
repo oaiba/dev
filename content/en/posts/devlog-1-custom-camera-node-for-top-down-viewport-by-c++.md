@@ -32,14 +32,15 @@ documentation of Epic Game.
 > about Unreal Engine, its **open-source nature** empowers you to truly understand and *take control* of what you're building. 
 > It's awesome!"
 > 
-> See more detail of other node in '\UE_5.6\Engine\Plugins\Cameras\GameplayCameras\Source\GameplayCameras\Public\Nodes\'
+> See more detail of other nodes in the source engine '\UE_5.6\Engine\Plugins\Cameras\GameplayCameras\Source\GameplayCameras\Public\Nodes\'
 
 #### Download:
 
 * {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
 * {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
-![](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-1/create-class.png)
+![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
+![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
 * * *
 
 ### Part 1: The "What" - What are `UCameraNode` and the **Gameplay Camera System**?
