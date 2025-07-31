@@ -63,7 +63,10 @@ defaultContentLanguageInSubdir = true
   keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
   
 [assets]
-    favicon = "/favicon.ico"
+    favicon = "favicon.ico"
+    favicon16x16 = "/assets/wood-axe.png"
+    favicon32x32 = "/assets/wood-axe.png"
+    apple_touch_icon = "/assets/wood-axe.png"
   
 [cover]
     linkFullImages = true
