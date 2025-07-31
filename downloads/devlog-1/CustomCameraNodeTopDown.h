@@ -11,13 +11,12 @@
 class FCameraNodeEvaluator;
 
 /**
- *
+ * 
  */
-UCLASS()
-class YOURPROJECT_API UCustomCameraNodeTopDown : public UCameraNode
+UCLASS(meta=(CameraNodeCategories="Custom"))
+class GAMEANIMATIONSAMPLEDEVLOG_API UCustomCameraNodeTopDown : public UCameraNode
 {
 	GENERATED_BODY()
-
 protected:
 	virtual FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder& Builder) const override;
 
@@ -28,7 +27,7 @@ public:
 
 	// The rotation of the camera
 	UPROPERTY(EditAnywhere, Category = Common)
-	FRotator3dCameraParameter Rotation = FRotator::ZeroRotator;
+	FRotator3dCameraParameter Rotation = FRotator(-60.0f, 0.0f, 0.0f);
 
 	// The stiffness of the spring. Higher values are "stiffer" and follow more closely.
 	UPROPERTY(EditAnywhere, Category = Common)
@@ -49,4 +48,3 @@ public:
 	UPROPERTY(EditAnywhere, Category = Common)
 	FFloatCameraParameter DistanceInterpolationSpeed = 5.0f;
 };
-
