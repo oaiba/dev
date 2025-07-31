@@ -1,7 +1,7 @@
 ﻿+++
 title = "DevLog: #0 Sample Layout"
 date = "2025-07-31T10:13:42+07:00"
-draft = false 
+draft = true 
 author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]

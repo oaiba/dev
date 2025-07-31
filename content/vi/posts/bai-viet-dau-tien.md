@@ -1,7 +1,7 @@
 +++
 title = "Chào Thế Giới: Hướng Dẫn Viết Bài Blog Markdown Đầu Tiên"
 date = "2025-07-30T10:13:42+07:00"
-draft = false 
+draft = true 
 author = "Bob"
 tags = ["hướng dẫn", "markdown", "hugo"]
 categories = ["Kỹ Thuật"]

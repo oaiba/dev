@@ -1,7 +1,7 @@
 +++
 title = "Xây Dựng Bố Cục Devlog Chuẩn Mực và Thu Hút"
 date = '2025-07-31T10:46:07+07:00'
-draft = false
+draft = true
 author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
