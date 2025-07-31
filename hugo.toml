@@ -62,6 +62,9 @@ defaultContentLanguageInSubdir = true
   hideFooter = false
   keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
   
+[assets]
+    favicon = "https://picsum.photos/seed/hugo/16/16"
+  
 [cover]
     linkFullImages = true
     responsiveImages = true
