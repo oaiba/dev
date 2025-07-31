@@ -2,32 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://oaiba.github.io/dev-blog/vi/categories/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/categories/"
-                />
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/tags/devlog/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/tags/devlog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/tags/devlog/"
-                />
-  </url><url>
     <loc>https://oaiba.github.io/dev-blog/vi/</loc>
     <lastmod>2025-07-31T10:46:07+07:00</lastmod>
     <xhtml:link
@@ -54,50 +28,18 @@
                 href="https://oaiba.github.io/dev-blog/vi/posts/"
                 />
   </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/tags/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/tags/"
-                />
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/categories/tech/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/categories/tech/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/categories/tech/"
-                />
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/tags/tutorial/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/tags/tutorial/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/tags/tutorial/"
-                />
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/posts/build-devlog-layout/</loc>
-    <lastmod>2025-07-31T10:46:07+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/vi/posts/bai-viet-dau-tien/</loc>
+    <loc>https://oaiba.github.io/dev-blog/vi/categories/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/categories/"
+                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/vi/tags/hugo/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
@@ -113,5 +55,18 @@
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/vi/tags/markdown/</loc>
     <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/vi/tags/</loc>
+    <lastmod>2025-07-30T10:13:42+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/tags/"
+                />
   </url>
 </urlset>
