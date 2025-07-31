@@ -19,7 +19,9 @@ physics system, delivering a camera feel that is both highly professional and ea
 
 > To learn more about the system, read the [Gameplay Camera System Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview) and [Gameplay Camera System Quick Start](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start) documentation of Epic Game.
 
-#### Download: {{< download filename="_CustomCameraNodeTopDown.h_" url="/dev-blog/downloads/CustomCameraNodeTopDown.h"/>}}
+#### Download: 
+* {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
+* {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
 * * *
 
