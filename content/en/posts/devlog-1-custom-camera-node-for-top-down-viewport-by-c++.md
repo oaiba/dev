@@ -22,9 +22,15 @@ physics system, delivering a camera feel that is both highly professional and ea
 > camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.
 
 > To learn more about the system, read
-> the [Gameplay Camera System Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview)
-> and [Gameplay Camera System Quick Start](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start)
-> documentation of Epic Game.
+the [Gameplay Camera System Overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview)
+and [Gameplay Camera System Quick Start](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start)
+documentation of Epic Game.
+
+> "My goal isn't to reinvent the wheel—Epic has already engineered some excellent `UCameraNode` classes for us. Instead,
+> we're going to **pop the hood and see how the engine ticks**! In this series, we'll demystify the built-in nodes and,
+> more excitingly, learn how to **derive our own custom classes** with specialized logic. Honestly, that's the best part 
+> about Unreal Engine, its **open-source nature** empowers you to truly understand and *take control* of what you're building. 
+> It's awesome!"
 
 #### Download:
 
@@ -123,7 +129,7 @@ computational logic for a custom camera node within Unreal Engine's **Gameplay C
 ```c++
 namespace UE::Cameras // Remember put class in UE::Cameras namespace
 {
-    class FCustomBoomOffsetTopDownCameraNodeEvaluator : public FCameraNodeEvaluator
+    class FCustomCameraNodeTopDownEvaluator : public FCameraNodeEvaluator
     {
     protected:
         virtual void OnInitialize(const FCameraNodeEvaluatorInitializeParams& Params,
