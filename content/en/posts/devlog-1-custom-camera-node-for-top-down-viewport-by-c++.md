@@ -351,6 +351,9 @@ The power of this method lies in how simple it is for designers to use.
 
 Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
 
+![GIF một chú chó vui mừng ngồi trước máy tính](https://media.giphy.com/media/slOhiKAVFgwr6/giphy.gif)
+![GIF một chú chó vui mừng ngồi trước máy tính](/downloads/devlog-1/output-sample.gif)
+
 ### Conclusion
 
 We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine's
