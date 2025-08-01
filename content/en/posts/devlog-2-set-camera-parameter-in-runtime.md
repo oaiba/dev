@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Set Camera Parameter in Runtime"
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true'
+cover.image = 'https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e32bed42-dfd6-4419-90d7-118008fb9bed/gameplay-cameras-overview-1.png'
 cover.caption = 'Camera Parameter in Runtime'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
