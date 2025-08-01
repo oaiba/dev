@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Set Camera Parameter in Runtime"
 showtoc = true
 comments = true
-cover.image = 'https://d1iv7db44yhgxn.cloudfront.net/documentation/images/e32bed42-dfd6-4419-90d7-118008fb9bed/gameplay-cameras-overview-1.png'
+cover.image = 'https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
 cover.caption = 'Camera Parameter in Runtime'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
