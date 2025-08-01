@@ -1,7 +1,7 @@
-﻿+++
++++
 title = "DevLog: #2 Set Camera Parameter in Runtime"
 date = "2025-07-31T14:19:42+07:00"
-draft = true 
+draft = false 
 author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
