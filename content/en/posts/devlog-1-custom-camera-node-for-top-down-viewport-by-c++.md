@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Create Custom Camera Node for Top-Down View by C++"
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true'
+cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true'
 cover.caption = 'Custom Camera Node for Top-Down View by C++ Ouput'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
@@ -366,7 +366,7 @@ The power of this method lies in how simple it is for designers to use.
 
 Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
 
-![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample-low.gif?raw=true)
+![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true)
 
 ### Conclusion
 
