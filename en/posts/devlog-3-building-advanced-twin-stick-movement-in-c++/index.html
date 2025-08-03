@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Posts | Bob Pham&#39;s DevLog</title>
-<meta name="keywords" content="">
-<meta name="description" content="Posts - Bob Pham&#39;s DevLog">
-<meta name="author" content="Bob Pham">
-<link rel="canonical" href="https://oaiba.github.io/dev-blog/en/posts/">
+<title>DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43; | Bob Pham&#39;s DevLog</title>
+<meta name="keywords" content="DevLog, Tutorial">
+<meta name="description" content="Sample Layout">
+<meta name="author" content="Bob">
+<link rel="canonical" href="https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c&#43;&#43;/">
 <link crossorigin="anonymous" href="/dev-blog/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://oaiba.github.io/dev-blog/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://oaiba.github.io/dev-blog/favicon-16x16.png">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://oaiba.github.io/dev-blog/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://oaiba.github.io/dev-blog/en/posts/index.xml">
-<link rel="alternate" hreflang="en" href="https://oaiba.github.io/dev-blog/en/posts/">
-<link rel="alternate" hreflang="vi" href="https://oaiba.github.io/dev-blog/vi/posts/">
+<link rel="alternate" hreflang="en" href="https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c&#43;&#43;/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,15 +55,20 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://oaiba.github.io/dev-blog/en/posts/">
+</noscript><meta property="og:url" content="https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c&#43;&#43;/">
   <meta property="og:site_name" content="Bob Pham&#39;s DevLog">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="A deep-dive Dev Blog on Unreal Engine C&#43;&#43; and Blueprint, sharing knowledge, experience, and game development tutorials.">
+  <meta property="og:title" content="DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43;">
+  <meta property="og:description" content="Sample Layout">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-31T10:13:42+07:00">
+    <meta property="article:modified_time" content="2025-07-31T10:13:42+07:00">
+    <meta property="article:tag" content="DevLog">
+    <meta property="article:tag" content="Tutorial">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Posts">
-<meta name="twitter:description" content="A deep-dive Dev Blog on Unreal Engine C&#43;&#43; and Blueprint, sharing knowledge, experience, and game development tutorials.">
+<meta name="twitter:title" content="DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43;">
+<meta name="twitter:description" content="Sample Layout">
 
 
 <script type="application/ld+json">
@@ -78,13 +81,52 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://oaiba.github.io/dev-blog/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "DevLog: #3 Building Advanced 'Twin-Stick' Movement in C++",
+      "item": "https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c++/"
     }
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DevLog: #3 Building Advanced 'Twin-Stick' Movement in C++",
+  "name": "DevLog: #3 Building Advanced \u0027Twin-Stick\u0027 Movement in C\u002b\u002b",
+  "description": "Sample Layout",
+  "keywords": [
+    "DevLog", "Tutorial"
+  ],
+  "articleBody": "🎯 The Problem \u0026 The Goal The Problem: After setting up a flexible top-down camera system in the previous two articles, we face a classic challenge: character movement. Unreal’s default movement system (bOrientRotationToMovement) often couples the movement direction with the character’s facing direction. This is great for third-person adventure games but is a major limitation for top-down games, twin-stick shooters, or MOBAs, where the player needs to run in one direction and aim or look in another. The Goal: In this article, we will build a robust and flexible omnidirectional movement system in C++. This system allows the character to move relative to the camera’s perspective and to rotate their body to look or aim independently. Most importantly, we will create a seamless state-switching mechanism between two modes: “normal movement” (facing the run direction) and “aiming” (facing a specific direction). ",
+  "wordCount" : "140",
+  "inLanguage": "en",
+  "datePublished": "2025-07-31T10:13:42+07:00",
+  "dateModified": "2025-07-31T10:13:42+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Bob"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c++/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bob Pham's DevLog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://oaiba.github.io/dev-blog/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -148,53 +190,48 @@
         </ul>
     </nav>
 </header>
-<main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://oaiba.github.io/dev-blog/en/">Home</a></div>
-  <h1>
-    Posts
-  </h1>
-</header>
+<main class="main">
 
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true" alt="this is alter cover">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Create Custom Camera Node for Top-Down View by C&#43;&#43;</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-07-30 10:13:42 +0700 +0700'>July 30, 2025</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;1829 words&nbsp;·&nbsp;Bob</footer>
-  <a class="entry-link" aria-label="post link to DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;" href="https://oaiba.github.io/dev-blog/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/"></a>
-</article>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://oaiba.github.io/dev-blog/en/">Home</a>&nbsp;»&nbsp;<a href="https://oaiba.github.io/dev-blog/en/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43;
+    </h1>
+    <div class="post-meta"><span title='2025-07-31 10:13:42 +0700 +0700'>July 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;140 words&nbsp;·&nbsp;Bob
 
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true" alt="this is alter cover">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DevLog: #2 Set Camera Parameter in Runtime
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Set Camera Parameter in Runtime</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-07-31 14:19:42 +0700 +0700'>July 31, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;881 words&nbsp;·&nbsp;Bob</footer>
-  <a class="entry-link" aria-label="post link to DevLog: #2 Set Camera Parameter in Runtime" href="https://oaiba.github.io/dev-blog/en/posts/devlog-2-set-camera-parameter-in-runtime/"></a>
-</article>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
 
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Sample Layout</p>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#-the-problem--the-goal" aria-label="🎯 The Problem &amp; The Goal">🎯 The Problem &amp; The Goal</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="-the-problem--the-goal">🎯 The Problem &amp; The Goal<a hidden class="anchor" aria-hidden="true" href="#-the-problem--the-goal">#</a></h3>
+<ul>
+<li><strong>The Problem:</strong> After setting up a flexible top-down camera system in the previous two articles, we face a classic challenge: character movement. Unreal&rsquo;s default movement system (<code>bOrientRotationToMovement</code>) often couples the movement direction with the character&rsquo;s facing direction. This is great for third-person adventure games but is a major limitation for top-down games, twin-stick shooters, or MOBAs, where the player needs to <strong>run in one direction and aim or look in another</strong>.</li>
+<li><strong>The Goal:</strong> In this article, we will build a robust and flexible omnidirectional movement system in C++. This system allows the character to move relative to the camera&rsquo;s perspective and to rotate their body to look or aim independently. Most importantly, we will create a seamless state-switching mechanism between two modes: &ldquo;normal movement&rdquo; (facing the run direction) and &ldquo;aiming&rdquo; (facing a specific direction).</li>
+</ul>
+<hr>
+
+
   </div>
-  <footer class="entry-footer"><span title='2025-07-31 10:13:42 +0700 +0700'>July 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;140 words&nbsp;·&nbsp;Bob</footer>
-  <a class="entry-link" aria-label="post link to DevLog: #3 Building Advanced &#39;Twin-Stick&#39; Movement in C&#43;&#43;" href="https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c&#43;&#43;/"></a>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/devlog/">DevLog</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/tutorial/">Tutorial</a></li>
+    </ul>
+  </footer>
 </article>
     </main>
     
@@ -266,6 +303,53 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
