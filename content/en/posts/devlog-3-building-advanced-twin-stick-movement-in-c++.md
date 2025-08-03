@@ -5,14 +5,14 @@ draft = false
 author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
-summary = "Sample Layout"
+summary = "In this article, we will build a robust and flexible omnidirectional movement system in C++. This system allows the character to move relative to the camera's perspective and to rotate their body to look or aim independently."
 showtoc = true
 comments = true
-#cover.image = 'https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
-#cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
-#cover.alt = 'this is alter cover'
-#cover.responsiveImages = true
-#cover.hidden = false
+cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
+cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
+cover.alt = 'this is alter cover'
+cover.responsiveImages = true
+cover.hidden = false
 weight = 4
 +++
 
@@ -57,21 +57,21 @@ repetition.
 It also ensures that `bOrientRotationToMovement` and `bUseControllerDesiredRotation` are always in opposing states,
 preventing unexpected behavior.
 
-    ```c++
-    void ACharacterBase::SetShouldFollowMovement(const bool bShouldFollow)
-    {
-      bShouldFollowMovement = bShouldFollow;
-    
-      if (auto* Movement = GetCharacterMovement())
-      {
-          // When bShouldFollow is true, we are in "running" mode.
-          // When bShouldFollow is false, we are in "aiming" mode.
-          const bool bIsInAimingMode = !bShouldFollowMovement;
-          Movement->bUseControllerDesiredRotation = bIsInAimingMode;
-          Movement->bOrientRotationToMovement = !bIsInAimingMode;
-      }
-    }
-    ```
+```c++
+void ACharacterBase::SetShouldFollowMovement(const bool bShouldFollow)
+{
+  bShouldFollowMovement = bShouldFollow;
+
+  if (auto* Movement = GetCharacterMovement())
+  {
+      // When bShouldFollow is true, we are in "running" mode.
+      // When bShouldFollow is false, we are in "aiming" mode.
+      const bool bIsInAimingMode = !bShouldFollowMovement;
+      Movement->bUseControllerDesiredRotation = bIsInAimingMode;
+      Movement->bOrientRotationToMovement = !bIsInAimingMode;
+  }
+}
+```
 
 #### Step 2: Camera-Relative Omnidirectional Movement
 
@@ -210,10 +210,12 @@ allows us to reuse that logic for both movement and aiming modes.
 
 #### Step 5: Exposing and Calling Functions from the Player Character Blueprint
 
-Our C++ logic is ready, but it needs to be triggered by player input. This step connects everything. We will use the `UFUNCTION(BlueprintCallable)` macro to "expose" our C++ functions, allowing the
-  `Player Character` Blueprint to see and call them. Then, we will connect the events from `Enhanced Input` to these
-  corresponding functions. This is a classic Unreal workflow: **Write complex, high-performance logic in C++ and use
-  Blueprint for flexible "wiring."**
+Our C++ logic is ready, but it needs to be triggered by player input. This step connects everything. We will use the
+`UFUNCTION(BlueprintCallable)` macro to "expose" our C++ functions, allowing the
+`Player Character` Blueprint to see and call them. Then, we will connect the events from `Enhanced Input` to these
+corresponding functions. This is a classic Unreal workflow: **Write complex, high-performance logic in C++ and use
+Blueprint for flexible "wiring."**
+
 * **Part 1: Exposing Functions to Blueprint (C++ Header)** In your character's header file (`ACharacterBase.h`), add the
   `UFUNCTION` macro before the input handling functions.
 
@@ -249,6 +251,7 @@ Our C++ logic is ready, but it needs to be triggered by player input. This step 
 
     1. **Event IA\_Move:** This event fires every frame that there is movement input (WASD or Left Stick). We take its
        `Action Value` (which is an `FVector2D`) and pass it directly into our C++ function `HandleMovementTrigger`.
+       ![ia move](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/ia_move.png?raw=true)
 
     2. **Event IA\_Look:**
         * The `Started` pin fires once when the player begins moving the Right Stick. It calls the `HandleLookStarted`
@@ -257,6 +260,7 @@ Our C++ logic is ready, but it needs to be triggered by player input. This step 
           `HandleLookTriggered` function to update the character's rotation.
         * The `Completed` pin fires once when the player releases the Right Stick. It calls `HandleLookCompleted` to
           return the character to the normal "movement" mode.
+          ![ia look](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/ia_look.png?raw=true)
 
 With this setup, we have completed the full loop: **Input -> Blueprint Event -> C++ Logic -> Character Movement.**
 
@@ -265,10 +269,7 @@ With this setup, we have completed the full loop: **Input -> Blueprint Event -> 
 ### 📊 Visual Results & Analysis
 
 * **Visual Demo:**
-    * **GIF 1: Movement Mode:** The character runs in all directions (left, right, forward, backward), and their body
-      automatically turns to face the direction of movement.
-    * **GIF 2: Aiming Mode:** The character is standing still or strafing left, but the player uses the right stick to
-      rotate the character's upper body 360 degrees to aim in all directions without affecting the movement direction.
+  ![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true)
 * **Result Analysis:**
     * **Functional:** We have successfully created a complete, flexible, and intuitive twin-stick control system that
       meets the demands of modern top-down games.
