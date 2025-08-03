@@ -1,18 +1,18 @@
 ﻿+++
 title = "DevLog: #3 Building Advanced 'Twin-Stick' Movement in C++"
-date = "2025-08-03T10:19:42+07:00"
-draft = false 
+date = "2025-07-31T10:13:42+07:00"
+draft = false
 author = "Bob"
 tags = ["DevLog", "Tutorial"]
 categories = ["Tech"]
-summary = "Building Advanced 'Twin-Stick' Movement in C++"
+summary = "Sample Layout"
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
-cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
-cover.alt = 'this is alter cover'
-cover.responsiveImages = true
-cover.hidden = false
+#cover.image = 'https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
+#cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
+#cover.alt = 'this is alter cover'
+#cover.responsiveImages = true
+#cover.hidden = false
 weight = 4
 +++
 
