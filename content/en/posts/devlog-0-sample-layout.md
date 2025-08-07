@@ -22,6 +22,8 @@ weight = 1
 
 ---
 
+https://isqua.github.io/hugo-shortcodes/links/mailto/
+
 ### 📚 Bối cảnh và Lý thuyết (Context & Theory)
 
 *(Phần này cung cấp kiến thức nền tảng cần thiết để người đọc có thể hiểu được giải pháp của bạn.)*
