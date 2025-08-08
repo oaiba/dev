@@ -23,6 +23,8 @@ weight = 1
 ---
 
 https://isqua.github.io/hugo-shortcodes/links/mailto/
+https://unrealist.org/
+https://bloggers.feedspot.com/unreal_engine_blogs/
 
 ### 📚 Bối cảnh và Lý thuyết (Context & Theory)
 
