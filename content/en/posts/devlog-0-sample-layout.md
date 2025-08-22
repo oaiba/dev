@@ -26,6 +26,8 @@ https://isqua.github.io/hugo-shortcodes/links/mailto/
 https://unrealist.org/  
 https://bloggers.feedspot.com/unreal_engine_blogs/  
 
+This post is more than 18 months old. Since technology changes too rapidly, this content may be out of date (but that's not always the case). Please remember to verify any technical or programming information with the current release.  
+
 ### 📚 Bối cảnh và Lý thuyết (Context & Theory)
 
 *(Phần này cung cấp kiến thức nền tảng cần thiết để người đọc có thể hiểu được giải pháp của bạn.)*
