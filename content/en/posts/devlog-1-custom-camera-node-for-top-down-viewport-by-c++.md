@@ -1,5 +1,5 @@
 ﻿+++
-title = "DevLog: #1 Create Custom Camera Node for Top-Down View by C++"
+title = "DevLog: #1 Create Custom Camera Node for Top-Down View by C+++"
 date = "2025-07-30T10:13:42+07:00"
 draft = false 
 author = "Bob"
