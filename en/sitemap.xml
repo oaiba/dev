@@ -12,7 +12,7 @@
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-12T10:00:00-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -22,6 +22,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://oaiba.github.io/dev-blog/en/"
+                />
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/posts/</loc>
+    <lastmod>2025-09-12T10:00:00-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/posts/"
                 />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/categories/</loc>
@@ -39,19 +52,6 @@
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/devlog/</loc>
     <lastmod>2025-07-31T14:19:42+07:00</lastmod>
-  </url><url>
-    <loc>https://oaiba.github.io/dev-blog/en/posts/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/posts/"
-                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/</loc>
     <lastmod>2025-07-31T14:19:42+07:00</lastmod>
