@@ -5,11 +5,11 @@ draft = false
 author = "Bob"
 tags = ["DevLog", "Tutorial", "Unreal Engine", "C++", "GameDev", "UI", "Inventory System"]
 categories = ["Tech"]
-summary = "In this article, we will build a robust and flexible omnidirectional movement system in C++. This system allows the character to move relative to the camera's perspective and to rotate their body to look or aim independently."
+summary = "The new grid inventory system is a UMG widget designed to be highly configurable and responsive."
 showtoc = true
 comments = true
 cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
-cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
+cover.caption = 'The new grid inventory system is a UMG widget designed to be highly configurable and responsive.'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
 cover.hidden = false
