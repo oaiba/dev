@@ -1,6 +1,6 @@
 ﻿+++
 title = "Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C++"
-date = "2025-09-12T10:00:00-05:00"
+date = "2025-09-11T10:00:00-05:00"
 draft = false
 author = "Bob"
 tags = ["DevLog", "Tutorial", "Unreal Engine", "C++", "GameDev", "UI", "Inventory System"]
