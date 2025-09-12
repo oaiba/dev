@@ -3,24 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Landing Page</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1a1a1a;
-            color: #fff;
-        }
-        h1 {
-            font-size: 3rem;
-        }
-    </style>
+    <title>VoidBound - Top-Down Hero Shooter Extraction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Russo+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Hello World from Game Landing Page 🎮</h1>
+
+<!-- Header & Navigation -->
+<header>
+    <nav class="container">
+        <a href="#home" class="logo">VOIDBOUND</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#hero1">Razor</a></li>
+            <li><a href="#hero2">Crusher</a></li>
+            <li><a href="#hero3">Aegis</a></li>
+            <li><a href="#hero4">Specter</a></li>
+            <li><a href="#hero5">Volt</a></li>
+            <li><a href="#more-info">More</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Home Section -->
+    <section id="home" class="fullscreen-section">
+        <div class="content-overlay">
+            <h1>FIGHT. EXTRACT. SURVIVE.</h1>
+            <p>A top-down hero extraction shooter where every mission is a high-stakes gamble.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Wishlist on Steam</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero 1: Razor -->
+    <section id="hero1" class="fullscreen-section hero-section">
+        <div class="hero-content-box">
+            <h2>RAZOR</h2>
+            <p class="nickname">The Phantom Blade</p>
+            <p class="description">A high-tech assassin using advanced cloaking and teleportation to outmaneuver his opponents.</p>
+        </div>
+    </section>
+
+    <!-- Hero 2: Crusher -->
+    <section id="hero2" class="fullscreen-section hero-section">
+        <div class="hero-content-box">
+            <h2>CRUSHER</h2>
+            <p class="nickname">The Juggernaut</p>
+            <p class="description">A walking fortress that excels at absorbing damage and controlling the battlefield with heavy firepower.</p>
+        </div>
+    </section>
+
+    <!-- Hero 3: Aegis -->
+    <section id="hero3" class="fullscreen-section hero-section">
+        <div class="hero-content-box">
+            <h2>AEGIS</h2>
+            <p class="nickname">The Guardian Field</p>
+            <p class="description">A tactical support specialist using nanobot technology to heal allies and fortify defensive positions.</p>
+        </div>
+    </section>
+
+    <!-- Hero 4: Specter -->
+    <section id="hero4" class="fullscreen-section hero-section">
+        <div class="hero-content-box">
+            <h2>SPECTER</h2>
+            <p class="nickname">The Ghost Recon</p>
+            <p class="description">A master of intelligence and disruption, using holographic decoys to confuse and expose enemy positions.</p>
+        </div>
+    </section>
+
+    <!-- Hero 5: Volt -->
+    <section id="hero5" class="fullscreen-section hero-section">
+        <div class="hero-content-box">
+            <h2>VOLT</h2>
+            <p class="nickname">The Stormcaller</p>
+            <p class="description">An area-denial expert who controls combat with electrical traps and fields that slow enemies.</p>
+        </div>
+    </section>
+
+    <!-- Final Section for other content -->
+    <section id="more-info" class="final-section">
+        <div class="container">
+            <div id="platforms" class="sub-section">
+                <h2>AVAILABLE ON</h2>
+                <div class="platforms-grid">
+                    <div class="platform-card">
+                        <h3>PC / STEAM</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SteamLink&bgcolor=0f1014&color=e0e0e0&qzone=1" alt="QR Code for Steam">
+                    </div>
+                    <div class="platform-card">
+                        <h3>PLAYSTATION 5</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PlaystationLink&bgcolor=0f1014&color=e0e0e0&qzone=1" alt="QR Code for PlayStation">
+                    </div>
+                    <div class="platform-card">
+                        <h3>XBOX SERIES X|S</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=XboxLink&bgcolor=0f1014&color=e0e0e0&qzone=1" alt="QR Code for Xbox">
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; 2025 VOIDBOUND STUDIOS. ALL RIGHTS RESERVED.</p>
+            </footer>
+        </div>
+    </section>
+
+</main>
 </body>
 </html>
