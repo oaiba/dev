@@ -162,6 +162,7 @@ UUserWidget* UOBGridInventoryWidget::AddItemWidget(UObject* ItemDataSource, cons
 	return AddItemWidgetInternal(ItemDataSource, ItemRows, ItemCols, FoundRow, FoundCol);
 }
 ```
+
 We also provide an `AddItemWidgetAt` function for placing an item at a specific coordinate. The core of this logic is the `IsAreaClear` function, which checks for collisions with existing items before placement.
 
 ### Challenges and Solutions
@@ -183,4 +184,3 @@ While this system is fully functional, there are always improvements to be made.
 We're really happy with this foundational system. It gives our design team the flexibility they need while ensuring great performance and a clean, responsive user experience.
 
 Stay tuned for our next post!
-```
