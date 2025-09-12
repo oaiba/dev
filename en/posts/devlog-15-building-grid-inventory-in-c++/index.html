@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C&#43;&#43; | Bob Pham&#39;s DevLog</title>
+<meta name="keywords" content="DevLog, Tutorial, Unreal Engine, C&#43;&#43;, GameDev, UI, Inventory System">
+<meta name="description" content="The new grid inventory system is a UMG widget designed to be highly configurable and responsive.">
+<meta name="author" content="Bob">
+<link rel="canonical" href="https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c&#43;&#43;/">
+<link crossorigin="anonymous" href="/dev-blog/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://oaiba.github.io/dev-blog/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://oaiba.github.io/dev-blog/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://oaiba.github.io/dev-blog/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://oaiba.github.io/dev-blog/apple-touch-icon.png">
+<link rel="mask-icon" href="https://oaiba.github.io/dev-blog/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c&#43;&#43;/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c&#43;&#43;/">
+  <meta property="og:site_name" content="Bob Pham&#39;s DevLog">
+  <meta property="og:title" content="Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C&#43;&#43;">
+  <meta property="og:description" content="The new grid inventory system is a UMG widget designed to be highly configurable and responsive.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-11T10:00:00-05:00">
+    <meta property="article:modified_time" content="2025-09-11T10:00:00-05:00">
+    <meta property="article:tag" content="DevLog">
+    <meta property="article:tag" content="Tutorial">
+    <meta property="article:tag" content="Unreal Engine">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="article:tag" content="GameDev">
+    <meta property="article:tag" content="UI">
+    <meta property="og:image" content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true">
+<meta name="twitter:title" content="Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C&#43;&#43;">
+<meta name="twitter:description" content="The new grid inventory system is a UMG widget designed to be highly configurable and responsive.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://oaiba.github.io/dev-blog/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C++",
+      "item": "https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c++/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C++",
+  "name": "Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C\u002b\u002b",
+  "description": "The new grid inventory system is a UMG widget designed to be highly configurable and responsive.",
+  "keywords": [
+    "DevLog", "Tutorial", "Unreal Engine", "C++", "GameDev", "UI", "Inventory System"
+  ],
+  "articleBody": "Overview The new grid inventory system is a UMG widget designed to be highly configurable and responsive. The primary goal was to create a component that could handle items of varying sizes, automatically scale to fit its container while preserving its aspect ratio, and provide clear visual feedback in both the game and the Unreal Editor.\nThe system is composed of three main C++ classes that work together:\nUOBGridInventoryWidget: The main user-facing widget that orchestrates the entire inventory. UOBGridBackgroundWidget: A lightweight, dedicated widget for drawing the grid background and border. FOBGridInventoryConfig: A simple struct to hold all the configuration data for the grid. This separation of concerns allows the main widget to focus on logic (item placement, scaling calculations) while the background widget handles the rendering details.\nKey Classes and Responsibilities FOBGridInventoryConfig This is the data backbone of our system. It’s a USTRUCT exposed to Blueprints, allowing designers to tweak the inventory’s appearance and behavior directly in the editor.\nUSTRUCT(BlueprintType) struct FOBGridInventoryConfig { GENERATED_BODY() UPROPERTY(EditAnywhere, BlueprintReadWrite, ...) int32 NumRows = 10; UPROPERTY(EditAnywhere, BlueprintReadWrite, ...) int32 NumColumns = 10; UPROPERTY(EditAnywhere, BlueprintReadWrite, ...) float CellSize = 50.0f; UPROPERTY(EditAnywhere, BlueprintReadWrite, ...) FLinearColor GridLineColor = FLinearColor(0.1f, 0.1f, 0.1f, 0.5f); // ... and other properties like line thickness }; Key properties include grid dimensions (NumRows, NumColumns), base CellSize, and visual parameters like line color and thickness.\nUOBGridBackgroundWidget This widget has one job: draw the grid. It overrides the NativePaint function to draw lines based on the FOBGridInventoryConfig it receives. This is far more performant than creating a grid out of individual image widgets.\nA neat feature is its design-time support. When viewing the widget in the UMG editor, it will display the name of its owning widget and its dimensions, making it easier for designers to work with.\n// In UOBGridBackgroundWidget.cpp int32 UOBGridBackgroundWidget::NativePaint(...) const { // ... scaling logic ... // --- Draw Vertical Lines \u0026 Left/Right Border --- for (int32 X = 0; X \u003c= NumColumns; ++X) { // ... draw logic using FSlateDrawElement::MakeLines ... } // --- Draw Horizontal Lines \u0026 Top/Bottom Border --- for (int32 Y = 0; Y \u003c= NumRows; ++Y) { // ... draw logic ... } // --- Draw Debug Text (Design-time only) --- if (IsDesignTime() \u0026\u0026 bIsShowNameOnTopLeftCorner) { // ... draws the owner's name and grid dimensions ... } return CurrentLayerId; } UOBGridInventoryWidget This is the heart of the system. It’s a UUserWidget containing a USizeBox, UOverlay, UGridPanel, and our custom UOBGridBackgroundWidget.\nResponsibilities: Managing item widgets (AddItemWidget, RemoveItemWidget). Finding free slots for new items (FindFreeSlot, IsAreaClear). Calculating and applying the correct scale to fit its container (RecalculateScaleAndRefreshLayout). Visually populating empty grid cells with “dummy” widgets for consistent styling. Responding to layout changes in real-time via NativeTick. It uses a TMap",
+  "wordCount" : "1095",
+  "inLanguage": "en",
+  "image":"https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true","datePublished": "2025-09-11T10:00:00-05:00",
+  "dateModified": "2025-09-11T10:00:00-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Bob"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c++/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bob Pham's DevLog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://oaiba.github.io/dev-blog/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://oaiba.github.io/dev-blog/en/" accesskey="h" title="Bob Pham&#39;s DevLog (Alt + H)">Bob Pham&#39;s DevLog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://oaiba.github.io/dev-blog/vi/" title="Tiếng Việt"
+                            aria-label="Tiếng Việt">Tiếng Việt</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://oaiba.github.io/en/dev-blog/posts" title="Blogs">
+                    <span>Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://oaiba.github.io/en/dev-blog/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://oaiba.github.io/en/dev-blog/about" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://oaiba.github.io/dev-blog/en/">Home</a>&nbsp;»&nbsp;<a href="https://oaiba.github.io/dev-blog/en/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Dev Log: Building a Dynamic and Scalable Grid Inventory System in Unreal Engine C&#43;&#43;
+    </h1>
+    <div class="post-meta"><span title='2025-09-11 10:00:00 -0500 -0500'>September 11, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1095 words&nbsp;·&nbsp;Bob
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true" alt="this is alter cover">
+        <figcaption>The new grid inventory system is a UMG widget designed to be highly configurable and responsive.</figcaption>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#overview" aria-label="Overview">Overview</a></li>
+                <li>
+                    <a href="#key-classes-and-responsibilities" aria-label="Key Classes and Responsibilities">Key Classes and Responsibilities</a><ul>
+                        
+                <li>
+                    <a href="#fobgridinventoryconfig" aria-label="FOBGridInventoryConfig">FOBGridInventoryConfig</a></li>
+                <li>
+                    <a href="#uobgridbackgroundwidget" aria-label="UOBGridBackgroundWidget">UOBGridBackgroundWidget</a></li>
+                <li>
+                    <a href="#uobgridinventorywidget" aria-label="UOBGridInventoryWidget">UOBGridInventoryWidget</a></li></ul>
+                </li>
+                <li>
+                    <a href="#new-features" aria-label="New Features">New Features</a><ul>
+                        
+                <li>
+                    <a href="#1-automatic-aspect-ratio-scaling" aria-label="1. Automatic Aspect-Ratio Scaling">1. Automatic Aspect-Ratio Scaling</a></li>
+                <li>
+                    <a href="#2-dynamic-dummy-cells" aria-label="2. Dynamic Dummy Cells">2. Dynamic Dummy Cells</a></li>
+                <li>
+                    <a href="#3-robust-item-management" aria-label="3. Robust Item Management">3. Robust Item Management</a></li></ul>
+                </li>
+                <li>
+                    <a href="#challenges-and-solutions" aria-label="Challenges and Solutions">Challenges and Solutions</a></li>
+                <li>
+                    <a href="#next-steps" aria-label="Next Steps">Next Steps</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h3>
+<p>The new grid inventory system is a UMG widget designed to be highly configurable and responsive. The primary goal was to create a component that could handle items of varying sizes, automatically scale to fit its container while preserving its aspect ratio, and provide clear visual feedback in both the game and the Unreal Editor.</p>
+<p>The system is composed of three main C++ classes that work together:</p>
+<ol>
+<li><code>UOBGridInventoryWidget</code>: The main user-facing widget that orchestrates the entire inventory.</li>
+<li><code>UOBGridBackgroundWidget</code>: A lightweight, dedicated widget for drawing the grid background and border.</li>
+<li><code>FOBGridInventoryConfig</code>: A simple struct to hold all the configuration data for the grid.</li>
+</ol>
+<p>This separation of concerns allows the main widget to focus on logic (item placement, scaling calculations) while the background widget handles the rendering details.</p>
+<h3 id="key-classes-and-responsibilities">Key Classes and Responsibilities<a hidden class="anchor" aria-hidden="true" href="#key-classes-and-responsibilities">#</a></h3>
+<h4 id="fobgridinventoryconfig"><code>FOBGridInventoryConfig</code><a hidden class="anchor" aria-hidden="true" href="#fobgridinventoryconfig">#</a></h4>
+<p>This is the data backbone of our system. It’s a <code>USTRUCT</code> exposed to Blueprints, allowing designers to tweak the inventory&rsquo;s appearance and behavior directly in the editor.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>USTRUCT(BlueprintType)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FOBGridInventoryConfig</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	GENERATED_BODY()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, BlueprintReadWrite, ...)
+</span></span><span style="display:flex;"><span>	int32 NumRows <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, BlueprintReadWrite, ...)
+</span></span><span style="display:flex;"><span>	int32 NumColumns <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, BlueprintReadWrite, ...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> CellSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">50.0f</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, BlueprintReadWrite, ...)
+</span></span><span style="display:flex;"><span>	FLinearColor GridLineColor <span style="color:#f92672">=</span> FLinearColor(<span style="color:#ae81ff">0.1f</span>, <span style="color:#ae81ff">0.1f</span>, <span style="color:#ae81ff">0.1f</span>, <span style="color:#ae81ff">0.5f</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... and other properties like line thickness
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>Key properties include grid dimensions (<code>NumRows</code>, <code>NumColumns</code>), base <code>CellSize</code>, and visual parameters like line color and thickness.</p>
+<h4 id="uobgridbackgroundwidget"><code>UOBGridBackgroundWidget</code><a hidden class="anchor" aria-hidden="true" href="#uobgridbackgroundwidget">#</a></h4>
+<p>This widget has one job: draw the grid. It overrides the <code>NativePaint</code> function to draw lines based on the <code>FOBGridInventoryConfig</code> it receives. This is far more performant than creating a grid out of individual image widgets.</p>
+<p>A neat feature is its design-time support. When viewing the widget in the UMG editor, it will display the name of its owning widget and its dimensions, making it easier for designers to work with.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// In UOBGridBackgroundWidget.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>int32 UOBGridBackgroundWidget<span style="color:#f92672">::</span>NativePaint(...) <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... scaling logic ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// --- Draw Vertical Lines &amp; Left/Right Border ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (int32 X <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; X <span style="color:#f92672">&lt;=</span> NumColumns; <span style="color:#f92672">++</span>X)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ... draw logic using FSlateDrawElement::MakeLines ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// --- Draw Horizontal Lines &amp; Top/Bottom Border ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (int32 Y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; Y <span style="color:#f92672">&lt;=</span> NumRows; <span style="color:#f92672">++</span>Y)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ... draw logic ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- Draw Debug Text (Design-time only) ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (IsDesignTime() <span style="color:#f92672">&amp;&amp;</span> bIsShowNameOnTopLeftCorner)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ... draws the owner&#39;s name and grid dimensions ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> CurrentLayerId;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="uobgridinventorywidget"><code>UOBGridInventoryWidget</code><a hidden class="anchor" aria-hidden="true" href="#uobgridinventorywidget">#</a></h4>
+<p>This is the heart of the system. It&rsquo;s a <code>UUserWidget</code> containing a <code>USizeBox</code>, <code>UOverlay</code>, <code>UGridPanel</code>, and our custom <code>UOBGridBackgroundWidget</code>.</p>
+<ul>
+<li><strong>Responsibilities</strong>:
+<ul>
+<li>Managing item widgets (<code>AddItemWidget</code>, <code>RemoveItemWidget</code>).</li>
+<li>Finding free slots for new items (<code>FindFreeSlot</code>, <code>IsAreaClear</code>).</li>
+<li>Calculating and applying the correct scale to fit its container (<code>RecalculateScaleAndRefreshLayout</code>).</li>
+<li>Visually populating empty grid cells with &ldquo;dummy&rdquo; widgets for consistent styling.</li>
+<li>Responding to layout changes in real-time via <code>NativeTick</code>.</li>
+</ul>
+</li>
+</ul>
+<p>It uses a <code>TMap&lt;TObjectPtr&lt;UUserWidget&gt;, FOBGridItemInfo&gt; PlacedItemInfoMap</code> to keep track of every item widget and its position/size within the grid.</p>
+<h3 id="new-features">New Features<a hidden class="anchor" aria-hidden="true" href="#new-features">#</a></h3>
+<h4 id="1-automatic-aspect-ratio-scaling">1. Automatic Aspect-Ratio Scaling<a hidden class="anchor" aria-hidden="true" href="#1-automatic-aspect-ratio-scaling">#</a></h4>
+<p>One of the most important features is the grid&rsquo;s ability to resize correctly. We want the grid to fill its parent container as much as possible without stretching the grid cells.</p>
+<p>The solution is implemented in <code>RecalculateScaleAndRefreshLayout</code>. This function is called from <code>NativeTick</code> whenever the widget&rsquo;s allocated size changes.</p>
+<ol>
+<li><code>CalculateCurrentScale</code> determines the ideal scale by comparing the widget&rsquo;s allocated size to the target size (e.g., <code>NumColumns * CellSize</code>). It calculates both horizontal and vertical scale factors and chooses the smaller of the two to prevent distortion.</li>
+<li><code>UpdateSizeBoxOverride</code> then applies this calculated scale to the <code>USizeBox</code> that contains the grid. This effectively scales the entire inventory grid uniformly.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// In UOBGridInventoryWidget.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> UOBGridInventoryWidget<span style="color:#f92672">::</span>RecalculateScaleAndRefreshLayout(<span style="color:#66d9ef">const</span> FGeometry<span style="color:#f92672">&amp;</span> CurrentGeometry)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Calculate a new scale based on current geometry
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>CalculateCurrentScale(CurrentGeometry))
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Apply new scale
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UpdateSizeBoxOverride();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Refresh grid layout
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (ItemGridPanel)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		ItemGridPanel<span style="color:#f92672">-&gt;</span>InvalidateLayoutAndVolatility();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="2-dynamic-dummy-cells">2. Dynamic Dummy Cells<a hidden class="anchor" aria-hidden="true" href="#2-dynamic-dummy-cells">#</a></h4>
+<p>To give our grid a consistent look, we wanted every empty cell to have a background. Instead of leaving them blank, the <code>UOBGridInventoryWidget</code> intelligently fills unoccupied space with placeholder widgets.</p>
+<p>The <code>UpdateDummyCells</code> method is the workhorse here. It&rsquo;s called whenever an item is added or removed.</p>
+<ol>
+<li>It first builds a <code>TSet</code> of all cells currently occupied by items.</li>
+<li>It then iterates through its tracked dummy widgets (<code>DummyCellWidgetsMap</code>) and removes any that are now on an occupied cell or have become invalid.</li>
+<li>Finally, it loops through every cell of the grid. If a cell is not occupied and doesn&rsquo;t already have a dummy widget, it creates and adds one.</li>
+</ol>
+<p>This ensures the grid is always perfectly filled, providing a clean visual background for items.</p>
+<h4 id="3-robust-item-management">3. Robust Item Management<a hidden class="anchor" aria-hidden="true" href="#3-robust-item-management">#</a></h4>
+<p>Adding and removing items is straightforward and safe. The <code>AddItemWidget</code> function will automatically find the next available slot that can accommodate the item&rsquo;s size (<code>ItemRows</code> and <code>ItemCols</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// In UOBGridInventoryWidget.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>UUserWidget<span style="color:#f92672">*</span> UOBGridInventoryWidget<span style="color:#f92672">::</span>AddItemWidget(UObject<span style="color:#f92672">*</span> ItemDataSource, <span style="color:#66d9ef">const</span> int32 ItemRows, <span style="color:#66d9ef">const</span> int32 ItemCols)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ... validation ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Find free slot in grid for item
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	int32 FoundRow <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	int32 FoundCol <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>FindFreeSlot(ItemRows, ItemCols, FoundRow, FoundCol))
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nullptr</span>; <span style="color:#75715e">// No space found
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">AddItemWidgetInternal</span>(ItemDataSource, ItemRows, ItemCols, FoundRow, FoundCol);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We also provide an <code>AddItemWidgetAt</code> function for placing an item at a specific coordinate. The core of this logic is the <code>IsAreaClear</code> function, which checks for collisions with existing items before placement.</p>
+<h3 id="challenges-and-solutions">Challenges and Solutions<a hidden class="anchor" aria-hidden="true" href="#challenges-and-solutions">#</a></h3>
+<p><strong>Challenge</strong>: Efficiently drawing a scalable grid.</p>
+<ul>
+<li><strong>Solution</strong>: Rather than using hundreds of UMG image widgets to form the grid lines (which is terrible for performance), we created the <code>UOBGridBackgroundWidget</code>. Its <code>NativePaint</code> override uses Slate draw calls (<code>FSlateDrawElement::MakeLines</code>), which is the correct and highly performant way to handle custom rendering for UMG widgets.</li>
+</ul>
+<p><strong>Challenge</strong>: Ensuring the grid is always responsive to resolution or container size changes.</p>
+<ul>
+<li><strong>Solution</strong>: We leverage the <code>NativeTick</code> function to monitor the widget&rsquo;s geometry. By storing the <code>LastKnownAllocatedSize</code> and comparing it against the current size each frame, we can detect layout changes and trigger the <code>RecalculateScaleAndRefreshLayout</code> logic only when needed. This is efficient and ensures the UI always looks correct.</li>
+</ul>
+<h3 id="next-steps">Next Steps<a hidden class="anchor" aria-hidden="true" href="#next-steps">#</a></h3>
+<p>While this system is fully functional, there are always improvements to be made. Here&rsquo;s what&rsquo;s next on our list:</p>
+<ul>
+<li><strong>Drag-and-Drop</strong>: Implementing full drag-and-drop functionality for items within the grid and between different inventory widgets.</li>
+<li><strong>Item Stacking</strong>: Adding logic and visual representation for stackable items.</li>
+<li><strong>Controller/Keyboard Navigation</strong>: Enhancing the <code>NativeOnNavigation</code> override to allow seamless grid navigation with a gamepad or keyboard.</li>
+<li><strong>Optimization</strong>: While the current system is performant, we will investigate if the <code>UpdateDummyCells</code> logic can be further optimized for extremely large grids or rapid item changes.</li>
+</ul>
+<p>We&rsquo;re really happy with this foundational system. It gives our design team the flexibility they need while ensuring great performance and a clean, responsive user experience.</p>
+<p>Stay tuned for our next post!</p>
+<pre tabindex="0"><code></code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/devlog/">DevLog</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/tutorial/">Tutorial</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/unreal-engine/">Unreal Engine</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/c&#43;&#43;/">C&#43;&#43;</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/ui/">UI</a></li>
+      <li><a href="https://oaiba.github.io/dev-blog/en/tags/inventory-system/">Inventory System</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://oaiba.github.io/dev-blog/en/">Bob Pham&#39;s DevLog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -11,8 +11,11 @@
     <loc>https://oaiba.github.io/dev-blog/en/posts/devlog-3-building-advanced-twin-stick-movement-in-c&#43;&#43;/</loc>
     <lastmod>2025-07-31T10:13:42+07:00</lastmod>
   </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/posts/devlog-15-building-grid-inventory-in-c&#43;&#43;/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/</loc>
-    <lastmod>2025-09-12T10:00:00-05:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -24,21 +27,11 @@
                 href="https://oaiba.github.io/dev-blog/en/"
                 />
   </url><url>
-    <loc>https://oaiba.github.io/dev-blog/en/posts/</loc>
-    <lastmod>2025-09-12T10:00:00-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://oaiba.github.io/dev-blog/vi/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://oaiba.github.io/dev-blog/en/posts/"
-                />
+    <loc>https://oaiba.github.io/dev-blog/en/tags/c&#43;&#43;/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/categories/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -51,10 +44,29 @@
                 />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/devlog/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/gamedev/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/inventory-system/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/posts/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://oaiba.github.io/dev-blog/vi/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://oaiba.github.io/dev-blog/en/posts/"
+                />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
@@ -67,9 +79,15 @@
                 />
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/categories/tech/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
   </url><url>
     <loc>https://oaiba.github.io/dev-blog/en/tags/tutorial/</loc>
-    <lastmod>2025-07-31T14:19:42+07:00</lastmod>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/ui/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://oaiba.github.io/dev-blog/en/tags/unreal-engine/</loc>
+    <lastmod>2025-09-11T10:00:00-05:00</lastmod>
   </url>
 </urlset>
