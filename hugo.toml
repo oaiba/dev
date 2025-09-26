@@ -106,6 +106,7 @@ defaultContentLanguageInSubdir = true
   weight = 3
 
 [[menu.main]]
-  name: Resume        # Tên sẽ hiển thị trên menu
-  url: /resume/      # Đường dẫn đến trang resume của bạn
-  weight: 4         # Thứ tự xuất hiện trên menu
+  identifier = "resume"
+  name = "Resume"
+  url = "/resume/"
+  weight = 4
