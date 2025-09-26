@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      {{ .Title }}
+      {{- if .Draft }}<span class="entry-isdraft">&nbsp;&nbsp;[DRAFT]</span>{{- end }}
+    </h1>
+    {{- if .Params.subtitle }}
+    <p class="post-subtitle">{{ .Params.subtitle }}</p>
+    {{- end }}
+  </header>
+  
+  <!-- Phần nội dung chính của Resume sẽ được render ở đây -->
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+</article>
+{{ end }}
