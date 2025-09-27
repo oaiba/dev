@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Nhật ký phát triển của Bob Phạm</title>
-    <link>https://oaiba.github.io/dev-blog/vi/tags/</link>
+    <link>https://oaiba.github.io/vi/tags/</link>
     <description>Recent content in Tags on Nhật ký phát triển của Bob Phạm</description>
     <generator>Hugo -- 0.150.1</generator>
     <language>vi</language>
     <lastBuildDate>Wed, 30 Jul 2025 10:13:42 +0700</lastBuildDate>
-    <atom:link href="https://oaiba.github.io/dev-blog/vi/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oaiba.github.io/vi/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo</title>
-      <link>https://oaiba.github.io/dev-blog/vi/tags/hugo/</link>
+      <link>https://oaiba.github.io/vi/tags/hugo/</link>
       <pubDate>Wed, 30 Jul 2025 10:13:42 +0700</pubDate>
-      <guid>https://oaiba.github.io/dev-blog/vi/tags/hugo/</guid>
+      <guid>https://oaiba.github.io/vi/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Hướng Dẫn</title>
-      <link>https://oaiba.github.io/dev-blog/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</link>
+      <link>https://oaiba.github.io/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</link>
       <pubDate>Wed, 30 Jul 2025 10:13:42 +0700</pubDate>
-      <guid>https://oaiba.github.io/dev-blog/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</guid>
+      <guid>https://oaiba.github.io/vi/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</guid>
       <description></description>
     </item>
     <item>
       <title>Markdown</title>
-      <link>https://oaiba.github.io/dev-blog/vi/tags/markdown/</link>
+      <link>https://oaiba.github.io/vi/tags/markdown/</link>
       <pubDate>Wed, 30 Jul 2025 10:13:42 +0700</pubDate>
-      <guid>https://oaiba.github.io/dev-blog/vi/tags/markdown/</guid>
+      <guid>https://oaiba.github.io/vi/tags/markdown/</guid>
       <description></description>
     </item>
   </channel>
