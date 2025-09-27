@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Bob Pham&#39;s DevLog</title>
-    <link>https://oaiba.github.io/en/tags/</link>
+    <link>https://oaiba.github.io/dev-blog/en/tags/</link>
     <description>Recent content in Tags on Bob Pham&#39;s DevLog</description>
     <generator>Hugo -- 0.150.1</generator>
     <language>en</language>
     <lastBuildDate>Thu, 11 Sep 2025 10:00:00 -0500</lastBuildDate>
-    <atom:link href="https://oaiba.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oaiba.github.io/dev-blog/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;</title>
-      <link>https://oaiba.github.io/en/tags/c&#43;&#43;/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/c&#43;&#43;/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/c&#43;&#43;/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>DevLog</title>
-      <link>https://oaiba.github.io/en/tags/devlog/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/devlog/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/devlog/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/devlog/</guid>
       <description></description>
     </item>
     <item>
       <title>GameDev</title>
-      <link>https://oaiba.github.io/en/tags/gamedev/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/gamedev/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/gamedev/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/gamedev/</guid>
       <description></description>
     </item>
     <item>
       <title>Inventory System</title>
-      <link>https://oaiba.github.io/en/tags/inventory-system/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/inventory-system/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/inventory-system/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/inventory-system/</guid>
       <description></description>
     </item>
     <item>
       <title>Tutorial</title>
-      <link>https://oaiba.github.io/en/tags/tutorial/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/tutorial/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/tutorial/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/tutorial/</guid>
       <description></description>
     </item>
     <item>
       <title>UI</title>
-      <link>https://oaiba.github.io/en/tags/ui/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/ui/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/ui/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/ui/</guid>
       <description></description>
     </item>
     <item>
       <title>Unreal Engine</title>
-      <link>https://oaiba.github.io/en/tags/unreal-engine/</link>
+      <link>https://oaiba.github.io/dev-blog/en/tags/unreal-engine/</link>
       <pubDate>Thu, 11 Sep 2025 10:00:00 -0500</pubDate>
-      <guid>https://oaiba.github.io/en/tags/unreal-engine/</guid>
+      <guid>https://oaiba.github.io/dev-blog/en/tags/unreal-engine/</guid>
       <description></description>
     </item>
   </channel>
