@@ -108,5 +108,5 @@ defaultContentLanguageInSubdir = true
 [[menu.main]]
   identifier = "resume"
   name = "Resume"
-  url = "/resume/"
+  pageRef = "resume.md"
   weight = 4
