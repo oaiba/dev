@@ -1,14 +1,20 @@
----
-title: "My Professional Resume"
-subtitle: "A detailed summary of my skills, experience, and education."
-date: 2025-09-26T00:00:00+07:00
-draft: false
-type: "resume"         # Rất quan trọng: Báo cho Hugo sử dụng layout trong thư mục /layouts/resume/
-layout: "single"       # Rất quan trọng: Báo cho Hugo sử dụng file single.html
-hidemeta: true         # Ẩn các thông tin meta như ngày đăng
-comments: false        # Tắt bình luận cho trang này
-showtoc: false         # Ẩn mục lục
----
++++
+title = "DevLog: #1 Create Custom Camera Node for Top-Down View by C++++"
+date = "2025-07-30T10:13:42+07:00"
+draft = false 
+author = "Bob"
+tags = ["DevLog", "Tutorial"]
+categories = ["Tech"]
+summary = "Create Custom Camera Node for Top-Down View by C+++"
+showtoc = true
+comments = true
+cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true'
+cover.caption = 'Custom Camera Node for Top-Down View by C++ Ouput'
+cover.alt = 'this is alter cover'
+cover.responsiveImages = true
+cover.hidden = false
+weight = 2
++++
 
 <!-- Bạn có thể dùng HTML trực tiếp trong file Markdown để có bố cục phức tạp hơn nếu muốn -->
 
