@@ -1,24 +1,61 @@
-# hugo.toml
-
+# =================================================================
+# CẤU HÌNH HUGO TOÀN CỤC (GLOBAL HUGO CONFIGURATION)
+# =================================================================
 baseURL = "https://oaiba.github.io/dev/"
 title = "Bob's Unreal Engine DevLog"
-languageCode = "en"
-#theme = "PaperMod"
-theme = [ 'PaperMod', 'hugo-shortcodes' ]
-disablePathToLower = false
+theme = ["PaperMod", "hugo-shortcodes"]
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 
+[pagination]
+pagerSize = 5
+
+# =================================================================
+# CẤU HÌNH THEME (THEME PARAMS)
+# =================================================================
+[params]
+env = "production"
+author = "Bob Pham"
+description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
+keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
+defaultTheme = "auto"
+hideFooter = false
+displayFullLangName = true
+ShowReadingTime = true
+ShowWordCount = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowToc = true
+ShowAllPagesInArchive = true
+ShowPageNums = true
+
+[[params.socialIcons]]
+name = "github"
+title = "View on GitHub"
+url = "https://github.com/oaiba"
+[[params.socialIcons]]
+name = "linkedin"
+title = "Connect on LinkedIn"
+url = "https://www.linkedin.com/in/your-linkedin-id/"
+[[params.socialIcons]]
+name = "twitter"
+title = "Follow on X"
+url = "https://twitter.com/your-twitter-handle"
+
+# =================================================================
+# CẤU HÌNH ĐA NGÔN NGỮ (LANGUAGES)
+# =================================================================
 [languages]
-  [languages.en]
-    languageName = "English"
-    weight = 1
-    title = "Bob Pham's DevLog"
-    contentDir = "content/en"
-    
-    [languages.en.params.homeInfoParams]
-      Title = "Welcome to Bob Pham's DevLog!"
-      Content = """
+# --- English ---
+[languages.en]
+languageName = "English"
+weight = 1
+title = "Bob Pham's DevLog"
+contentDir = "content/en"
+
+[languages.en.params.homeInfoParams]
+Title = "Welcome to Bob Pham's DevLog!"
+Content = """
       👋 I'm Bob Pham, a programmer and Unreal Engine enthusiast.
       This is where I share in-depth knowledge, experience, and practical guides
       on C++ and Blueprint, helping you unlock the full potential of Unreal Engine
@@ -27,15 +64,30 @@ defaultContentLanguageInSubdir = true
       Let's explore the vast world of Unreal Engine together!
       """
 
-  [languages.vi]
-    languageName = "Tiếng Việt"
-    weight = 2
-    title = "Nhật ký phát triển của Bob Phạm"
-    contentDir = "content/vi"
-    
-    [languages.vi.params.homeInfoParams]
-      Title = "Chào mừng đến DevLog của Bob Phạm!"
-      Content = """
+[languages.en.menu]
+[[languages.en.menu.main]]
+name = "About Me"
+url = "about/"
+weight = 1
+[[languages.en.menu.main]]
+name = "Resume"
+url = "resume/"
+weight = 2
+[[languages.en.menu.main]]
+name = "Posts"
+url = "posts/"
+weight = 3
+
+# --- Vietnamese ---
+[languages.vi]
+languageName = "Tiếng Việt"
+weight = 2
+title = "Nhật ký phát triển của Bob Phạm"
+contentDir = "content/vi"
+
+[languages.vi.params.homeInfoParams]
+Title = "Chào mừng đến DevLog của Bob Phạm!"
+Content = """
       👋 Xin chào, mình là Bob Phạm – một lập trình viên đam mê Unreal Engine.
       Blog này chia sẻ kiến thức chuyên sâu, kinh nghiệm và hướng dẫn thực tiễn
       về lập trình C++ và Blueprint, giúp bạn khai thác tối đa Unreal Engine
@@ -44,69 +96,34 @@ defaultContentLanguageInSubdir = true
       Cùng khám phá thế giới Unreal Engine nhé!
       """
 
-[params]
-  env = "production"
-  description = "A deep-dive Dev Blog on Unreal Engine C++ and Blueprint, sharing knowledge, experience, and game development tutorials."
-  author = "Bob Pham"
-  defaultTheme = "auto"
-  ShowReadingTime = true
-  #ShowShareButtons = true
-  displayFullLangName = true
-  #ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowAllPagesInArchive = true
-  ShowPageNums = true
-  ShowToc = true
-  ShowWordCount = true
-  hideFooter = false
-  keywords = ["Unreal Engine", "C++", "Blueprint", "Game Development", "Dev Blog", "Tutorials"]
-  
+[languages.vi.menu]
+[[languages.vi.menu.main]]
+name = "Giới Thiệu"
+url = "about/"
+weight = 1
+[[languages.vi.menu.main]]
+name = "Hồ Sơ Năng Lực"
+url = "resume/"
+weight = 2
+[[languages.vi.menu.main]]
+name = "Bài Viết"
+url = "posts/"
+weight = 3
+
+# =================================================================
+# CÁC CẤU HÌNH KHÁC (OTHER CONFIGURATIONS)
+# =================================================================
 [assets]
-    favicon = "favicon.ico"
-    favicon16x16 = "favicon.ico"
-    favicon32x32 = "favicon.ico"
-    apple_touch_icon = "favicon.ico"
-  
+favicon = "favicon.ico"
+favicon16x16 = "favicon.ico"
+favicon32x32 = "favicon.ico"
+apple_touch_icon = "favicon.ico"
+
 [cover]
-    linkFullImages = true
-    responsiveImages = true
-  
-[[params.socialIcons]]
-  name = "github"
-  title = "View on GitHub"
-  url = "https://github.com/oaiba"
+linkFullImages = true
+responsiveImages = true
 
-[[params.socialIcons]]
-  name = "linkedin"
-  title = "Connect on LinkedIn"
-  url = "https://www.linkedin.com/in/yourprofile/"
-
-[[params.socialIcons]]
-  name = "twitter"
-  title = "Follow on X"
-  url = "https://twitter.com/yourprofile"
-
-[code]
-  copy = true
-
-[[menu.main]]
-  Name = "Blogs"
-  URL = "/posts"
-  weight = 1
-
-[[menu.main]]
-  Name = "Projects"
-  URL = "/projects"
-  weight = 2
-
-[[menu.main]]
-  Name = "About Me"
-  URL = "/about"
-  weight = 3
-
-[[menu.main]]
-  identifier = "resume"
-  name = "Resume"
-  URL = "/resume"
-  weight = 4
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
