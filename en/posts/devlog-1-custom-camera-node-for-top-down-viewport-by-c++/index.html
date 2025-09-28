@@ -1,734 +1,199 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;&#43; | Bob Pham&#39;s DevLog</title>
-<meta name="keywords" content="DevLog, Tutorial">
-<meta name="description" content="Create Custom Camera Node for Top-Down View by C&#43;&#43;">
-<meta name="author" content="Bob">
-<link rel="canonical" href="https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/">
-<link crossorigin="anonymous" href="/dev/assets/css/stylesheet.2d34aa540016c110be7711e937b1408a15429e749480457ef136067433c3512d.css" integrity="sha256-LTSqVAAWwRC&#43;dxHpN7FAihVCnnSUgEV&#43;8TYGdDPDUS0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://oaiba.github.io/dev/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://oaiba.github.io/dev/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://oaiba.github.io/dev/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://oaiba.github.io/dev/apple-touch-icon.png">
-<link rel="mask-icon" href="https://oaiba.github.io/dev/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript><meta property="og:url" content="https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c&#43;&#43;/">
-  <meta property="og:site_name" content="Bob Pham&#39;s DevLog">
-  <meta property="og:title" content="DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;&#43;">
-  <meta property="og:description" content="Create Custom Camera Node for Top-Down View by C&#43;&#43;">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-07-30T10:13:42+07:00">
-    <meta property="article:modified_time" content="2025-07-30T10:13:42+07:00">
-    <meta property="article:tag" content="DevLog">
-    <meta property="article:tag" content="Tutorial">
-    <meta property="og:image" content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true">
-<meta name="twitter:title" content="DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;&#43;">
-<meta name="twitter:description" content="Create Custom Camera Node for Top-Down View by C&#43;&#43;">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://oaiba.github.io/dev/en/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "DevLog: #1 Create Custom Camera Node for Top-Down View by C+++",
-      "item": "https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "DevLog: #1 Create Custom Camera Node for Top-Down View by C+++",
-  "name": "DevLog: #1 Create Custom Camera Node for Top-Down View by C\u002b\u002b\u002b",
-  "description": "Create Custom Camera Node for Top-Down View by C++",
-  "keywords": [
-    "DevLog", "Tutorial"
-  ],
-  "articleBody": "A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in the game world, the camera needs to feel “alive”—it needs weight, inertia, and to move with a smooth, organic motion.\nToday we’ll dissect a high-end C++ solution to achieve that: creating a custom UCameraNode for Unreal Engine’s * Gameplay Camera System*. This node will simulate a top-down boom-arm with a sophisticated spring physics system, delivering a camera feel that is both highly professional and easy to customize.\nThe Gameplay Camera System provides an intuitive way for developers and designers to create complex camera behaviors in the editor.\nThis is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions inside a data asset, unlike the traditional workflow that uses a Blueprint component. This data asset can drive the camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.\nTo learn more about the system, read the Gameplay Camera System Overview and Gameplay Camera System Quick Start documentation of Epic Game.\n“My goal isn’t to reinvent the wheel—Epic has already engineered some excellent UCameraNode classes for us. Instead, we’re going to pop the hood and see how the engine ticks! In this series, we’ll demystify the built-in nodes and, more excitingly, learn how to derive our own custom classes with specialized logic. Honestly, that’s the best part about Unreal Engine, its open-source nature empowers you to truly understand and take control of what you’re building. It’s awesome!”\nSee more detail of other nodes in the source engine ‘\\UE_5.6\\Engine\\Plugins\\Cameras\\GameplayCameras\\Source\\GameplayCameras\\Public\\Nodes'\nDownload: CustomCameraNodeTopDown.h CustomCameraNodeTopDown.cpp Part 1: The “What” - What are UCameraNode and the Gameplay Camera System? Think of the Gameplay Camera System as a stack-based system, designed to be modular, with Camera Assets that can be ingested by one or more Gameplay Camera actors and components. This means you can author your camera behavior once, and use it on many actors in your scene. Each node performs a specific task (camera shake, changing FOV, following a target, …) and passes its result to the next node in the stack.\nUCameraNode (the .h file): This is the UObject class that defines the properties and input pins you see in the Editor. It’s like the “settings” panel.\nFCameraNodeEvaluator (the .cpp file): This is the worker struct that performs all the computational logic at runtime. It takes the settings from the UCameraNode and applies them.\nPart 2: The Header (.h) - Defining the “Control Knobs” Create CustomCameraNodeTopDown class:\nOur header file defines the parameters that a designer can tweak in the Editor.\nCustomCameraNodeTopDown.h\nUCLASS(meta=(CameraNodeCategories=\"Custom\")) class YOURPROJECT_API UCustomCameraNodeTopDown : public UCameraNode { GENERATED_BODY() protected: virtual FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder\u0026 Builder) const override; public: // The Distance from target to camera view UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DistanceFromTarget = 500.0f; // The rotation of the camera UPROPERTY(EditAnywhere, Category = Common) FRotator3dCameraParameter Rotation = FRotator(-60.0f, 0.0f, 0.0f); // The stiffness of the spring. Higher values are \"stiffer\" and follow more closely. UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter Stiffness = 45.0f; // The damping ratio. 1.0 is critically damped (no overshoot). UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DampingRatio = 1.0f; // The mass of the camera, creating a heavier, more weighty feel. UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter Mass = 10.0f; // Use 100% of the target's velocity for prediction, helping the camera \"lead the target\". UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter TargetVelocityAmount = 1.0f; UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DistanceInterpolationSpeed = 5.0f; }; Analyzing the Properties:\nCore Inputs: DistanceFromTarget and Rotation are the target values the camera will aim for.\nSpring Physics: Stiffness, DampingRatio, and Mass are the three pillars of the spring system.\nStiffness: How tight the spring is. High values make the camera react quickly and follow more rigidly.\nDampingRatio: Controls overshoot. A value of 1.0 allows the camera to reach its target smoothly. A value \u003c 1.0 will create a slight bouncing effect.\nMass: A higher value creates a “heavier” camera feel with more inertia.\nInterpolation: DistanceInterpolationSpeed independently controls the zoom speed.\nPart 3: The Evaluator (.cpp) - The Core Logic ⚙️ This code defines the FCustomBoomOffsetTopDownCameraNodeEvaluator class, which is the “brain” that executes the computational logic for a custom camera node within Unreal Engine’s Gameplay Camera System.\n1. Member Variables CustomCameraNodeTopDown.cpp ()\nnamespace UE::Cameras // Remember put class in UE::Cameras namespace { class FCustomCameraNodeTopDownEvaluator : public FCameraNodeEvaluator { protected: virtual void OnInitialize(const FCameraNodeEvaluatorInitializeParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) override; virtual void OnRun(const FCameraNodeEvaluationParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) override; private: TCameraParameterReader\u003cfloat\u003e DistanceReader; TCameraParameterReader\u003cFRotator3d\u003e RotationReader; TCameraParameterReader\u003cfloat\u003e StiffnessReader; TCameraParameterReader\u003cfloat\u003e DampingRatioReader; TCameraParameterReader\u003cfloat\u003e MassReader; TCameraParameterReader\u003cfloat\u003e TargetVelocityAmountReader; TCameraParameterReader\u003cfloat\u003e DistanceInterpSpeedReader; FVectorSpringState CameraLocationSpringState = FVectorSpringState(); FVector CurrentCameraLocation = FVector::ZeroVector; FQuaternionSpringState CameraRotationSpringState = FQuaternionSpringState(); FQuat CurrentCameraRotation = FQuat::Identity; float CurrentSmoothDistance = 500.0f; bool bIsFirstRun = true; }; } These variables act as the node’s “memory,” storing the necessary state and settings between frames.\nTCameraParameterReader\u003c...\u003e: These are parameter “readers.” Their job is to get the values that a user ( designer) has set on the UCameraNode in the Camera Stack asset. For example, DistanceReader will read the value from the DistanceFromTarget property.\nF...SpringState: These variables (CameraLocationSpringState, CameraRotationSpringState) store the state of the spring system, including the velocity and error from the previous frame. This is the core data required for the spring interpolation functions to work correctly.\nCurrent...: These variables (CurrentCameraLocation, CurrentCameraRotation, CurrentSmoothDistance) hold the camera’s actual position, rotation, and distance from the previous frame. They are used as the starting point for the current frame’s calculations to create smoothness.\nbIsFirstRun: An important flag variable to handle the first run separately. It helps prevent the camera from \" flying\" from the world origin (0,0,0) to its desired location, instead placing the camera in the correct position immediately.\n2. The OnInitialize() Function Essentially, OnInitialize handles the “wiring” between the settings in the Editor and the logic brain that will use them at runtime.\nvoid FCustomBoomOffsetTopDownCameraNodeEvaluator::OnInitialize(const FCameraNodeEvaluatorInitializeParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) { const UBoomArmCameraNodeTopDown* AttachNode = GetCameraNodeAs\u003cUBoomArmCameraNodeTopDown\u003e(); DistanceReader.Initialize(AttachNode-\u003eDistanceFromTarget); RotationReader.Initialize(AttachNode-\u003eRotation); StiffnessReader.Initialize(AttachNode-\u003eStiffness); DampingRatioReader.Initialize(AttachNode-\u003eDampingRatio); MassReader.Initialize(AttachNode-\u003eMass); TargetVelocityAmountReader.Initialize(AttachNode-\u003eTargetVelocityAmount); DistanceInterpSpeedReader.Initialize(AttachNode-\u003eDistanceInterpolationSpeed); } This is a setup function that runs only once when the node is initialized.\nMain Purpose: The most important task of this function is to connect the TCameraParameterReaders with their corresponding properties on the UCustomCameraNodeTopDown.\nHow it works: The command DistanceReader.Initialize(AttachNode-\u003eDistanceFromTarget) means: “Hey DistanceReader, from now on, read your value from the DistanceFromTarget property on the camera node.” This process is repeated for all other parameters like Stiffness, Mass, Rotation, etc.\n3. The OnRun() Function This is where all the magic happens. The logic inside the OnRun function of FCustomBoomOffsetTopDownCameraNodeEvaluator is incredibly clever.\nCustomCameraNodeTopDown.cpp ()\nvoid FCustomBoomOffsetTopDownCameraNodeEvaluator::OnRun(const FCameraNodeEvaluationParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) { const APlayerController* PlayerController = Params.EvaluationContext-\u003eGetPlayerController(); if (!PlayerController) return; const APawn* Pawn = PlayerController-\u003eGetPawnOrSpectator(); if (!Pawn) return; // Get data from input const FRotator DesiredRotation = RotationReader.Get(OutResult.VariableTable); const float DesiredDistance = DistanceReader.Get(OutResult.VariableTable); const float InterpSpeed = DistanceInterpSpeedReader.Get(OutResult.VariableTable); const FVector PivotLocation = Pawn-\u003eGetActorLocation(); // Get data of Spring const float Stiffness = StiffnessReader.Get(OutResult.VariableTable); const float DampingRatio = DampingRatioReader.Get(OutResult.VariableTable); const float Mass = MassReader.Get(OutResult.VariableTable); // Handle the first run to prevent the camera from flying in from the world origin if (bIsFirstRun) { CurrentCameraRotation = DesiredRotation.Quaternion(); CurrentSmoothDistance = DesiredDistance; const FVector DirectionFromTarget = -CurrentCameraRotation.Vector(); CurrentCameraLocation = PivotLocation + DirectionFromTarget * CurrentSmoothDistance; bIsFirstRun = false; } // --- STEP 1: INTERPOLATE ROTATION --- CurrentCameraRotation = UKismetMathLibrary::QuaternionSpringInterp( CurrentCameraRotation, DesiredRotation.Quaternion(), CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass); // --- STEP 2: INTERPOLATE DISTANCE --- CurrentSmoothDistance = FMath::FInterpTo( CurrentSmoothDistance, DesiredDistance, Params.DeltaTime, InterpSpeed); // --- STEP 3: CALCULATE THE TARGET LOCATION BASED ON SMOOTHED VALUES --- const FVector SmoothedDirectionFromTarget = -CurrentCameraRotation.Vector(); const FVector TargetLocation = PivotLocation + SmoothedDirectionFromTarget * CurrentSmoothDistance; // --- STEP 4: INTERPOLATE LOCATION, CHASING THE TARGET --- const float TargetVelocityAmount = TargetVelocityAmountReader.Get(OutResult.VariableTable); CurrentCameraLocation = UKismetMathLibrary::VectorSpringInterp( CurrentCameraLocation, TargetLocation, CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount); // --- STEP 5: ASSIGN THE FINAL RESULT --- OutResult.CameraPose.SetLocation(CurrentCameraLocation); OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator()); } 4. The Bridge: The OnBuildEvaluator() Function This is the final piece of the puzzle, acting as the critical bridge between our UCameraNode (the settings part) and our FCameraNodeEvaluator (the logic part).\nFCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown::OnBuildEvaluator(FCameraNodeEvaluatorBuilder\u0026 Builder) const { using namespace UE::Cameras; return Builder.BuildEvaluator\u003cFCustomBoomOffsetTopDownCameraNodeEvaluator\u003e(); } How It Works The OnBuildEvaluator function is called by the Gameplay Camera System when it needs a “worker” to execute the logic for this specific node. Its job is basic:\nIt receives a Builder object from the Gameplay Camera System.\nIt tells the Builder to construct an instance of the logic class we wrote: FCustomBoomOffsetTopDownCameraNodeEvaluator.\nIt then returns the newly created instance.\nEssentially, this is how you tell the Engine: “When you use this UBoomArmCameraNodeTopDown node, use the logic from FCustomBoomOffsetTopDownCameraNodeEvaluator to do the math.” This function connects the user-facing settings with the high-performance runtime logic.\nA Step-by-Step Analysis:\nInitialization \u0026 First Run: The code includes a critical bIsFirstRun check. On the very first frame, it places the camera directly at its desired location instead of letting it fly in from the world origin (0,0,0), preventing an ugly visual snap for the player.\nIndependent Interpolation of Rotation and Distance:\nRotation is interpolated using QuaternionSpringInterp, a powerful spring function for rotations that creates a very natural feel.\nDistance (zoom) is interpolated using the simpler FInterpTo.\n💡 Pro-Tip: Separating these two interpolation types is a subtle but brilliant design choice. It allows a designer to control the camera’s movement/rotation speed (via the spring) completely independently from the camera’s zoom speed (via the InterpSpeed).\nDefining the “Moving Target”: Instead of rigidly chasing the Pawn’s location, the camera chases a virtual TargetLocation. This location is calculated using the rotation and distance values that were already smoothed in the previous steps. This makes the camera’s movement far more fluid.\nPosition Interpolation with Vector Spring: This is the main spring of the system. The camera’s current position ( CurrentCameraLocation) “chases” the TargetLocation using VectorSpringInterp. The TargetVelocityAmount parameter even helps the camera “lead” the target’s movement, reducing the feeling of lag.\nAssigning the Result: Finally, the fully smoothed location and rotation are assigned to the OutResult.CameraPose.\nPart 4: How to Use it in the Editor The power of this method lies in how simple it is for designers to use.\nCreate a new Camera Rig asset. In the Camera Rig Editor, click Add Node and search for Custom Camera Node Top Down or just drag it from toolbox. Select the newly added node. You will see all the properties (Stiffness, Mass, DampingRatio, etc.) we defined in the .h file appear in the Details Panel. Assign this Camera Rig asset to your Camera Director and active it. Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.\nConclusion We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine’s Gameplay Camera System. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and techniques like velocity prediction, we’ve created a camera node that is not only powerful but also incredibly flexible.\n💡 Try experimenting with the Stiffness and Mass values to create a unique camera feel for your own project!\n",
-  "wordCount" : "1829",
-  "inLanguage": "en",
-  "image":"https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true","datePublished": "2025-07-30T10:13:42+07:00",
-  "dateModified": "2025-07-30T10:13:42+07:00",
-  "author":{
-    "@type": "Person",
-    "name": "Bob"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Bob Pham's DevLog",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://oaiba.github.io/dev/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://oaiba.github.io/dev/en/" accesskey="h" title="Bob Pham&#39;s DevLog (Alt + H)">Bob Pham&#39;s DevLog</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://oaiba.github.io/dev/vi/" title="Tiếng Việt"
-                            aria-label="Tiếng Việt">Tiếng Việt</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://oaiba.github.io/dev/en/about/" title="About Me">
-                    <span>About Me</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://oaiba.github.io/dev/en/resume/" title="Resume">
-                    <span>Resume</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://oaiba.github.io/dev/en/posts/" title="Posts">
-                    <span>Posts</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="https://oaiba.github.io/dev/en/">Home</a>&nbsp;»&nbsp;<a href="https://oaiba.github.io/dev/en/posts/">Posts</a></div>
-    <h1 class="post-title entry-hint-parent">
-      DevLog: #1 Create Custom Camera Node for Top-Down View by C&#43;&#43;&#43;
-    </h1>
-    <div class="post-meta"><span title='2025-07-30 10:13:42 +0700 +0700'>July 30, 2025</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;1829 words&nbsp;·&nbsp;Bob
-
-</div>
-  </header> 
-<figure class="entry-cover">
-        <img loading="eager" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true" alt="this is alter cover">
-        <figcaption>Custom Camera Node for Top-Down View by C++ Ouput</figcaption>
-</figure><div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul><ul>
-                <li>
-                    <a href="#download" aria-label="Download:">Download:</a></li></ul>
-                    
-                <li>
-                    <a href="#part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system" aria-label="Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Gameplay Camera System?">Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Gameplay Camera System?</a></li>
-                <li>
-                    <a href="#part-2-the-header-h---defining-the-control-knobs" aria-label="Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;">Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;</a></li>
-                <li>
-                    <a href="#part-3-the-evaluator-cpp---the-core-logic-" aria-label="Part 3: The Evaluator (.cpp) - The Core Logic ⚙️">Part 3: The Evaluator (.cpp) - The Core Logic ⚙️</a></li>
-                <li>
-                    <a href="#1-member-variables" aria-label="1. Member Variables">1. Member Variables</a></li>
-                <li>
-                    <a href="#2-the-oninitialize-function" aria-label="2. The OnInitialize() Function">2. The OnInitialize() Function</a></li>
-                <li>
-                    <a href="#3-the-onrun-function" aria-label="3. The OnRun() Function">3. The OnRun() Function</a></li>
-                <li>
-                    <a href="#4-the-bridge-the-onbuildevaluator-function" aria-label="4. The Bridge: The OnBuildEvaluator() Function">4. The Bridge: The OnBuildEvaluator() Function</a><ul>
-                        
-                <li>
-                    <a href="#how-it-works" aria-label="How It Works">How It Works</a></li></ul>
-                </li>
-                <li>
-                    <a href="#part-4-how-to-use-it-in-the-editor" aria-label="Part 4: How to Use it in the Editor">Part 4: How to Use it in the Editor</a></li>
-                <li>
-                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p>A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
-the game world, the camera needs to feel &ldquo;alive&rdquo;—it needs weight, inertia, and to move with a smooth, organic motion.</p>
-<p>Today we&rsquo;ll dissect a high-end C++ solution to achieve that: creating a custom <code>UCameraNode</code> for Unreal Engine&rsquo;s *
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>DevLog: #1 Create Custom Camera Node for Top-Down View by C+++ | Bob Pham's DevLog</title><meta name=keywords content="DevLog,Tutorial"><meta name=description content="Create Custom Camera Node for Top-Down View by C++"><meta name=author content="Bob"><link rel=canonical href=https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/><link crossorigin=anonymous href=/dev/assets/css/stylesheet.2d34aa540016c110be7711e937b1408a15429e749480457ef136067433c3512d.css integrity="sha256-LTSqVAAWwRC+dxHpN7FAihVCnnSUgEV+8TYGdDPDUS0=" rel="preload stylesheet" as=style><link rel=icon href=https://oaiba.github.io/dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://oaiba.github.io/dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://oaiba.github.io/dev/favicon-32x32.png><link rel=apple-touch-icon href=https://oaiba.github.io/dev/apple-touch-icon.png><link rel=mask-icon href=https://oaiba.github.io/dev/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/"><meta property="og:site_name" content="Bob Pham's DevLog"><meta property="og:title" content="DevLog: #1 Create Custom Camera Node for Top-Down View by C+++"><meta property="og:description" content="Create Custom Camera Node for Top-Down View by C++"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-07-30T10:13:42+07:00"><meta property="article:modified_time" content="2025-07-30T10:13:42+07:00"><meta property="article:tag" content="DevLog"><meta property="article:tag" content="Tutorial"><meta property="og:image" content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true"><meta name=twitter:title content="DevLog: #1 Create Custom Camera Node for Top-Down View by C+++"><meta name=twitter:description content="Create Custom Camera Node for Top-Down View by C++"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://oaiba.github.io/dev/en/posts/"},{"@type":"ListItem","position":2,"name":"DevLog: #1 Create Custom Camera Node for Top-Down View by C+++","item":"https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"DevLog: #1 Create Custom Camera Node for Top-Down View by C+++","name":"DevLog: #1 Create Custom Camera Node for Top-Down View by C\u002b\u002b\u002b","description":"Create Custom Camera Node for Top-Down View by C++","keywords":["DevLog","Tutorial"],"articleBody":"A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in the game world, the camera needs to feel “alive”—it needs weight, inertia, and to move with a smooth, organic motion.\nToday we’ll dissect a high-end C++ solution to achieve that: creating a custom UCameraNode for Unreal Engine’s * Gameplay Camera System*. This node will simulate a top-down boom-arm with a sophisticated spring physics system, delivering a camera feel that is both highly professional and easy to customize.\nThe Gameplay Camera System provides an intuitive way for developers and designers to create complex camera behaviors in the editor.\nThis is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions inside a data asset, unlike the traditional workflow that uses a Blueprint component. This data asset can drive the camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.\nTo learn more about the system, read the Gameplay Camera System Overview and Gameplay Camera System Quick Start documentation of Epic Game.\n“My goal isn’t to reinvent the wheel—Epic has already engineered some excellent UCameraNode classes for us. Instead, we’re going to pop the hood and see how the engine ticks! In this series, we’ll demystify the built-in nodes and, more excitingly, learn how to derive our own custom classes with specialized logic. Honestly, that’s the best part about Unreal Engine, its open-source nature empowers you to truly understand and take control of what you’re building. It’s awesome!”\nSee more detail of other nodes in the source engine ‘\\UE_5.6\\Engine\\Plugins\\Cameras\\GameplayCameras\\Source\\GameplayCameras\\Public\\Nodes'\nDownload: CustomCameraNodeTopDown.h CustomCameraNodeTopDown.cpp Part 1: The “What” - What are UCameraNode and the Gameplay Camera System? Think of the Gameplay Camera System as a stack-based system, designed to be modular, with Camera Assets that can be ingested by one or more Gameplay Camera actors and components. This means you can author your camera behavior once, and use it on many actors in your scene. Each node performs a specific task (camera shake, changing FOV, following a target, …) and passes its result to the next node in the stack.\nUCameraNode (the .h file): This is the UObject class that defines the properties and input pins you see in the Editor. It’s like the “settings” panel.\nFCameraNodeEvaluator (the .cpp file): This is the worker struct that performs all the computational logic at runtime. It takes the settings from the UCameraNode and applies them.\nPart 2: The Header (.h) - Defining the “Control Knobs” Create CustomCameraNodeTopDown class:\nOur header file defines the parameters that a designer can tweak in the Editor.\nCustomCameraNodeTopDown.h\nUCLASS(meta=(CameraNodeCategories=\"Custom\")) class YOURPROJECT_API UCustomCameraNodeTopDown : public UCameraNode { GENERATED_BODY() protected: virtual FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder\u0026 Builder) const override; public: // The Distance from target to camera view UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DistanceFromTarget = 500.0f; // The rotation of the camera UPROPERTY(EditAnywhere, Category = Common) FRotator3dCameraParameter Rotation = FRotator(-60.0f, 0.0f, 0.0f); // The stiffness of the spring. Higher values are \"stiffer\" and follow more closely. UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter Stiffness = 45.0f; // The damping ratio. 1.0 is critically damped (no overshoot). UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DampingRatio = 1.0f; // The mass of the camera, creating a heavier, more weighty feel. UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter Mass = 10.0f; // Use 100% of the target's velocity for prediction, helping the camera \"lead the target\". UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter TargetVelocityAmount = 1.0f; UPROPERTY(EditAnywhere, Category = Common) FFloatCameraParameter DistanceInterpolationSpeed = 5.0f; }; Analyzing the Properties:\nCore Inputs: DistanceFromTarget and Rotation are the target values the camera will aim for.\nSpring Physics: Stiffness, DampingRatio, and Mass are the three pillars of the spring system.\nStiffness: How tight the spring is. High values make the camera react quickly and follow more rigidly.\nDampingRatio: Controls overshoot. A value of 1.0 allows the camera to reach its target smoothly. A value \u003c 1.0 will create a slight bouncing effect.\nMass: A higher value creates a “heavier” camera feel with more inertia.\nInterpolation: DistanceInterpolationSpeed independently controls the zoom speed.\nPart 3: The Evaluator (.cpp) - The Core Logic ⚙️ This code defines the FCustomBoomOffsetTopDownCameraNodeEvaluator class, which is the “brain” that executes the computational logic for a custom camera node within Unreal Engine’s Gameplay Camera System.\n1. Member Variables CustomCameraNodeTopDown.cpp ()\nnamespace UE::Cameras // Remember put class in UE::Cameras namespace { class FCustomCameraNodeTopDownEvaluator : public FCameraNodeEvaluator { protected: virtual void OnInitialize(const FCameraNodeEvaluatorInitializeParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) override; virtual void OnRun(const FCameraNodeEvaluationParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) override; private: TCameraParameterReader\u003cfloat\u003e DistanceReader; TCameraParameterReader\u003cFRotator3d\u003e RotationReader; TCameraParameterReader\u003cfloat\u003e StiffnessReader; TCameraParameterReader\u003cfloat\u003e DampingRatioReader; TCameraParameterReader\u003cfloat\u003e MassReader; TCameraParameterReader\u003cfloat\u003e TargetVelocityAmountReader; TCameraParameterReader\u003cfloat\u003e DistanceInterpSpeedReader; FVectorSpringState CameraLocationSpringState = FVectorSpringState(); FVector CurrentCameraLocation = FVector::ZeroVector; FQuaternionSpringState CameraRotationSpringState = FQuaternionSpringState(); FQuat CurrentCameraRotation = FQuat::Identity; float CurrentSmoothDistance = 500.0f; bool bIsFirstRun = true; }; } These variables act as the node’s “memory,” storing the necessary state and settings between frames.\nTCameraParameterReader\u003c...\u003e: These are parameter “readers.” Their job is to get the values that a user ( designer) has set on the UCameraNode in the Camera Stack asset. For example, DistanceReader will read the value from the DistanceFromTarget property.\nF...SpringState: These variables (CameraLocationSpringState, CameraRotationSpringState) store the state of the spring system, including the velocity and error from the previous frame. This is the core data required for the spring interpolation functions to work correctly.\nCurrent...: These variables (CurrentCameraLocation, CurrentCameraRotation, CurrentSmoothDistance) hold the camera’s actual position, rotation, and distance from the previous frame. They are used as the starting point for the current frame’s calculations to create smoothness.\nbIsFirstRun: An important flag variable to handle the first run separately. It helps prevent the camera from \" flying\" from the world origin (0,0,0) to its desired location, instead placing the camera in the correct position immediately.\n2. The OnInitialize() Function Essentially, OnInitialize handles the “wiring” between the settings in the Editor and the logic brain that will use them at runtime.\nvoid FCustomBoomOffsetTopDownCameraNodeEvaluator::OnInitialize(const FCameraNodeEvaluatorInitializeParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) { const UBoomArmCameraNodeTopDown* AttachNode = GetCameraNodeAs\u003cUBoomArmCameraNodeTopDown\u003e(); DistanceReader.Initialize(AttachNode-\u003eDistanceFromTarget); RotationReader.Initialize(AttachNode-\u003eRotation); StiffnessReader.Initialize(AttachNode-\u003eStiffness); DampingRatioReader.Initialize(AttachNode-\u003eDampingRatio); MassReader.Initialize(AttachNode-\u003eMass); TargetVelocityAmountReader.Initialize(AttachNode-\u003eTargetVelocityAmount); DistanceInterpSpeedReader.Initialize(AttachNode-\u003eDistanceInterpolationSpeed); } This is a setup function that runs only once when the node is initialized.\nMain Purpose: The most important task of this function is to connect the TCameraParameterReaders with their corresponding properties on the UCustomCameraNodeTopDown.\nHow it works: The command DistanceReader.Initialize(AttachNode-\u003eDistanceFromTarget) means: “Hey DistanceReader, from now on, read your value from the DistanceFromTarget property on the camera node.” This process is repeated for all other parameters like Stiffness, Mass, Rotation, etc.\n3. The OnRun() Function This is where all the magic happens. The logic inside the OnRun function of FCustomBoomOffsetTopDownCameraNodeEvaluator is incredibly clever.\nCustomCameraNodeTopDown.cpp ()\nvoid FCustomBoomOffsetTopDownCameraNodeEvaluator::OnRun(const FCameraNodeEvaluationParams\u0026 Params, FCameraNodeEvaluationResult\u0026 OutResult) { const APlayerController* PlayerController = Params.EvaluationContext-\u003eGetPlayerController(); if (!PlayerController) return; const APawn* Pawn = PlayerController-\u003eGetPawnOrSpectator(); if (!Pawn) return; // Get data from input const FRotator DesiredRotation = RotationReader.Get(OutResult.VariableTable); const float DesiredDistance = DistanceReader.Get(OutResult.VariableTable); const float InterpSpeed = DistanceInterpSpeedReader.Get(OutResult.VariableTable); const FVector PivotLocation = Pawn-\u003eGetActorLocation(); // Get data of Spring const float Stiffness = StiffnessReader.Get(OutResult.VariableTable); const float DampingRatio = DampingRatioReader.Get(OutResult.VariableTable); const float Mass = MassReader.Get(OutResult.VariableTable); // Handle the first run to prevent the camera from flying in from the world origin if (bIsFirstRun) { CurrentCameraRotation = DesiredRotation.Quaternion(); CurrentSmoothDistance = DesiredDistance; const FVector DirectionFromTarget = -CurrentCameraRotation.Vector(); CurrentCameraLocation = PivotLocation + DirectionFromTarget * CurrentSmoothDistance; bIsFirstRun = false; } // --- STEP 1: INTERPOLATE ROTATION --- CurrentCameraRotation = UKismetMathLibrary::QuaternionSpringInterp( CurrentCameraRotation, DesiredRotation.Quaternion(), CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass); // --- STEP 2: INTERPOLATE DISTANCE --- CurrentSmoothDistance = FMath::FInterpTo( CurrentSmoothDistance, DesiredDistance, Params.DeltaTime, InterpSpeed); // --- STEP 3: CALCULATE THE TARGET LOCATION BASED ON SMOOTHED VALUES --- const FVector SmoothedDirectionFromTarget = -CurrentCameraRotation.Vector(); const FVector TargetLocation = PivotLocation + SmoothedDirectionFromTarget * CurrentSmoothDistance; // --- STEP 4: INTERPOLATE LOCATION, CHASING THE TARGET --- const float TargetVelocityAmount = TargetVelocityAmountReader.Get(OutResult.VariableTable); CurrentCameraLocation = UKismetMathLibrary::VectorSpringInterp( CurrentCameraLocation, TargetLocation, CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount); // --- STEP 5: ASSIGN THE FINAL RESULT --- OutResult.CameraPose.SetLocation(CurrentCameraLocation); OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator()); } 4. The Bridge: The OnBuildEvaluator() Function This is the final piece of the puzzle, acting as the critical bridge between our UCameraNode (the settings part) and our FCameraNodeEvaluator (the logic part).\nFCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown::OnBuildEvaluator(FCameraNodeEvaluatorBuilder\u0026 Builder) const { using namespace UE::Cameras; return Builder.BuildEvaluator\u003cFCustomBoomOffsetTopDownCameraNodeEvaluator\u003e(); } How It Works The OnBuildEvaluator function is called by the Gameplay Camera System when it needs a “worker” to execute the logic for this specific node. Its job is basic:\nIt receives a Builder object from the Gameplay Camera System.\nIt tells the Builder to construct an instance of the logic class we wrote: FCustomBoomOffsetTopDownCameraNodeEvaluator.\nIt then returns the newly created instance.\nEssentially, this is how you tell the Engine: “When you use this UBoomArmCameraNodeTopDown node, use the logic from FCustomBoomOffsetTopDownCameraNodeEvaluator to do the math.” This function connects the user-facing settings with the high-performance runtime logic.\nA Step-by-Step Analysis:\nInitialization \u0026 First Run: The code includes a critical bIsFirstRun check. On the very first frame, it places the camera directly at its desired location instead of letting it fly in from the world origin (0,0,0), preventing an ugly visual snap for the player.\nIndependent Interpolation of Rotation and Distance:\nRotation is interpolated using QuaternionSpringInterp, a powerful spring function for rotations that creates a very natural feel.\nDistance (zoom) is interpolated using the simpler FInterpTo.\n💡 Pro-Tip: Separating these two interpolation types is a subtle but brilliant design choice. It allows a designer to control the camera’s movement/rotation speed (via the spring) completely independently from the camera’s zoom speed (via the InterpSpeed).\nDefining the “Moving Target”: Instead of rigidly chasing the Pawn’s location, the camera chases a virtual TargetLocation. This location is calculated using the rotation and distance values that were already smoothed in the previous steps. This makes the camera’s movement far more fluid.\nPosition Interpolation with Vector Spring: This is the main spring of the system. The camera’s current position ( CurrentCameraLocation) “chases” the TargetLocation using VectorSpringInterp. The TargetVelocityAmount parameter even helps the camera “lead” the target’s movement, reducing the feeling of lag.\nAssigning the Result: Finally, the fully smoothed location and rotation are assigned to the OutResult.CameraPose.\nPart 4: How to Use it in the Editor The power of this method lies in how simple it is for designers to use.\nCreate a new Camera Rig asset. In the Camera Rig Editor, click Add Node and search for Custom Camera Node Top Down or just drag it from toolbox. Select the newly added node. You will see all the properties (Stiffness, Mass, DampingRatio, etc.) we defined in the .h file appear in the Details Panel. Assign this Camera Rig asset to your Camera Director and active it. Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.\nConclusion We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine’s Gameplay Camera System. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and techniques like velocity prediction, we’ve created a camera node that is not only powerful but also incredibly flexible.\n💡 Try experimenting with the Stiffness and Mass values to create a unique camera feel for your own project!\n","wordCount":"1829","inLanguage":"en","image":"https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true","datePublished":"2025-07-30T10:13:42+07:00","dateModified":"2025-07-30T10:13:42+07:00","author":{"@type":"Person","name":"Bob"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://oaiba.github.io/dev/en/posts/devlog-1-custom-camera-node-for-top-down-viewport-by-c++/"},"publisher":{"@type":"Organization","name":"Bob Pham's DevLog","logo":{"@type":"ImageObject","url":"https://oaiba.github.io/dev/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://oaiba.github.io/dev/en/ accesskey=h title="Bob Pham's DevLog (Alt + H)">Bob Pham's DevLog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><ul class=lang-switch><li>|</li><li><a href=https://oaiba.github.io/dev/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Tiếng Việt</a></li></ul></div></div><ul id=menu><li><a href=https://oaiba.github.io/dev/en/about/ title="About Me"><span>About Me</span></a></li><li><a href=https://oaiba.github.io/dev/en/resume/ title=Resume><span>Resume</span></a></li><li><a href=https://oaiba.github.io/dev/en/posts/ title=Posts><span>Posts</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://oaiba.github.io/dev/en/>Home</a>&nbsp;»&nbsp;<a href=https://oaiba.github.io/dev/en/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">DevLog: #1 Create Custom Camera Node for Top-Down View by C+++</h1><div class=post-meta><span title='2025-07-30 10:13:42 +0700 +0700'>July 30, 2025</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;1829 words&nbsp;·&nbsp;Bob</div></header><figure class=entry-cover><img loading=eager src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true" alt="this is alter cover"><figcaption>Custom Camera Node for Top-Down View by C++ Ouput</figcaption></figure><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#download aria-label=Download:>Download:</a></li></ul><li><a href=#part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system aria-label="Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Gameplay Camera System?">Part 1: The &ldquo;What&rdquo; - What are UCameraNode and the Gameplay Camera System?</a></li><li><a href=#part-2-the-header-h---defining-the-control-knobs aria-label="Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;">Part 2: The Header (.h) - Defining the &ldquo;Control Knobs&rdquo;</a></li><li><a href=#part-3-the-evaluator-cpp---the-core-logic- aria-label="Part 3: The Evaluator (.cpp) - The Core Logic ⚙️">Part 3: The Evaluator (.cpp) - The Core Logic ⚙️</a></li><li><a href=#1-member-variables aria-label="1. Member Variables">1. Member Variables</a></li><li><a href=#2-the-oninitialize-function aria-label="2. The OnInitialize() Function">2. The OnInitialize() Function</a></li><li><a href=#3-the-onrun-function aria-label="3. The OnRun() Function">3. The OnRun() Function</a></li><li><a href=#4-the-bridge-the-onbuildevaluator-function aria-label="4. The Bridge: The OnBuildEvaluator() Function">4. The Bridge: The OnBuildEvaluator() Function</a><ul><li><a href=#how-it-works aria-label="How It Works">How It Works</a></li></ul></li><li><a href=#part-4-how-to-use-it-in-the-editor aria-label="Part 4: How to Use it in the Editor">Part 4: How to Use it in the Editor</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li></ul></div></details></div><div class=post-content><p>A simple boom-arm camera gets the job done, but it often feels rigid and lifeless. For a player to be truly immersed in
+the game world, the camera needs to feel &ldquo;alive&rdquo;—it needs weight, inertia, and to move with a smooth, organic motion.</p><p>Today we&rsquo;ll dissect a high-end C++ solution to achieve that: creating a custom <code>UCameraNode</code> for Unreal Engine&rsquo;s *
 <em>Gameplay Camera System</em>*. This node will simulate a top-down boom-arm with a sophisticated spring
-physics system, delivering a camera feel that is both highly professional and easy to customize.</p>
-<blockquote>
-<p>The <strong>Gameplay Camera System</strong> provides an intuitive way for developers and designers to create complex camera
-behaviors in the editor.<br>
-This is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions
+physics system, delivering a camera feel that is both highly professional and easy to customize.</p><blockquote><p>The <strong>Gameplay Camera System</strong> provides an intuitive way for developers and designers to create complex camera
+behaviors in the editor.<br>This is a general-purpose system that contains one or more camera rigs, along with their behaviors and transitions
 inside a data asset, unlike the traditional workflow that uses a Blueprint component. This data asset can drive the
-camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.</p></blockquote>
-<blockquote>
-<p>To learn more about the system, read
-the <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview">Gameplay Camera System Overview</a>
-and <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start">Gameplay Camera System Quick Start</a>
-documentation of Epic Game.</p></blockquote>
-<blockquote>
-<p>&ldquo;My goal isn&rsquo;t to reinvent the wheel—Epic has already engineered some excellent <code>UCameraNode</code> classes for us. Instead,
+camera behavior during gameplay when ingested by a Blueprint actor or a Blueprint component.</p></blockquote><blockquote><p>To learn more about the system, read
+the <a href=https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-overview>Gameplay Camera System Overview</a>
+and <a href=https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-camera-system-quick-start>Gameplay Camera System Quick Start</a>
+documentation of Epic Game.</p></blockquote><blockquote><p>&ldquo;My goal isn&rsquo;t to reinvent the wheel—Epic has already engineered some excellent <code>UCameraNode</code> classes for us. Instead,
 we&rsquo;re going to <strong>pop the hood and see how the engine ticks</strong>! In this series, we&rsquo;ll demystify the built-in nodes and,
 more excitingly, learn how to <strong>derive our own custom classes</strong> with specialized logic. Honestly, that&rsquo;s the best part
 about Unreal Engine, its <strong>open-source nature</strong> empowers you to truly understand and <em>take control</em> of what you&rsquo;re building.
-It&rsquo;s awesome!&rdquo;</p>
-<p>See more detail of other nodes in the source engine &lsquo;\UE_5.6\Engine\Plugins\Cameras\GameplayCameras\Source\GameplayCameras\Public\Nodes'</p></blockquote>
-<h4 id="download">Download:<a hidden class="anchor" aria-hidden="true" href="#download">#</a></h4>
-<ul>
-<li>
-<a class="hugo-shortcodes-download" href="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h" download="CustomCameraNodeTopDown.h">CustomCameraNodeTopDown.h</a>
-</li>
-<li>
-<a class="hugo-shortcodes-download" href="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp" download="CustomCameraNodeTopDown.cpp">CustomCameraNodeTopDown.cpp</a>
-</li>
-</ul>
-<hr>
-<h3 id="part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system">Part 1: The &ldquo;What&rdquo; - What are <code>UCameraNode</code> and the <strong>Gameplay Camera System</strong>?<a hidden class="anchor" aria-hidden="true" href="#part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system">#</a></h3>
-<p>Think of the <strong>Gameplay Camera System</strong> as a stack-based system, designed to be modular, with Camera Assets that can be
+It&rsquo;s awesome!&rdquo;</p><p>See more detail of other nodes in the source engine &lsquo;\UE_5.6\Engine\Plugins\Cameras\GameplayCameras\Source\GameplayCameras\Public\Nodes'</p></blockquote><h4 id=download>Download:<a hidden class=anchor aria-hidden=true href=#download>#</a></h4><ul><li><a class=hugo-shortcodes-download href=/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h download=CustomCameraNodeTopDown.h>CustomCameraNodeTopDown.h</a></li><li><a class=hugo-shortcodes-download href=/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp download=CustomCameraNodeTopDown.cpp>CustomCameraNodeTopDown.cpp</a></li></ul><hr><h3 id=part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system>Part 1: The &ldquo;What&rdquo; - What are <code>UCameraNode</code> and the <strong>Gameplay Camera System</strong>?<a hidden class=anchor aria-hidden=true href=#part-1-the-what---what-are-ucameranode-and-the-gameplay-camera-system>#</a></h3><p>Think of the <strong>Gameplay Camera System</strong> as a stack-based system, designed to be modular, with Camera Assets that can be
 ingested by one or more Gameplay Camera actors and components. This means you can author your camera behavior once, and
 use it on many actors in your scene.
-Each node performs a specific task (camera shake, changing FOV, following a target, &hellip;) and passes its result to the
-next node in the stack.</p>
-<ul>
-<li>
-<p><strong><code>UCameraNode</code></strong> (the <code>.h</code> file): This is the UObject class that defines the properties and input pins you see in the
-Editor. It&rsquo;s like the &ldquo;settings&rdquo; panel.</p>
-</li>
-<li>
-<p><strong><code>FCameraNodeEvaluator</code></strong> (the <code>.cpp</code> file): This is the worker struct that performs all the computational logic at
-runtime. It takes the settings from the <code>UCameraNode</code> and applies them.</p>
-</li>
-</ul>
-<hr>
-<h3 id="part-2-the-header-h---defining-the-control-knobs">Part 2: The Header (<code>.h</code>) - Defining the &ldquo;Control Knobs&rdquo;<a hidden class="anchor" aria-hidden="true" href="#part-2-the-header-h---defining-the-control-knobs">#</a></h3>
-<p>Create CustomCameraNodeTopDown class:</p>
-<p><img loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true"></p>
-<p>Our header file defines the parameters that a designer can tweak in the Editor.</p>
-<p><strong>CustomCameraNodeTopDown.h</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>UCLASS(meta<span style="color:#f92672">=</span>(CameraNodeCategories<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Custom&#34;</span>))
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YOURPROJECT_API</span> UCustomCameraNodeTopDown : <span style="color:#66d9ef">public</span> UCameraNode
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	GENERATED_BODY()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">virtual</span> FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder<span style="color:#f92672">&amp;</span> Builder) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The Distance from target to camera view
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter DistanceFromTarget <span style="color:#f92672">=</span> <span style="color:#ae81ff">500.0f</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The rotation of the camera
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FRotator3dCameraParameter Rotation <span style="color:#f92672">=</span> FRotator(<span style="color:#f92672">-</span><span style="color:#ae81ff">60.0f</span>, <span style="color:#ae81ff">0.0f</span>, <span style="color:#ae81ff">0.0f</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The stiffness of the spring. Higher values are &#34;stiffer&#34; and follow more closely.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter Stiffness <span style="color:#f92672">=</span> <span style="color:#ae81ff">45.0f</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The damping ratio. 1.0 is critically damped (no overshoot).
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter DampingRatio <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0f</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The mass of the camera, creating a heavier, more weighty feel.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter Mass <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0f</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Use 100% of the target&#39;s velocity for prediction, helping the camera &#34;lead the target&#34;.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter TargetVelocityAmount <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0f</span>;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>	UPROPERTY(EditAnywhere, Category <span style="color:#f92672">=</span> Common)
-</span></span><span style="display:flex;"><span>	FFloatCameraParameter DistanceInterpolationSpeed <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.0f</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><p><strong>Analyzing the Properties:</strong></p>
-<ul>
-<li>
-<p><strong>Core Inputs</strong>: <code>DistanceFromTarget</code> and <code>Rotation</code> are the target values the camera will aim for.</p>
-</li>
-<li>
-<p><strong>Spring Physics</strong>: <code>Stiffness</code>, <code>DampingRatio</code>, and <code>Mass</code> are the three pillars of the spring system.</p>
-<ul>
-<li>
-<p><strong>Stiffness</strong>: How tight the spring is. High values make the camera react quickly and follow more rigidly.</p>
-</li>
-<li>
-<p><strong>DampingRatio</strong>: Controls overshoot. A value of <code>1.0</code> allows the camera to reach its target smoothly. A value
-<code>&lt; 1.0</code> will create a slight bouncing effect.</p>
-</li>
-<li>
-<p><strong>Mass</strong>: A higher value creates a &ldquo;heavier&rdquo; camera feel with more inertia.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Interpolation</strong>: <code>DistanceInterpolationSpeed</code> independently controls the zoom speed.</p>
-</li>
-</ul>
-<hr>
-<h3 id="part-3-the-evaluator-cpp---the-core-logic-">Part 3: The Evaluator (<code>.cpp</code>) - The Core Logic ⚙️<a hidden class="anchor" aria-hidden="true" href="#part-3-the-evaluator-cpp---the-core-logic-">#</a></h3>
-<p>This code defines the <code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code> class, which is the &ldquo;brain&rdquo; that executes the
-computational logic for a custom camera node within Unreal Engine&rsquo;s <strong>Gameplay Camera System</strong>.</p>
-<h3 id="1-member-variables">1. Member Variables<a hidden class="anchor" aria-hidden="true" href="#1-member-variables">#</a></h3>
-<p><strong>CustomCameraNodeTopDown.cpp</strong> ()</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> UE<span style="color:#f92672">::</span>Cameras <span style="color:#75715e">// Remember put class in UE::Cameras namespace
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FCustomCameraNodeTopDownEvaluator</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> FCameraNodeEvaluator
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> OnInitialize(<span style="color:#66d9ef">const</span> FCameraNodeEvaluatorInitializeParams<span style="color:#f92672">&amp;</span> Params,
-</span></span><span style="display:flex;"><span>                                  FCameraNodeEvaluationResult<span style="color:#f92672">&amp;</span> OutResult) <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnRun</span>(<span style="color:#66d9ef">const</span> FCameraNodeEvaluationParams<span style="color:#f92672">&amp;</span> Params, FCameraNodeEvaluationResult<span style="color:#f92672">&amp;</span> OutResult) <span style="color:#66d9ef">override</span>;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> DistanceReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span>FRotator3d<span style="color:#f92672">&gt;</span> RotationReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> StiffnessReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> DampingRatioReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> MassReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> TargetVelocityAmountReader;
-</span></span><span style="display:flex;"><span>        TCameraParameterReader<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> DistanceInterpSpeedReader;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        FVectorSpringState CameraLocationSpringState <span style="color:#f92672">=</span> FVectorSpringState();
-</span></span><span style="display:flex;"><span>        FVector CurrentCameraLocation <span style="color:#f92672">=</span> FVector<span style="color:#f92672">::</span>ZeroVector;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>		FQuaternionSpringState CameraRotationSpringState <span style="color:#f92672">=</span> FQuaternionSpringState();
-</span></span><span style="display:flex;"><span>		FQuat CurrentCameraRotation <span style="color:#f92672">=</span> FQuat<span style="color:#f92672">::</span>Identity;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> CurrentSmoothDistance <span style="color:#f92672">=</span> <span style="color:#ae81ff">500.0f</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> bIsFirstRun <span style="color:#f92672">=</span> true;
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>These variables act as the node&rsquo;s &ldquo;memory,&rdquo; storing the necessary state and settings between frames.</p>
-<ul>
-<li>
-<p><strong><code>TCameraParameterReader&lt;...&gt;</code></strong>: These are parameter &ldquo;readers.&rdquo; Their job is to get the values that a user (
+Each node performs a specific task (camera shake, changing FOV, following a target, &mldr;) and passes its result to the
+next node in the stack.</p><ul><li><p><strong><code>UCameraNode</code></strong> (the <code>.h</code> file): This is the UObject class that defines the properties and input pins you see in the
+Editor. It&rsquo;s like the &ldquo;settings&rdquo; panel.</p></li><li><p><strong><code>FCameraNodeEvaluator</code></strong> (the <code>.cpp</code> file): This is the worker struct that performs all the computational logic at
+runtime. It takes the settings from the <code>UCameraNode</code> and applies them.</p></li></ul><hr><h3 id=part-2-the-header-h---defining-the-control-knobs>Part 2: The Header (<code>.h</code>) - Defining the &ldquo;Control Knobs&rdquo;<a hidden class=anchor aria-hidden=true href=#part-2-the-header-h---defining-the-control-knobs>#</a></h3><p>Create CustomCameraNodeTopDown class:</p><p><img loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true"></p><p>Our header file defines the parameters that a designer can tweak in the Editor.</p><p><strong>CustomCameraNodeTopDown.h</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>UCLASS(meta<span style=color:#f92672>=</span>(CameraNodeCategories<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Custom&#34;</span>))
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>YOURPROJECT_API</span> UCustomCameraNodeTopDown : <span style=color:#66d9ef>public</span> UCameraNode
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>	GENERATED_BODY()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>protected</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>virtual</span> FCameraNodeEvaluatorPtr OnBuildEvaluator(FCameraNodeEvaluatorBuilder<span style=color:#f92672>&amp;</span> Builder) <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The Distance from target to camera view
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter DistanceFromTarget <span style=color:#f92672>=</span> <span style=color:#ae81ff>500.0f</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The rotation of the camera
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FRotator3dCameraParameter Rotation <span style=color:#f92672>=</span> FRotator(<span style=color:#f92672>-</span><span style=color:#ae81ff>60.0f</span>, <span style=color:#ae81ff>0.0f</span>, <span style=color:#ae81ff>0.0f</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The stiffness of the spring. Higher values are &#34;stiffer&#34; and follow more closely.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter Stiffness <span style=color:#f92672>=</span> <span style=color:#ae81ff>45.0f</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The damping ratio. 1.0 is critically damped (no overshoot).
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter DampingRatio <span style=color:#f92672>=</span> <span style=color:#ae81ff>1.0f</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The mass of the camera, creating a heavier, more weighty feel.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter Mass <span style=color:#f92672>=</span> <span style=color:#ae81ff>10.0f</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Use 100% of the target&#39;s velocity for prediction, helping the camera &#34;lead the target&#34;.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter TargetVelocityAmount <span style=color:#f92672>=</span> <span style=color:#ae81ff>1.0f</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>	UPROPERTY(EditAnywhere, Category <span style=color:#f92672>=</span> Common)
+</span></span><span style=display:flex><span>	FFloatCameraParameter DistanceInterpolationSpeed <span style=color:#f92672>=</span> <span style=color:#ae81ff>5.0f</span>;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p><strong>Analyzing the Properties:</strong></p><ul><li><p><strong>Core Inputs</strong>: <code>DistanceFromTarget</code> and <code>Rotation</code> are the target values the camera will aim for.</p></li><li><p><strong>Spring Physics</strong>: <code>Stiffness</code>, <code>DampingRatio</code>, and <code>Mass</code> are the three pillars of the spring system.</p><ul><li><p><strong>Stiffness</strong>: How tight the spring is. High values make the camera react quickly and follow more rigidly.</p></li><li><p><strong>DampingRatio</strong>: Controls overshoot. A value of <code>1.0</code> allows the camera to reach its target smoothly. A value
+<code>&lt; 1.0</code> will create a slight bouncing effect.</p></li><li><p><strong>Mass</strong>: A higher value creates a &ldquo;heavier&rdquo; camera feel with more inertia.</p></li></ul></li><li><p><strong>Interpolation</strong>: <code>DistanceInterpolationSpeed</code> independently controls the zoom speed.</p></li></ul><hr><h3 id=part-3-the-evaluator-cpp---the-core-logic->Part 3: The Evaluator (<code>.cpp</code>) - The Core Logic ⚙️<a hidden class=anchor aria-hidden=true href=#part-3-the-evaluator-cpp---the-core-logic->#</a></h3><p>This code defines the <code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code> class, which is the &ldquo;brain&rdquo; that executes the
+computational logic for a custom camera node within Unreal Engine&rsquo;s <strong>Gameplay Camera System</strong>.</p><h3 id=1-member-variables>1. Member Variables<a hidden class=anchor aria-hidden=true href=#1-member-variables>#</a></h3><p><strong>CustomCameraNodeTopDown.cpp</strong> ()</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>namespace</span> UE<span style=color:#f92672>::</span>Cameras <span style=color:#75715e>// Remember put class in UE::Cameras namespace
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FCustomCameraNodeTopDownEvaluator</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> FCameraNodeEvaluator
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> OnInitialize(<span style=color:#66d9ef>const</span> FCameraNodeEvaluatorInitializeParams<span style=color:#f92672>&amp;</span> Params,
+</span></span><span style=display:flex><span>                                  FCameraNodeEvaluationResult<span style=color:#f92672>&amp;</span> OutResult) <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>OnRun</span>(<span style=color:#66d9ef>const</span> FCameraNodeEvaluationParams<span style=color:#f92672>&amp;</span> Params, FCameraNodeEvaluationResult<span style=color:#f92672>&amp;</span> OutResult) <span style=color:#66d9ef>override</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> DistanceReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span>FRotator3d<span style=color:#f92672>&gt;</span> RotationReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> StiffnessReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> DampingRatioReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> MassReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> TargetVelocityAmountReader;
+</span></span><span style=display:flex><span>        TCameraParameterReader<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>float</span><span style=color:#f92672>&gt;</span> DistanceInterpSpeedReader;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        FVectorSpringState CameraLocationSpringState <span style=color:#f92672>=</span> FVectorSpringState();
+</span></span><span style=display:flex><span>        FVector CurrentCameraLocation <span style=color:#f92672>=</span> FVector<span style=color:#f92672>::</span>ZeroVector;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>		FQuaternionSpringState CameraRotationSpringState <span style=color:#f92672>=</span> FQuaternionSpringState();
+</span></span><span style=display:flex><span>		FQuat CurrentCameraRotation <span style=color:#f92672>=</span> FQuat<span style=color:#f92672>::</span>Identity;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>float</span> CurrentSmoothDistance <span style=color:#f92672>=</span> <span style=color:#ae81ff>500.0f</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>bool</span> bIsFirstRun <span style=color:#f92672>=</span> true;
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>These variables act as the node&rsquo;s &ldquo;memory,&rdquo; storing the necessary state and settings between frames.</p><ul><li><p><strong><code>TCameraParameterReader&lt;...></code></strong>: These are parameter &ldquo;readers.&rdquo; Their job is to get the values that a user (
 designer) has set on the <code>UCameraNode</code> in the Camera Stack asset. For example, <code>DistanceReader</code> will read the value
-from the <code>DistanceFromTarget</code> property.</p>
-</li>
-<li>
-<p><strong><code>F...SpringState</code></strong>: These variables (<code>CameraLocationSpringState</code>, <code>CameraRotationSpringState</code>) store the state of
+from the <code>DistanceFromTarget</code> property.</p></li><li><p><strong><code>F...SpringState</code></strong>: These variables (<code>CameraLocationSpringState</code>, <code>CameraRotationSpringState</code>) store the state of
 the spring system, including the velocity and error from the previous frame. This is the core data required for the
-spring interpolation functions to work correctly.</p>
-</li>
-<li>
-<p><strong><code>Current...</code></strong>: These variables (<code>CurrentCameraLocation</code>, <code>CurrentCameraRotation</code>, <code>CurrentSmoothDistance</code>) hold the
+spring interpolation functions to work correctly.</p></li><li><p><strong><code>Current...</code></strong>: These variables (<code>CurrentCameraLocation</code>, <code>CurrentCameraRotation</code>, <code>CurrentSmoothDistance</code>) hold the
 camera&rsquo;s actual position, rotation, and distance from the previous frame. They are used as the starting point for the
-current frame&rsquo;s calculations to create smoothness.</p>
-</li>
-<li>
-<p><strong><code>bIsFirstRun</code></strong>: An important flag variable to handle the first run separately. It helps prevent the camera from &quot;
-flying&quot; from the world origin (0,0,0) to its desired location, instead placing the camera in the correct position
-immediately.</p>
-</li>
-</ul>
-<hr>
-<h3 id="2-the-oninitialize-function">2. The <code>OnInitialize()</code> Function<a hidden class="anchor" aria-hidden="true" href="#2-the-oninitialize-function">#</a></h3>
-<p>Essentially, <code>OnInitialize</code> handles the &ldquo;wiring&rdquo; between the settings in the Editor and the logic brain that will use
-them at runtime.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FCustomBoomOffsetTopDownCameraNodeEvaluator<span style="color:#f92672">::</span>OnInitialize(<span style="color:#66d9ef">const</span> FCameraNodeEvaluatorInitializeParams<span style="color:#f92672">&amp;</span> Params,
-</span></span><span style="display:flex;"><span>                                                               FCameraNodeEvaluationResult<span style="color:#f92672">&amp;</span> OutResult)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> UBoomArmCameraNodeTopDown<span style="color:#f92672">*</span> AttachNode <span style="color:#f92672">=</span> GetCameraNodeAs<span style="color:#f92672">&lt;</span>UBoomArmCameraNodeTopDown<span style="color:#f92672">&gt;</span>();
-</span></span><span style="display:flex;"><span>    DistanceReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>DistanceFromTarget);
-</span></span><span style="display:flex;"><span>    RotationReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>Rotation);
-</span></span><span style="display:flex;"><span>    StiffnessReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>Stiffness);
-</span></span><span style="display:flex;"><span>    DampingRatioReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>DampingRatio);
-</span></span><span style="display:flex;"><span>    MassReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>Mass);
-</span></span><span style="display:flex;"><span>    TargetVelocityAmountReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>TargetVelocityAmount);
-</span></span><span style="display:flex;"><span>    DistanceInterpSpeedReader.Initialize(AttachNode<span style="color:#f92672">-&gt;</span>DistanceInterpolationSpeed);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>This is a setup function that runs only once when the node is initialized.</p>
-<ul>
-<li>
-<p><strong>Main Purpose</strong>: The most important task of this function is to <strong>connect</strong> the <code>TCameraParameterReader</code>s with their
-corresponding properties on the <code>UCustomCameraNodeTopDown</code>.</p>
-</li>
-<li>
-<p><strong>How it works</strong>: The command <code>DistanceReader.Initialize(AttachNode-&gt;DistanceFromTarget)</code> means: &ldquo;Hey
+current frame&rsquo;s calculations to create smoothness.</p></li><li><p><strong><code>bIsFirstRun</code></strong>: An important flag variable to handle the first run separately. It helps prevent the camera from "
+flying" from the world origin (0,0,0) to its desired location, instead placing the camera in the correct position
+immediately.</p></li></ul><hr><h3 id=2-the-oninitialize-function>2. The <code>OnInitialize()</code> Function<a hidden class=anchor aria-hidden=true href=#2-the-oninitialize-function>#</a></h3><p>Essentially, <code>OnInitialize</code> handles the &ldquo;wiring&rdquo; between the settings in the Editor and the logic brain that will use
+them at runtime.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>void</span> FCustomBoomOffsetTopDownCameraNodeEvaluator<span style=color:#f92672>::</span>OnInitialize(<span style=color:#66d9ef>const</span> FCameraNodeEvaluatorInitializeParams<span style=color:#f92672>&amp;</span> Params,
+</span></span><span style=display:flex><span>                                                               FCameraNodeEvaluationResult<span style=color:#f92672>&amp;</span> OutResult)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> UBoomArmCameraNodeTopDown<span style=color:#f92672>*</span> AttachNode <span style=color:#f92672>=</span> GetCameraNodeAs<span style=color:#f92672>&lt;</span>UBoomArmCameraNodeTopDown<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>    DistanceReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>DistanceFromTarget);
+</span></span><span style=display:flex><span>    RotationReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>Rotation);
+</span></span><span style=display:flex><span>    StiffnessReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>Stiffness);
+</span></span><span style=display:flex><span>    DampingRatioReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>DampingRatio);
+</span></span><span style=display:flex><span>    MassReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>Mass);
+</span></span><span style=display:flex><span>    TargetVelocityAmountReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>TargetVelocityAmount);
+</span></span><span style=display:flex><span>    DistanceInterpSpeedReader.Initialize(AttachNode<span style=color:#f92672>-&gt;</span>DistanceInterpolationSpeed);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>This is a setup function that runs only once when the node is initialized.</p><ul><li><p><strong>Main Purpose</strong>: The most important task of this function is to <strong>connect</strong> the <code>TCameraParameterReader</code>s with their
+corresponding properties on the <code>UCustomCameraNodeTopDown</code>.</p></li><li><p><strong>How it works</strong>: The command <code>DistanceReader.Initialize(AttachNode->DistanceFromTarget)</code> means: &ldquo;Hey
 <code>DistanceReader</code>, from now on, read your value from the <code>DistanceFromTarget</code> property on the camera node.&rdquo; This
-process is repeated for all other parameters like <code>Stiffness</code>, <code>Mass</code>, <code>Rotation</code>, etc.</p>
-</li>
-</ul>
-<hr>
-<h3 id="3-the-onrun-function">3. The <code>OnRun()</code> Function<a hidden class="anchor" aria-hidden="true" href="#3-the-onrun-function">#</a></h3>
-<p>This is where all the magic happens. The logic inside the <code>OnRun</code> function of
-<code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code> is incredibly clever.</p>
-<p><strong>CustomCameraNodeTopDown.cpp</strong> ()</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> FCustomBoomOffsetTopDownCameraNodeEvaluator<span style="color:#f92672">::</span>OnRun(<span style="color:#66d9ef">const</span> FCameraNodeEvaluationParams<span style="color:#f92672">&amp;</span> Params,
-</span></span><span style="display:flex;"><span>                                                        FCameraNodeEvaluationResult<span style="color:#f92672">&amp;</span> OutResult)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> APlayerController<span style="color:#f92672">*</span> PlayerController <span style="color:#f92672">=</span> Params.EvaluationContext<span style="color:#f92672">-&gt;</span>GetPlayerController();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>PlayerController) <span style="color:#66d9ef">return</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> APawn<span style="color:#f92672">*</span> Pawn <span style="color:#f92672">=</span> PlayerController<span style="color:#f92672">-&gt;</span>GetPawnOrSpectator();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>Pawn) <span style="color:#66d9ef">return</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Get data from input
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> FRotator DesiredRotation <span style="color:#f92672">=</span> RotationReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> DesiredDistance <span style="color:#f92672">=</span> DistanceReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> InterpSpeed <span style="color:#f92672">=</span> DistanceInterpSpeedReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> FVector PivotLocation <span style="color:#f92672">=</span> Pawn<span style="color:#f92672">-&gt;</span>GetActorLocation();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Get data of Spring
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> Stiffness <span style="color:#f92672">=</span> StiffnessReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> DampingRatio <span style="color:#f92672">=</span> DampingRatioReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> Mass <span style="color:#f92672">=</span> MassReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Handle the first run to prevent the camera from flying in from the world origin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (bIsFirstRun)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        CurrentCameraRotation <span style="color:#f92672">=</span> DesiredRotation.Quaternion();
-</span></span><span style="display:flex;"><span>        CurrentSmoothDistance <span style="color:#f92672">=</span> DesiredDistance;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> FVector DirectionFromTarget <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>CurrentCameraRotation.Vector();
-</span></span><span style="display:flex;"><span>        CurrentCameraLocation <span style="color:#f92672">=</span> PivotLocation <span style="color:#f92672">+</span> DirectionFromTarget <span style="color:#f92672">*</span> CurrentSmoothDistance;
-</span></span><span style="display:flex;"><span>        bIsFirstRun <span style="color:#f92672">=</span> false;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- STEP 1: INTERPOLATE ROTATION ---
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    CurrentCameraRotation <span style="color:#f92672">=</span> UKismetMathLibrary<span style="color:#f92672">::</span>QuaternionSpringInterp(
-</span></span><span style="display:flex;"><span>        CurrentCameraRotation, DesiredRotation.Quaternion(),
-</span></span><span style="display:flex;"><span>        CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- STEP 2: INTERPOLATE DISTANCE ---
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    CurrentSmoothDistance <span style="color:#f92672">=</span> FMath<span style="color:#f92672">::</span>FInterpTo(
-</span></span><span style="display:flex;"><span>        CurrentSmoothDistance, DesiredDistance,
-</span></span><span style="display:flex;"><span>        Params.DeltaTime, InterpSpeed);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- STEP 3: CALCULATE THE TARGET LOCATION BASED ON SMOOTHED VALUES ---
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> FVector SmoothedDirectionFromTarget <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>CurrentCameraRotation.Vector();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> FVector TargetLocation <span style="color:#f92672">=</span> PivotLocation <span style="color:#f92672">+</span> SmoothedDirectionFromTarget <span style="color:#f92672">*</span> CurrentSmoothDistance;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- STEP 4: INTERPOLATE LOCATION, CHASING THE TARGET ---
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> TargetVelocityAmount <span style="color:#f92672">=</span> TargetVelocityAmountReader.Get(OutResult.VariableTable);
-</span></span><span style="display:flex;"><span>    CurrentCameraLocation <span style="color:#f92672">=</span> UKismetMathLibrary<span style="color:#f92672">::</span>VectorSpringInterp(
-</span></span><span style="display:flex;"><span>        CurrentCameraLocation, TargetLocation,
-</span></span><span style="display:flex;"><span>        CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// --- STEP 5: ASSIGN THE FINAL RESULT ---
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    OutResult.CameraPose.SetLocation(CurrentCameraLocation);
-</span></span><span style="display:flex;"><span>    OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator());
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h3 id="4-the-bridge-the-onbuildevaluator-function">4. The Bridge: The <code>OnBuildEvaluator()</code> Function<a hidden class="anchor" aria-hidden="true" href="#4-the-bridge-the-onbuildevaluator-function">#</a></h3>
-<p>This is the final piece of the puzzle, acting as the critical bridge between our <code>UCameraNode</code> (the settings part) and
-our <code>FCameraNodeEvaluator</code> (the logic part).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>FCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown<span style="color:#f92672">::</span>OnBuildEvaluator(FCameraNodeEvaluatorBuilder<span style="color:#f92672">&amp;</span> Builder) <span style="color:#66d9ef">const</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> UE<span style="color:#f92672">::</span>Cameras;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Builder.BuildEvaluator<span style="color:#f92672">&lt;</span>FCustomBoomOffsetTopDownCameraNodeEvaluator<span style="color:#f92672">&gt;</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="how-it-works">How It Works<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h4>
-<p>The <code>OnBuildEvaluator</code> function is called by the <strong>Gameplay Camera System</strong> when it needs a &ldquo;worker&rdquo; to execute the
+process is repeated for all other parameters like <code>Stiffness</code>, <code>Mass</code>, <code>Rotation</code>, etc.</p></li></ul><hr><h3 id=3-the-onrun-function>3. The <code>OnRun()</code> Function<a hidden class=anchor aria-hidden=true href=#3-the-onrun-function>#</a></h3><p>This is where all the magic happens. The logic inside the <code>OnRun</code> function of
+<code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code> is incredibly clever.</p><p><strong>CustomCameraNodeTopDown.cpp</strong> ()</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>void</span> FCustomBoomOffsetTopDownCameraNodeEvaluator<span style=color:#f92672>::</span>OnRun(<span style=color:#66d9ef>const</span> FCameraNodeEvaluationParams<span style=color:#f92672>&amp;</span> Params,
+</span></span><span style=display:flex><span>                                                        FCameraNodeEvaluationResult<span style=color:#f92672>&amp;</span> OutResult)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> APlayerController<span style=color:#f92672>*</span> PlayerController <span style=color:#f92672>=</span> Params.EvaluationContext<span style=color:#f92672>-&gt;</span>GetPlayerController();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>PlayerController) <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> APawn<span style=color:#f92672>*</span> Pawn <span style=color:#f92672>=</span> PlayerController<span style=color:#f92672>-&gt;</span>GetPawnOrSpectator();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>Pawn) <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Get data from input
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> FRotator DesiredRotation <span style=color:#f92672>=</span> RotationReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> DesiredDistance <span style=color:#f92672>=</span> DistanceReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> InterpSpeed <span style=color:#f92672>=</span> DistanceInterpSpeedReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> FVector PivotLocation <span style=color:#f92672>=</span> Pawn<span style=color:#f92672>-&gt;</span>GetActorLocation();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Get data of Spring
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> Stiffness <span style=color:#f92672>=</span> StiffnessReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> DampingRatio <span style=color:#f92672>=</span> DampingRatioReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> Mass <span style=color:#f92672>=</span> MassReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Handle the first run to prevent the camera from flying in from the world origin
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (bIsFirstRun)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        CurrentCameraRotation <span style=color:#f92672>=</span> DesiredRotation.Quaternion();
+</span></span><span style=display:flex><span>        CurrentSmoothDistance <span style=color:#f92672>=</span> DesiredDistance;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> FVector DirectionFromTarget <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>CurrentCameraRotation.Vector();
+</span></span><span style=display:flex><span>        CurrentCameraLocation <span style=color:#f92672>=</span> PivotLocation <span style=color:#f92672>+</span> DirectionFromTarget <span style=color:#f92672>*</span> CurrentSmoothDistance;
+</span></span><span style=display:flex><span>        bIsFirstRun <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// --- STEP 1: INTERPOLATE ROTATION ---
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    CurrentCameraRotation <span style=color:#f92672>=</span> UKismetMathLibrary<span style=color:#f92672>::</span>QuaternionSpringInterp(
+</span></span><span style=display:flex><span>        CurrentCameraRotation, DesiredRotation.Quaternion(),
+</span></span><span style=display:flex><span>        CameraRotationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// --- STEP 2: INTERPOLATE DISTANCE ---
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    CurrentSmoothDistance <span style=color:#f92672>=</span> FMath<span style=color:#f92672>::</span>FInterpTo(
+</span></span><span style=display:flex><span>        CurrentSmoothDistance, DesiredDistance,
+</span></span><span style=display:flex><span>        Params.DeltaTime, InterpSpeed);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// --- STEP 3: CALCULATE THE TARGET LOCATION BASED ON SMOOTHED VALUES ---
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> FVector SmoothedDirectionFromTarget <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>CurrentCameraRotation.Vector();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> FVector TargetLocation <span style=color:#f92672>=</span> PivotLocation <span style=color:#f92672>+</span> SmoothedDirectionFromTarget <span style=color:#f92672>*</span> CurrentSmoothDistance;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// --- STEP 4: INTERPOLATE LOCATION, CHASING THE TARGET ---
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>float</span> TargetVelocityAmount <span style=color:#f92672>=</span> TargetVelocityAmountReader.Get(OutResult.VariableTable);
+</span></span><span style=display:flex><span>    CurrentCameraLocation <span style=color:#f92672>=</span> UKismetMathLibrary<span style=color:#f92672>::</span>VectorSpringInterp(
+</span></span><span style=display:flex><span>        CurrentCameraLocation, TargetLocation,
+</span></span><span style=display:flex><span>        CameraLocationSpringState, Stiffness, DampingRatio, Params.DeltaTime, Mass, TargetVelocityAmount);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// --- STEP 5: ASSIGN THE FINAL RESULT ---
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    OutResult.CameraPose.SetLocation(CurrentCameraLocation);
+</span></span><span style=display:flex><span>    OutResult.CameraPose.SetRotation(CurrentCameraRotation.Rotator());
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h3 id=4-the-bridge-the-onbuildevaluator-function>4. The Bridge: The <code>OnBuildEvaluator()</code> Function<a hidden class=anchor aria-hidden=true href=#4-the-bridge-the-onbuildevaluator-function>#</a></h3><p>This is the final piece of the puzzle, acting as the critical bridge between our <code>UCameraNode</code> (the settings part) and
+our <code>FCameraNodeEvaluator</code> (the logic part).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span>FCameraNodeEvaluatorPtr UBoomArmCameraNodeTopDown<span style=color:#f92672>::</span>OnBuildEvaluator(FCameraNodeEvaluatorBuilder<span style=color:#f92672>&amp;</span> Builder) <span style=color:#66d9ef>const</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> UE<span style=color:#f92672>::</span>Cameras;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Builder.BuildEvaluator<span style=color:#f92672>&lt;</span>FCustomBoomOffsetTopDownCameraNodeEvaluator<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=how-it-works>How It Works<a hidden class=anchor aria-hidden=true href=#how-it-works>#</a></h4><p>The <code>OnBuildEvaluator</code> function is called by the <strong>Gameplay Camera System</strong> when it needs a &ldquo;worker&rdquo; to execute the
 logic for this
-specific node. Its job is basic:</p>
-<ul>
-<li>
-<p>It receives a <code>Builder</code> object from the <strong>Gameplay Camera System</strong>.</p>
-</li>
-<li>
-<p>It tells the <code>Builder</code> to construct an instance of the logic class we wrote:
-<code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code>.</p>
-</li>
-<li>
-<p>It then returns the newly created instance.</p>
-</li>
-</ul>
-<p>Essentially, this is how you tell the Engine: <strong>&ldquo;When you use this <code>UBoomArmCameraNodeTopDown</code> node, use the logic
+specific node. Its job is basic:</p><ul><li><p>It receives a <code>Builder</code> object from the <strong>Gameplay Camera System</strong>.</p></li><li><p>It tells the <code>Builder</code> to construct an instance of the logic class we wrote:
+<code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code>.</p></li><li><p>It then returns the newly created instance.</p></li></ul><p>Essentially, this is how you tell the Engine: <strong>&ldquo;When you use this <code>UBoomArmCameraNodeTopDown</code> node, use the logic
 from <code>FCustomBoomOffsetTopDownCameraNodeEvaluator</code> to do the math.&rdquo;</strong> This function connects the user-facing settings
-with the high-performance runtime logic.</p>
-<p><strong>A Step-by-Step Analysis:</strong></p>
-<ol>
-<li>
-<p><strong>Initialization &amp; First Run</strong>: The code includes a critical <code>bIsFirstRun</code> check. On the very first frame, it places
+with the high-performance runtime logic.</p><p><strong>A Step-by-Step Analysis:</strong></p><ol><li><p><strong>Initialization & First Run</strong>: The code includes a critical <code>bIsFirstRun</code> check. On the very first frame, it places
 the camera directly at its desired location instead of letting it fly in from the world origin (0,0,0), preventing an
-ugly visual snap for the player.</p>
-</li>
-<li>
-<p><strong>Independent Interpolation of Rotation and Distance</strong>:</p>
-<ul>
-<li>
-<p><strong>Rotation</strong> is interpolated using <code>QuaternionSpringInterp</code>, a powerful spring function for rotations that creates
-a very natural feel.</p>
-</li>
-<li>
-<p><strong>Distance</strong> (zoom) is interpolated using the simpler <code>FInterpTo</code>.</p>
-</li>
-<li>
-<p>💡 <strong>Pro-Tip:</strong> Separating these two interpolation types is a subtle but brilliant design choice. It allows a
+ugly visual snap for the player.</p></li><li><p><strong>Independent Interpolation of Rotation and Distance</strong>:</p><ul><li><p><strong>Rotation</strong> is interpolated using <code>QuaternionSpringInterp</code>, a powerful spring function for rotations that creates
+a very natural feel.</p></li><li><p><strong>Distance</strong> (zoom) is interpolated using the simpler <code>FInterpTo</code>.</p></li><li><p>💡 <strong>Pro-Tip:</strong> Separating these two interpolation types is a subtle but brilliant design choice. It allows a
 designer to control the camera&rsquo;s movement/rotation speed (via the spring) completely independently from the
-camera&rsquo;s zoom speed (via the InterpSpeed).</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Defining the &ldquo;Moving Target&rdquo;</strong>: Instead of rigidly chasing the Pawn&rsquo;s location, the camera chases a virtual
+camera&rsquo;s zoom speed (via the InterpSpeed).</p></li></ul></li><li><p><strong>Defining the &ldquo;Moving Target&rdquo;</strong>: Instead of rigidly chasing the Pawn&rsquo;s location, the camera chases a virtual
 <code>TargetLocation</code>. This location is calculated using the rotation and distance values that were <em>already smoothed</em> in
-the previous steps. This makes the camera&rsquo;s movement far more fluid.</p>
-</li>
-<li>
-<p><strong>Position Interpolation with Vector Spring</strong>: This is the main spring of the system. The camera&rsquo;s current position (
+the previous steps. This makes the camera&rsquo;s movement far more fluid.</p></li><li><p><strong>Position Interpolation with Vector Spring</strong>: This is the main spring of the system. The camera&rsquo;s current position (
 <code>CurrentCameraLocation</code>) &ldquo;chases&rdquo; the <code>TargetLocation</code> using <code>VectorSpringInterp</code>. The <code>TargetVelocityAmount</code>
-parameter even helps the camera &ldquo;lead&rdquo; the target&rsquo;s movement, reducing the feeling of lag.</p>
-</li>
-<li>
-<p><strong>Assigning the Result</strong>: Finally, the fully smoothed location and rotation are assigned to the
-<code>OutResult.CameraPose</code>.</p>
-</li>
-</ol>
-<hr>
-<h3 id="part-4-how-to-use-it-in-the-editor">Part 4: How to Use it in the Editor<a hidden class="anchor" aria-hidden="true" href="#part-4-how-to-use-it-in-the-editor">#</a></h3>
-<p>The power of this method lies in how simple it is for designers to use.</p>
-<ol>
-<li>
-<p>Create a new <strong>Camera Rig</strong> asset.
-<img alt="Create Camera Rig Asset" loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-camera-rig.png?raw=true"></p>
-</li>
-<li>
-<p>In the Camera Rig Editor, click <strong>Add Node</strong> and search for <code>Custom Camera Node Top Down </code> or just drag it from toolbox.
-<img alt="Implement our custom node to camera rig" loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/implement-custom-node-to-camera-rig.png?raw=true"></p>
-</li>
-<li>
-<p>Select the newly added node. You will see all the properties (<code>Stiffness</code>, <code>Mass</code>, <code>DampingRatio</code>, etc.) we defined
+parameter even helps the camera &ldquo;lead&rdquo; the target&rsquo;s movement, reducing the feeling of lag.</p></li><li><p><strong>Assigning the Result</strong>: Finally, the fully smoothed location and rotation are assigned to the
+<code>OutResult.CameraPose</code>.</p></li></ol><hr><h3 id=part-4-how-to-use-it-in-the-editor>Part 4: How to Use it in the Editor<a hidden class=anchor aria-hidden=true href=#part-4-how-to-use-it-in-the-editor>#</a></h3><p>The power of this method lies in how simple it is for designers to use.</p><ol><li><p>Create a new <strong>Camera Rig</strong> asset.
+<img alt="Create Camera Rig Asset" loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-camera-rig.png?raw=true"></p></li><li><p>In the Camera Rig Editor, click <strong>Add Node</strong> and search for <code>Custom Camera Node Top Down </code>or just drag it from toolbox.
+<img alt="Implement our custom node to camera rig" loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/implement-custom-node-to-camera-rig.png?raw=true"></p></li><li><p>Select the newly added node. You will see all the properties (<code>Stiffness</code>, <code>Mass</code>, <code>DampingRatio</code>, etc.) we defined
 in the <code>.h</code> file appear in the Details Panel.
-<img alt="Property Detail" loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/property-detail.png?raw=true"></p>
-</li>
-<li>
-<p>Assign this <strong>Camera Rig</strong> asset to your <strong>Camera Director</strong> and active it.
-<img alt="Assign Camera Rig" loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true"></p>
-</li>
-</ol>
-<p>Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.</p>
-<p><img alt="Sample Output" loading="lazy" src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true"></p>
-<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
-<p>We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine&rsquo;s
+<img alt="Property Detail" loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/property-detail.png?raw=true"></p></li><li><p>Assign this <strong>Camera Rig</strong> asset to your <strong>Camera Director</strong> and active it.
+<img alt="Assign Camera Rig" loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true"></p></li></ol><p>Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.</p><p><img alt="Sample Output" loading=lazy src="https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true"></p><h3 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h3><p>We have just analyzed a complete C++ solution for creating a professional-feeling top-down camera using Unreal Engine&rsquo;s
 <strong>Gameplay Camera System</strong>. By combining multiple layers of interpolation (springs for movement, FInterp for zoom) and
-techniques like velocity prediction, we&rsquo;ve created a camera node that is not only powerful but also incredibly flexible.</p>
-<p>💡 Try experimenting with the <code>Stiffness</code> and <code>Mass</code> values to create a unique camera feel for your own project!</p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://oaiba.github.io/dev/en/tags/devlog/">DevLog</a></li>
-      <li><a href="https://oaiba.github.io/dev/en/tags/tutorial/">Tutorial</a></li>
-    </ul>
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2025 <a href="https://oaiba.github.io/dev/en/">Bob Pham&#39;s DevLog</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
-
-        function copyingDone() {
-            copybutton.innerHTML = 'copied!';
-            setTimeout(() => {
-                copybutton.innerHTML = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+techniques like velocity prediction, we&rsquo;ve created a camera node that is not only powerful but also incredibly flexible.</p><p>💡 Try experimenting with the <code>Stiffness</code> and <code>Mass</code> values to create a unique camera feel for your own project!</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://oaiba.github.io/dev/en/tags/devlog/>DevLog</a></li><li><a href=https://oaiba.github.io/dev/en/tags/tutorial/>Tutorial</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://oaiba.github.io/dev/en/>Bob Pham's DevLog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
