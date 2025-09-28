@@ -1,8 +1,19 @@
 ---
 title: "Pham Ba Oai"
 ---
-## Unreal Engine C++ Developer
-<baoai25.work@gmail.com>
+
+<div class="resume-header-container">
+    <div class="resume-header-left">
+        <h2>Unreal Engine C++ Multiplayer Developer</h2>
+        <a href="mailto:baoai25.work@gmail.com">baoai25.work@gmail.com</a>
+    </div>
+    <div class="resume-header-right">
+        <a href="/dev/downloads/resume/UnrealEngine5Dev_PhamBaOai.pdf" class="download-button" download="UnrealEngine5Dev_PhamBaOai.pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download</span>
+        </a>
+    </div>
+</div>
 
 Junior Unreal Engine Developer with 2+ years of C++ experience, specializing in multiplayer gameplay, dedicated server architecture, and cross-platform systems (PC/Mobile). Proficient with GAS, Replication Graph, network optimization, and Editor tools. Experienced in working across Design, Art, and QA to deliver scalable, high-performance game systems.
 

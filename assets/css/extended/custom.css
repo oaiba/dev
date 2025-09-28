@@ -3,3 +3,51 @@
         --main-width: 1000px;
     }
 }
+
+/* assets/css/custom.css */
+
+/* Container chính cho header của resume */
+.resume-header-container {
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 cột ra 2 bên */
+    align-items: flex-start; /* Căn lề trên cùng */
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 20px; /* Khoảng cách giữa 2 cột nếu chúng xuống dòng */
+    margin-bottom: 2.5rem; /* Khoảng cách với nội dung bên dưới */
+}
+
+/* Cột bên trái */
+.resume-header-left h1 {
+    margin-bottom: 0.25rem;
+}
+.resume-header-left h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem; /* Có thể điều chỉnh size chữ */
+    color: var(--secondary);
+}
+
+/* Nút download ở cột phải */
+.download-button {
+    display: inline-flex; /* Để icon và chữ nằm trên cùng một hàng */
+    align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap; /* Không cho chữ bị xuống dòng */
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.download-button:hover {
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+    text-decoration: none;
+}
+
+/* Định dạng cho icon SVG */
+.download-button svg {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.6em; /* Khoảng cách giữa icon và chữ */
+}
