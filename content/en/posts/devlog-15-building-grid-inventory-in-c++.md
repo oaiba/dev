@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "The new grid inventory system is a UMG widget designed to be highly configurable and responsive."
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
+cover.image = 'https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
 cover.caption = 'The new grid inventory system is a UMG widget designed to be highly configurable and responsive.'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true

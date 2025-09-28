@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Create Custom Camera Node for Top-Down View by C++"
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true'
+cover.image = 'https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true'
 cover.caption = 'Custom Camera Node for Top-Down View by C++ Ouput'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
@@ -43,8 +43,8 @@ documentation of Epic Game.
 
 #### Download:
 
-* {{< download filename="CustomCameraNodeTopDown.h" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
-* {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev-blog/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
+* {{< download filename="CustomCameraNodeTopDown.h" url="/dev/downloads/devlog-1/CustomCameraNodeTopDown.h"/>}}
+* {{< download filename="CustomCameraNodeTopDown.cpp" url="/dev/downloads/devlog-1/CustomCameraNodeTopDown.cpp"/>}}
 
 * * *
 
@@ -68,7 +68,7 @@ next node in the stack.
 
 Create CustomCameraNodeTopDown class:
 
-![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
+![](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/create-class.png?raw=true)
 
 Our header file defines the parameters that a designer can tweak in the Editor.
 
@@ -352,21 +352,21 @@ with the high-performance runtime logic.
 The power of this method lies in how simple it is for designers to use.
 
 1. Create a new **Camera Rig** asset.
-![Create Camera Rig Asset](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/create-camera-rig.png?raw=true)
+![Create Camera Rig Asset](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/create-camera-rig.png?raw=true)
 
 2. In the Camera Rig Editor, click **Add Node** and search for `Custom Camera Node Top Down ` or just drag it from toolbox.
-![Implement our custom node to camera rig](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/implement-custom-node-to-camera-rig.png?raw=true)
+![Implement our custom node to camera rig](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/implement-custom-node-to-camera-rig.png?raw=true)
 
 3. Select the newly added node. You will see all the properties (`Stiffness`, `Mass`, `DampingRatio`, etc.) we defined
    in the `.h` file appear in the Details Panel.
-![Property Detail](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/property-detail.png?raw=true)
+![Property Detail](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/property-detail.png?raw=true)
 
 4. Assign this **Camera Rig** asset to your **Camera Director** and active it.
-![Assign Camera Rig](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true)
+![Assign Camera Rig](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/using-our-custom-camera-node.png?raw=true)
 
 Play game and see the result. Now, a designer can tweak these values and see the results instantly in-game without ever touching a line of code.
 
-![Sample Output](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true)
+![Sample Output](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true)
 
 ### Conclusion
 

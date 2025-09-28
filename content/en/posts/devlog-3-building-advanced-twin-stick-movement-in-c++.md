@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "In this article, we will build a robust and flexible omnidirectional movement system in C++. This system allows the character to move relative to the camera's perspective and to rotate their body to look or aim independently."
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
+cover.image = 'https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true'
 cover.caption = 'Building Advanced "Twin-Stick" Movement in C++'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
@@ -251,7 +251,7 @@ Blueprint for flexible "wiring."**
 
     1. **Event IA\_Move:** This event fires every frame that there is movement input (WASD or Left Stick). We take its
        `Action Value` (which is an `FVector2D`) and pass it directly into our C++ function `HandleMovementTrigger`.
-       ![ia move](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/ia_move.png?raw=true)
+       ![ia move](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-3/ia_move.png?raw=true)
 
     2. **Event IA\_Look:**
         * The `Started` pin fires once when the player begins moving the Right Stick. It calls the `HandleLookStarted`
@@ -260,7 +260,7 @@ Blueprint for flexible "wiring."**
           `HandleLookTriggered` function to update the character's rotation.
         * The `Completed` pin fires once when the player releases the Right Stick. It calls `HandleLookCompleted` to
           return the character to the normal "movement" mode.
-          ![ia look](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/ia_look.png?raw=true)
+          ![ia look](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-3/ia_look.png?raw=true)
 
 With this setup, we have completed the full loop: **Input -> Blueprint Event -> C++ Logic -> Character Movement.**
 
@@ -269,7 +269,7 @@ With this setup, we have completed the full loop: **Input -> Blueprint Event -> 
 ### 📊 Visual Results & Analysis
 
 * **Visual Demo:**
-  ![](https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true)
+  ![](https://github.com/oaiba/dev/blob/gh-pages/downloads/devlog-3/sample-out-put.gif?raw=true)
 * **Result Analysis:**
     * **Functional:** We have successfully created a complete, flexible, and intuitive twin-stick control system that
       meets the demands of modern top-down games.

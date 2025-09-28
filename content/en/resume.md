@@ -1,68 +1,40 @@
-+++
-title = "DevLog: #1 Create Custom Camera Node for Top-Down View by C++++"
-date = "2025-07-30T10:13:42+07:00"
-draft = false 
-author = "Bob"
-tags = ["DevLog", "Tutorial"]
-categories = ["Tech"]
-summary = "Create Custom Camera Node for Top-Down View by C+++"
-showtoc = true
-comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/gh-pages/downloads/devlog-1/output-sample.gif?raw=true'
-cover.caption = 'Custom Camera Node for Top-Down View by C++ Ouput'
-cover.alt = 'this is alter cover'
-cover.responsiveImages = true
-cover.hidden = false
-weight = 2
-+++
+---
+title: "Pham Ba Oai"
+---
+## Unreal Engine C++ Developer
+<baoai25.work@gmail.com>
 
-<!-- Bạn có thể dùng HTML trực tiếp trong file Markdown để có bố cục phức tạp hơn nếu muốn -->
+Junior Unreal Engine Developer with 2+ years of C++ experience, specializing in multiplayer gameplay, dedicated server architecture, and cross-platform systems (PC/Mobile). Proficient with GAS, Replication Graph, network optimization, and Editor tools. Experienced in working across Design, Art, and QA to deliver scalable, high-performance game systems.
 
-<div class="resume-section">
-    <h2>Education</h2>
-    <hr>
-    <p><strong>Harvard University</strong>, Cambridge, MA</p>
-    <p><em>Master of Liberal Arts, Computer Science</em>, May 2025</p>
-    <ul>
-        <li>GPA: 4.0/4.0</li>
-        <li>Awards: Dean's List, Class Marshall Award</li>
-    </ul>
-    <p><strong>University of Technology</strong>, Ho Chi Minh City</p>
-    <p><em>Bachelor of Engineering, Information Technology</em>, June 2022</p>
-</div>
+### TECHNICAL SKILLS
+---
+*   **Core Gameplay & GAS:** Experience with GAS (Multiplayer/Prediction aspects), Enhanced Input System; Understanding of Memory Management & Async/Multithreading concepts.
+*   **Multiplayer & Networking:** Understanding of Client-Server/Dedicated Server architecture; Experience with UE Replication (Actor/Component, RPCs) & basic GAS networking; Familiarity with Prediction/Reconciliation, Lag Compensation, and Server-Authoritative Design principles.
+*   **Cross-Platform:** PC (Windows/Linux) & Mobile (iOS/Android) development experience; EOS/Steamworks SDK feature integration (Matchmaking, Achievements, etc.). Proficient with Animation Blueprints & State Machines; Experience with Control Rig; Familiarity with Motion Matching/Trajectory concepts.
+*   **Tools & Performance:** Developed basic Editor Utilities (C++/Slate/UMG) & Python automation scripts; Assisted in Build/Cook optimization; Basic experience with Unreal Insights for performance profiling.
+*   **Development Practices:** Application of Clean Code principles, Design Patterns, Technical Documentation, Code Reviews. Experience in Agile/Scrum environments; Collaborated closely with Game Designers, Artists, and QA to ensure seamless integration of gameplay features, mechanics, and visual assets.
 
-<div class="resume-section">
-    <h2>Experience</h2>
-    <hr>
-    <p><strong>Software Engineer</strong> | Google, Mountain View, CA | <em>June 2025 – Present</em></p>
-    <ul>
-        <li>Developed and maintained key features for the Google Search frontend, improving user engagement by 10%.</li>
-        <li>Collaborated in a cross-functional team of 15 engineers, designers, and product managers.</li>
-        <li>Wrote clean, scalable, and well-tested code using TypeScript and Go.</li>
-    </ul>
-    <p><strong>Software Engineer Intern</strong> | VNG Corporation, Ho Chi Minh City | <em>July 2021 – Sep 2021</em></p>
-    <ul>
-        <li>Assisted in developing APIs for the ZaloPay e-wallet application.</li>
-        <li>Fixed over 50 bugs and improved application performance by 5%.</li>
-    </ul>
-</div>
+### WORK EXPERIENCE
+---
+**Junior Unreal Engine 5 & C++ Developer**  
+_NMB TECHNOLOGY AND SOLUTION JOINT STOCK COMPANY_ | _12/2022 - 05/2025_
 
-<div class="resume-section">
-    <h2>Skills</h2>
-    <hr>
-    <ul>
-        <li><strong>Programming Languages:</strong> Go, Python, TypeScript, JavaScript, Java</li>
-        <li><strong>Technologies:</strong> Docker, Kubernetes, Google Cloud Platform (GCP), Git</li>
-        <li><strong>Languages:</strong> Vietnamese (Native), English (Fluent)</li>
-    </ul>
-</div>
+*   Contributed to the technical development of Planet Sandbox Remake, focusing on high-performance multiplayer, server, and cross-platform systems.
+*   Developed Dedicated Server features (UE5 C++) and implemented core server logic (e.g., player state sync, inventory management, interactor systems, movement prediction,...) for multiplayer games supporting 100 concurrent players; assisted in EOS SDK integration (voice chat, cross-platform sessions).
+*   Implemented complex gameplay features and contributed to network system optimization by applying knowledge of Replication Graph, custom network serialization, lag compensation, server-side hit validation, and advanced animation/transform replication (e.g., motion warping).
+*   Implemented cross-platform solutions, integrating Steamworks & Epic Online Services for core online features such as Matchmaking, Achievements, Player Progression, Parties, and Voice Chat.
+*   Developed Editor tools (C++/Slate/UMG) and contributed to automating build/cook pipelines, resulting in an estimated 30% improvement in team efficiency.
 
-<div class="resume-section">
-    <h2>Projects</h2>
-    <hr>
-    <p><strong>Personal Portfolio Website</strong></p>
-    <ul>
-        <li>Built and deployed a personal blog and portfolio using Hugo and the PaperMod theme.</li>
-        <li>Customized theme layouts and CSS to create a unique and personalized design.</li>
-    </ul>
-</div>
+### KEY PERSONAL PROJECTS
+---
+**Extraction (Multiplayer Top-Down Hero Shooter) – Personal Project | UE5, C++, GAS, EOS**
+
+*   Designed and developed a multiplayer top-down shooter from scratch using UE5 C++ & GAS.
+*   Developed complete game logic and implemented server-authoritative architecture (player states, inventory, ability system) with motion prediction.
+*   Integrated EOS SDK: Voice Chat, Cross-platform session management.
+*   Optimized performance & UX across platforms (PC/Mobile): Focused on bandwidth, mobile FPS, and comprehensive Game Controller support.
+
+### EDUCATION
+---
+**Software Engineering**  
+_FPT University HaNoi_ | _04/2024_

@@ -8,7 +8,7 @@ categories = ["Tech"]
 summary = "Set Camera Parameter in Runtime"
 showtoc = true
 comments = true
-cover.image = 'https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
+cover.image = 'https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true'
 cover.caption = 'Camera Parameter in Runtime'
 cover.alt = 'this is alter cover'
 cover.responsiveImages = true
@@ -54,21 +54,21 @@ This will be our shared data "depot."
 
 * We create a collection then possible to modify properties inside the Camera asset. In the **Content Browser**,
   right-click -> **Gameplay** -> **Camera Variable Collection**. Name it something like `CVC_TopDown`.
-  ![Create Camera Variable Collection](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/create-camera-variable-collection.png?raw=true)
+  ![Create Camera Variable Collection](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/create-camera-variable-collection.png?raw=true)
 
 #### Step 2: Add the `Distance` Variable to the Collection
 
 * Create a `Float` variable inside the collection to store the current camera distance.
 * Open the `CVC_TopDown` asset. Click the **Add (+)** button and select **Float**. Name the new
   variable `Distance` and set its **Default Value** (e.g., `500.0`).
-  ![Create Float Camera Variable](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/create-float-camera-value.png?raw=true)
-  ![Set Default Value](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/set-default-value.png?raw=true)
+  ![Create Float Camera Variable](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/create-float-camera-value.png?raw=true)
+  ![Set Default Value](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/set-default-value.png?raw=true)
 
 #### Step 3: Link the `Camera Node` to the `Variable Collection`
 
 * We need to "tell" the `DistanceFromTarget` property on our Camera Node: "From now on, don't use your
   static value. Instead, get your value from the `Distance` variable inside `CVC_TopDown`."
-  ![Link Camera Variable Collection](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/link-camera-variable-collection-to-camera-node.png?raw=true)
+  ![Link Camera Variable Collection](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/link-camera-variable-collection-to-camera-node.png?raw=true)
 
 1. Open your `Camera Stack` (e.g., `CS_TopDownCamera`).
 
@@ -90,18 +90,18 @@ This will be our shared data "depot."
   collection. Open your `Character` Blueprint.
 
 1. Add the `Input Axis Mouse Wheel` event. then add branch to only execute when we have input value.
-  ![Debug Wheel](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/debug-wheel-to-test.png?raw=true)
+  ![Debug Wheel](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/debug-wheel-to-test.png?raw=true)
 
 2. Get a reference to the `Gameplay Camera Component`. then get `Get Shared Camera Data`
 
 3. To calculate the new value, we need the old one. Drag off a `Get Float Variable` node to **read** the data.
 
 4. Drag off a `Set Float Variable` node. This is the node used to **write** data to the collection.
-  ![Set Float Variable](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/set-float-variable-camera-variable-parameter.png?raw=true)
+  ![Set Float Variable](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/set-float-variable-camera-variable-parameter.png?raw=true)
 
 5. Connect the logic as shown below. We multiply the `Axis Value ` by a `Distance Gap` (e.g., 100) and add it to the current
    value.
-  ![Detail](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/detail-blueprint-to-test.png?raw=true)
+  ![Detail](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/detail-blueprint-to-test.png?raw=true)
 
 
 * * *
@@ -110,7 +110,7 @@ This will be our shared data "depot."
 
 * **Visual Demo:** The result is a smooth, intuitive zoom feature. As you scroll the mouse wheel, the camera seamlessly
   moves in and out, constrained within the `Min` and `Max` limits we defined.
-  ![Sample Output](https://github.com/oaiba/dev-blog/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true)
+  ![Sample Output](https://github.com/oaiba/dev/blob/main/static/downloads/devlog-2/dynamic-camera-parameter.gif?raw=true)
 
 * **Result Analysis:**
 * **Functional:** The player now has the expected, direct control over the camera distance, enhancing the game
