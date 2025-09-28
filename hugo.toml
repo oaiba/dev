@@ -1,6 +1,6 @@
 # hugo.toml
 
-baseURL = "https://oaiba.github.io/dev-blog/"
+baseURL = "https://oaiba.github.io/dev/"
 title = "Bob's Unreal Engine DevLog"
 languageCode = "en"
 #theme = "PaperMod"
