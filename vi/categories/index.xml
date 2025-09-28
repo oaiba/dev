@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Nhật ký phát triển của Bob Phạm</title>
-    <link>https://oaiba.github.io/dev-blog/vi/categories/</link>
+    <link>https://oaiba.github.io/dev/vi/categories/</link>
     <description>Recent content in Categories on Nhật ký phát triển của Bob Phạm</description>
     <generator>Hugo -- 0.150.1</generator>
     <language>vi</language>
     <lastBuildDate>Wed, 30 Jul 2025 10:13:42 +0700</lastBuildDate>
-    <atom:link href="https://oaiba.github.io/dev-blog/vi/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oaiba.github.io/dev/vi/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kỹ Thuật</title>
-      <link>https://oaiba.github.io/dev-blog/vi/categories/k%E1%BB%B9-thu%E1%BA%ADt/</link>
+      <link>https://oaiba.github.io/dev/vi/categories/k%E1%BB%B9-thu%E1%BA%ADt/</link>
       <pubDate>Wed, 30 Jul 2025 10:13:42 +0700</pubDate>
-      <guid>https://oaiba.github.io/dev-blog/vi/categories/k%E1%BB%B9-thu%E1%BA%ADt/</guid>
+      <guid>https://oaiba.github.io/dev/vi/categories/k%E1%BB%B9-thu%E1%BA%ADt/</guid>
       <description></description>
     </item>
   </channel>
