@@ -1,11 +1,5 @@
 ﻿---
 title: "Roadmap Phát Triển Game: Extraction"
-date: 2025-10-26T10:00:00+07:00
-draft: false
-description: "Hành trình chi tiết từ ý tưởng đến ra mắt và hỗ trợ sau phát hành cho Extraction."
-tags: ["Game Dev", "Roadmap", "Extraction"]
-#showToc: true
-#TocOpen: true
 ---
 
 Chào mừng đến với roadmap phát triển của **Extraction**! Tại đây, chúng tôi sẽ chia sẻ một cách minh bạch về các giai đoạn phát triển, các tính năng dự kiến và tiến độ hiện tại của dự án. Lộ trình này sẽ được cập nhật thường xuyên để phản ánh những thay đổi và tiến bộ của đội ngũ phát triển.
