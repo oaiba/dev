@@ -1,117 +1,167 @@
 ﻿---
 title: "Roadmap Phát Triển Game: Extraction"
 ---
-
-Chào mừng đến với roadmap phát triển của **Extraction**! Tại đây, chúng tôi sẽ chia sẻ một cách minh bạch về các giai đoạn phát triển, các tính năng dự kiến và tiến độ hiện tại của dự án. Lộ trình này sẽ được cập nhật thường xuyên để phản ánh những thay đổi và tiến bộ của đội ngũ phát triển.
-
-## Tổng quan Lộ trình
-
-Lộ trình của chúng tôi được chia thành 6 giai đoạn chính. Mỗi giai đoạn đều có những mục tiêu và cột mốc quan trọng riêng.
-
-<!-- Sử dụng HTML và CSS để tạo các thẻ giai đoạn nổi bật -->
-<div class="roadmap-phases">
-    <div class="phase-card completed">
-        <h4>Giai đoạn 1</h4>
-        <h3>Ý tưởng & Lên Kế hoạch</h3>
-        <p>Hoàn thành</p>
-    </div>
-    <div class="phase-card in-progress">
-        <h4>Giai đoạn 2</h4>
-        <h3>Tiền sản xuất (Pre-Production)</h3>
-        <p>Đang thực hiện</p>
-    </div>
-    <div class="phase-card">
-        <h4>Giai đoạn 3</h4>
-        <h3>Sản xuất (Production)</h3>
-        <p>Chưa bắt đầu</p>
-    </div>
-    <div class="phase-card">
-        <h4>Giai đoạn 4</h4>
-        <h3>Alpha & Beta</h3>
-        <p>Chưa bắt đầu</p>
-    </div>
-    <div class="phase-card">
-        <h4>Giai đoạn 5</h4>
-        <h3>Ra mắt (Launch)</h3>
-        <p>Chưa bắt đầu</p>
-    </div>
-    <div class="phase-card">
-        <h4>Giai đoạn 6</h4>
-        <h3>Hỗ trợ sau ra mắt</h3>
-        <p>Chưa bắt đầu</p>
+<!-- HERO SECTION - HTML -->
+<div class="hero-section">
+    <h1>Extraction</h1>
+    <p class="tagline">SINH TỒN. CHIẾN ĐẤU. THOÁT HIỂM.</p>
+    <div class="cta-buttons">
+        <a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button steam" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Wishlist trên Steam</a>
+        <a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button discord" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Tham gia Discord</a>
     </div>
 </div>
 
+## Về Extraction
+
+Chào mừng đến với thế giới của **Extraction**! Đây là một tựa game **Hero Shooter Extraction** với góc nhìn **Top-Down** đầy kịch tính, nơi kỹ năng, chiến thuật và một chút may mắn sẽ quyết định sự sống còn của bạn. Cùng với những người đồng đội, bạn sẽ bước vào các khu vực nguy hiểm, đối đầu với người chơi khác và những kẻ địch do AI điều khiển để thu thập trang bị giá trị và thoát hiểm thành công.
+
+## Các Tính Năng Chính
+
+<!-- KEY FEATURES SECTION - HTML -->
+<div class="key-features">
+    <div class="feature-card">
+        <i class="fas fa-users"></i>
+        <h3>Dàn Anh Hùng Độc Đáo</h3>
+        <p>Chọn lựa từ một danh sách các Anh hùng (Hero) đa dạng, mỗi người sở hữu bộ kỹ năng và lối chơi riêng biệt. Hãy tìm ra phong cách chiến đấu phù hợp với bạn!</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-briefcase"></i>
+        <h3>Lối Chơi Extraction Kịch Tính</h3>
+        <p>Rủi ro càng cao, phần thưởng càng lớn. Mọi trang bị bạn mang vào trận đều có thể bị mất. Mục tiêu cuối cùng là sống sót và mang về những chiến lợi phẩm giá trị.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-crosshairs"></i>
+        <h3>Góc Nhìn Top-Down Chiến Thuật</h3>
+        <p>Quan sát toàn bộ chiến trường, tận dụng địa hình và phối hợp với đồng đội để tạo ra những pha xử lý đỉnh cao. Mỗi quyết định đều có thể thay đổi cục diện trận đấu.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-gamepad"></i>
+        <h3>Chơi Cùng Bạn Bè - Cross-Platform</h3>
+        <p>Phá vỡ mọi rào cản nền tảng. Lập tổ đội và chiến đấu cùng bạn bè của bạn dù họ đang chơi trên PC hay Console.</p>
+    </div>
+</div>
 
 ---
 
-## Giai đoạn 1: Ý tưởng & Lên Kế hoạch (Đã hoàn thành)
+## Gặp gỡ các Anh hùng
 
-Đây là giai đoạn khởi đầu, nơi chúng tôi định hình ý tưởng cốt lõi và xác định hướng đi cho dự án.
+Giới thiệu một vài gương mặt mà bạn sẽ gặp trong các trận chiến.
 
-- [x] **Brainstorming:** Tập hợp và sàng lọc các ý tưởng ban đầu.
-- [x] **Nghiên cứu thị trường:** Phân tích các game cùng thể loại và xác định đối tượng mục tiêu.
-- [x] **Tài liệu Ý tưởng Game (GDD - Game Concept Document):** Viết tài liệu tổng quan về game, bao gồm thể loại, cơ chế chính, và phong cách nghệ thuật.
-- [x] **Lập kế hoạch ban đầu:** Ước tính thời gian, ngân sách và nhân sự cần thiết.
-
----
-
-## Giai đoạn 2: Tiền sản xuất (Pre-Production) - (Đang thực hiện)
-
-Giai đoạn này tập trung vào việc xây dựng nền tảng vững chắc cho quá trình sản xuất, biến ý tưởng thành một kế hoạch chi tiết.
-
-- [ ] **Tài liệu Thiết kế Game Chi tiết (Detailed GDD):** Mô tả chi tiết tất cả các khía cạnh của game: cốt truyện, nhân vật, cơ chế gameplay, thiết kế màn chơi, giao diện người dùng (UI/UX).
-- [ ] **Tạo mẫu (Prototyping):** Xây dựng các bản mẫu để thử nghiệm các cơ chế gameplay cốt lõi. Mục tiêu là tìm ra "cảm giác vui" (the fun factor).
-- [ ] **Định hình Phong cách Nghệ thuật:** Tạo concept art, mood board để xác định giao diện và cảm nhận của game.
-- [ ] **Lựa chọn Công nghệ:** Quyết định game engine (ví dụ: Unity, Unreal) và các công cụ phát triển khác.
-- [ ] **Kế hoạch sản xuất chi tiết:** Lên lịch trình cụ thể với các cột mốc (milestones) rõ ràng.
-
----
-
-## Giai đoạn 3: Sản xuất (Production)
-
-Đây là giai đoạn dài nhất, nơi chúng tôi thực sự xây dựng các thành phần của game.
-
-### Cột mốc Alpha
-- [ ] **Xây dựng hệ thống cốt lõi:** Lập trình các cơ chế gameplay chính.
-- [ ] **Sản xuất tài nguyên (Assets):** Thiết kế mô hình 3D/2D, hoạt ảnh, hiệu ứng âm thanh, và âm nhạc.
-- [ ] **Thiết kế màn chơi (Level Design):** Xây dựng các màn chơi đầu tiên (sử dụng các khối hình học đơn giản - grey-boxing).
-- [ ] **Thiết kế Giao diện Người dùng (UI):** Hoàn thiện thiết kế và tích hợp UI vào game.
-
-### Cột mốc Beta
-- [ ] **Hoàn thiện tính năng (Feature Complete):** Tất cả các tính năng chính của game đã được triển khai.
-- [ ] **Hoàn thiện nội dung (Content Complete):** Toàn bộ nội dung game (màn chơi, nhân vật, nhiệm vụ) đã được thêm vào.
-- [ ] **Tối ưu hóa và sửa lỗi:** Cải thiện hiệu năng và khắc phục các lỗi lớn.
+<!-- MEET THE HEROES SECTION - HTML -->
+<div class="heroes-grid">
+    <div class="hero-card">
+        <img src="https://picsum.photos/500/900" alt="Chân dung Hero Ghost">
+        <h3>Ghost</h3>
+        <p>Một sát thủ thoắt ẩn thoắt hiện, chuyên gia về do thám và kết liễu mục tiêu yếu máu từ trong bóng tối.</p>
+    </div>
+    <div class="hero-card">
+        <img src="https://picsum.photos/500/900" alt="Chân dung Hero Titan">
+        <h3>Titan</h3>
+        <p>Tiên phong trâu bò với khả năng chống chịu và kiểm soát đám đông, luôn là tấm khiên vững chắc cho cả đội.</p>
+    </div>
+    <div class="hero-card">
+        <img src="https://picsum.photos/500/900" alt="Chân dung Hero Spark">
+        <h3>Spark</h3>
+        <p>Kỹ sư thiên tài có khả năng đặt bẫy và các công trình chiến thuật, làm chủ khu vực bằng trí tuệ của mình.</p>
+    </div>
+</div>
 
 ---
 
-## Giai đoạn 4: Alpha & Beta Testing
+## Lộ trình Phát triển (Development Roadmap)
 
-Giai đoạn này tập trung vào việc kiểm thử và thu thập phản hồi để hoàn thiện game.
+Hành trình tạo ra **Extraction** là một chặng đường dài và đầy tâm huyết. Chúng tôi muốn chia sẻ nó với các bạn.
 
-- [ ] **Internal Alpha:** Đội ngũ phát triển tự chơi và kiểm thử.
-- [ ] **Closed Beta:** Mời một nhóm người chơi giới hạn để thử nghiệm và tìm lỗi.
-- [ ] **Open Beta (Tùy chọn):** Mở cửa cho cộng đồng lớn hơn để kiểm tra sự ổn định của máy chủ và cân bằng game.
-- [ ] **Thu thập và phân tích phản hồi:** Sử dụng phản hồi từ người chơi để cải thiện game.
+<!-- Giai đoạn 1 -->
+<div class="roadmap-phase completed">
+    <h2><i class="fas fa-lightbulb"></i> Giai đoạn 1: Ý tưởng & Lên Kế hoạch (Đã hoàn thành)</h2>
+    <p>Nền móng của dự án, nơi chúng tôi định hình tầm nhìn và những yếu tố cốt lõi sẽ làm nên sự đặc biệt của game.</p>
+    <ul>
+        <li>[x] Xác định concept "Hero Shooter Extraction Top-Down".</li>
+        <li>[x] Nghiên cứu thị trường và phân tích đối thủ.</li>
+        <li>[x] Hoàn thành tài liệu Game Concept Document (GCD).</li>
+    </ul>
+</div>
 
----
+<!-- Giai đoạn 2 -->
+<div class="roadmap-phase completed">
+    <h2><i class="fas fa-file-alt"></i> Giai đoạn 2: Tiền sản xuất (Đã hoàn thành)</h2>
+    <p>Biến ý tưởng thành một kế hoạch chi tiết và xây dựng các bản mẫu để thử nghiệm gameplay.</p>
+    <ul>
+        <li>[x] Viết tài liệu Game Design Document (GDD) chi tiết.</li>
+        <li>[x] Tạo mẫu (Prototype) các cơ chế chiến đấu và di chuyển cốt lõi.</li>
+        <li>[x] Định hình phong cách nghệ thuật và thiết kế các Hero đầu tiên.</li>
+    </ul>
+    <img src="/images/prototype-demo.gif" alt="GIF demo bản prototype của game" class="roadmap-image"/>
+    <small><em>Một trong những bản prototype đầu tiên của hệ thống chiến đấu.</em></small>
+</div>
 
-## Giai đoạn 5: Ra mắt (Launch)
+<!-- Giai đoạn 3 -->
+<div class="roadmap-phase in-progress">
+    <h2><i class="fas fa-tools"></i> Giai đoạn 3: Sản xuất (Đang thực hiện)</h2>
+    <p>Giai đoạn hiện tại của chúng tôi! Đây là lúc toàn bộ đội ngũ tập trung để xây dựng các tính năng, nội dung và biến thế giới của game trở nên sống động.</p>
+    <ul>
+        <li>[ ] <strong>Lập trình Gameplay:</strong>
+            <ul>
+                <li>[x] Hệ thống di chuyển và chiến đấu cơ bản.</li>
+                <li>[ ] Hoàn thiện bộ kỹ năng cho 5 Hero đầu tiên.</li>
+                <li>[ ] Hệ thống Loot & Extraction.</li>
+                <li>[ ] Lập trình AI cho kẻ địch.</li>
+            </ul>
+        </li>
+        <li>[ ] <strong>Thiết kế & Nghệ thuật:</strong>
+            <ul>
+                <li>[x] Thiết kế môi trường cho bản đồ đầu tiên: "Khu Phố Bỏ Hoang".</li>
+                <li>[ ] Hoàn thiện model 3D và animation cho các Hero.</li>
+                <li>[ ] Thiết kế UI/UX.</li>
+            </ul>
+        </li>
+    </ul>
+    <img src="/images/level-design-screenshot.jpg" alt="Screenshot màn chơi đang phát triển" class="roadmap-image"/>
+    <small><em>Bản đồ "Khu Phố Bỏ Hoang" đang trong giai đoạn hoàn thiện.</em></small>
+</div>
 
-Chuẩn bị mọi thứ sẵn sàng cho ngày phát hành chính thức.
+<!-- Giai đoạn 4 -->
+<div class="roadmap-phase">
+    <h2><i class="fas fa-vial"></i> Giai đoạn 4: Alpha & Beta</h2>
+    <p>Giai đoạn kiểm thử và thu thập phản hồi. Chúng tôi sẽ cần sự giúp đỡ của cộng đồng để hoàn thiện và cân bằng game.</p>
+    <ul>
+        <li>[ ] Internal Alpha Test (Kiểm thử nội bộ).</li>
+        <li>[ ] Closed Beta (Mời người chơi đăng ký sớm).</li>
+        <li>[ ] Open Beta (Kiểm tra sự ổn định trước khi ra mắt).</li>
+        <li>[ ] Cân bằng Hero và hệ thống trang bị dựa trên phản hồi.</li>
+    </ul>
+</div>
 
-- [ ] **Marketing và Quảng bá:** Tăng cường hoạt động marketing, trailer ra mắt, liên hệ với báo chí và các nhà sáng tạo nội dung.
-- [ ] **Chuẩn bị các nền tảng phân phối:** Thiết lập trang bán hàng trên Steam, App Store, Google Play, etc.
-- [ ] **Phát hành phiên bản 1.0:** Ra mắt game chính thức!
-- [ ] **Hỗ trợ ngày ra mắt:** Theo dõi và khắc phục các sự cố khẩn cấp.
+<!-- Giai đoạn 5 -->
+<div class="roadmap-phase">
+    <h2><i class="fas fa-rocket"></i> Giai đoạn 5: Ra mắt (Launch)</h2>
+    <p>Thời điểm trọng đại! Chuẩn bị mọi thứ cho ngày ra mắt chính thức trên các nền tảng.</p>
+    <ul>
+        <li>[ ] Hoàn thiện và tối ưu hóa game.</li>
+        <li>[ ] Đẩy mạnh chiến dịch Marketing.</li>
+        <li>[ ] Phát hành phiên bản 1.0 trên PC & Console.</li>
+    </ul>
+</div>
 
----
+<!-- Giai đoạn 6 -->
+<div class="roadmap-phase">
+    <h2><i class="fas fa-heart"></i> Giai đoạn 6: Hỗ trợ sau ra mắt</h2>
+    <p>Sự ra mắt chỉ là khởi đầu. Chúng tôi cam kết sẽ liên tục phát triển và mở rộng thế giới của game.</p>
+    <ul>
+        <li>[ ] Ra mắt các mùa giải (Season) mới với Battle Pass.</li>
+        <li>[ ] Bổ sung Hero và bản đồ mới.</li>
+        <li>[ ] Tổ chức các sự kiện cộng đồng trong game.</li>
+        <li>[ ] Lắng nghe và cập nhật game dựa trên phản hồi của các bạn.</li>
+    </ul>
+</div>
 
-## Giai đoạn 6: Hỗ trợ sau ra mắt (Post-Launch)
+## Tham gia cùng chúng tôi!
 
-Công việc không dừng lại sau khi game được phát hành. Chúng tôi cam kết hỗ trợ và phát triển game lâu dài.
+Hành trình này sẽ không thể hoàn thành nếu thiếu sự ủng hộ của các bạn. Hãy wishlist game trên Steam và tham gia cộng đồng Discord của chúng tôi để nhận những thông tin mới nhất, tham gia các đợt playtest và trò chuyện trực tiếp với đội ngũ phát triển!
 
-- [ ] **Thu thập phản hồi từ cộng đồng:** Lắng nghe ý kiến của người chơi.
-- [ ] **Bản vá lỗi và cập nhật:** Thường xuyên phát hành các bản vá để cải thiện trải nghiệm.
-- [ ] **Phát triển nội dung mới (DLC/Expansion):** Lên kế hoạch và phát triển các nội dung, tính năng mới để giữ cho game luôn hấp dẫn.
-- [ ] **Tổ chức sự kiện trong game:** Tạo các sự kiện để thu hút và giữ chân người chơi.
+<!-- CTA BUTTONS - REPEATED FOR EMPHASIS -->
+<div class="cta-buttons">
+    <a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button steam" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Wishlist ngay!</a>
+    <a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button discord" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Tham gia Discord</a>
+</div>
