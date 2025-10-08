@@ -66,8 +66,8 @@ Content = """
 
 [languages.en.menu]
 [[languages.en.menu.main]]
-name = "About Me"
-url = "about/"
+name = "Extraction"
+url = "gameroadmap/"
 weight = 1
 [[languages.en.menu.main]]
 name = "Resume"
@@ -77,6 +77,10 @@ weight = 2
 name = "Posts"
 url = "posts/"
 weight = 3
+[[languages.en.menu.main]]
+name = "About Me"
+url = "about/"
+weight = 4
 
 # --- Vietnamese ---
 [languages.vi]
