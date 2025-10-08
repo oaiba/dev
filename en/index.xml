@@ -10,6 +10,14 @@
 &lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Junior Unreal Engine Developer with 2+ years of C++ experience, specializing in multiplayer gameplay, dedicated server architecture, and cross-platform systems (PC/Mobile). Proficient with GAS, Replication Graph, network optimization, and Editor tools. Experienced in working across Design, Art, and QA to deliver scalable, high-performance game systems.&lt;/p&gt;</description></item><item><title>Roadmap Phát Triển Game: Extraction</title><link>https://oaiba.github.io/dev/en/gameroadmap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://oaiba.github.io/dev/en/gameroadmap/</guid><description>&lt;p&gt;Chào mừng đến với roadmap phát triển của &lt;strong&gt;Extraction&lt;/strong&gt;! Tại đây, chúng tôi sẽ chia sẻ một cách minh bạch về các giai đoạn phát triển, các tính năng dự kiến và tiến độ hiện tại của dự án. Lộ trình này sẽ được cập nhật thường xuyên để phản ánh những thay đổi và tiến bộ của đội ngũ phát triển.&lt;/p&gt;
-&lt;h2 id="tổng-quan-lộ-trình"&gt;Tổng quan Lộ trình&lt;/h2&gt;
-&lt;p&gt;Lộ trình của chúng tôi được chia thành 6 giai đoạn chính. Mỗi giai đoạn đều có những mục tiêu và cột mốc quan trọng riêng.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Junior Unreal Engine Developer with 2+ years of C++ experience, specializing in multiplayer gameplay, dedicated server architecture, and cross-platform systems (PC/Mobile). Proficient with GAS, Replication Graph, network optimization, and Editor tools. Experienced in working across Design, Art, and QA to deliver scalable, high-performance game systems.&lt;/p&gt;</description></item><item><title>Roadmap Phát Triển Game: Extraction</title><link>https://oaiba.github.io/dev/en/gameroadmap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://oaiba.github.io/dev/en/gameroadmap/</guid><description>&lt;!-- HERO SECTION - HTML --&gt;
+&lt;div class="hero-section"&gt;
+&lt;h1&gt;Extraction&lt;/h1&gt;
+&lt;p class="tagline"&gt;SINH TỒN. CHIẾN ĐẤU. THOÁT HIỂM.&lt;/p&gt;
+&lt;div class="cta-buttons"&gt;
+&lt;a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button steam" target="_blank" rel="noopener noreferrer"&gt;&lt;i class="fab fa-steam"&gt;&lt;/i&gt; Wishlist trên Steam&lt;/a&gt;
+&lt;a href="https://oaiba.github.io/dev/en/gameroadmap/" class="cta-button discord" target="_blank" rel="noopener noreferrer"&gt;&lt;i class="fab fa-discord"&gt;&lt;/i&gt; Tham gia Discord&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="về-extraction"&gt;Về Extraction&lt;/h2&gt;
+&lt;p&gt;Chào mừng đến với thế giới của &lt;strong&gt;Extraction&lt;/strong&gt;! Đây là một tựa game &lt;strong&gt;Hero Shooter Extraction&lt;/strong&gt; với góc nhìn &lt;strong&gt;Top-Down&lt;/strong&gt; đầy kịch tính, nơi kỹ năng, chiến thuật và một chút may mắn sẽ quyết định sự sống còn của bạn. Cùng với những người đồng đội, bạn sẽ bước vào các khu vực nguy hiểm, đối đầu với người chơi khác và những kẻ địch do AI điều khiển để thu thập trang bị giá trị và thoát hiểm thành công.&lt;/p&gt;</description></item></channel></rss>
