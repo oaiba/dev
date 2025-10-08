@@ -23,9 +23,9 @@ hideFooter = false
 displayFullLangName = true
 ShowReadingTime = true
 ShowWordCount = true
-ShowBreadCrumbs = true
+#ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
-ShowToc = true
+#ShowToc = true
 ShowAllPagesInArchive = true
 ShowPageNums = true
 
