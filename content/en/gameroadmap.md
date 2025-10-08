@@ -92,7 +92,7 @@ Hành trình tạo ra **Extraction** là một chặng đường dài và đầy
         <li>[x] Tạo mẫu (Prototype) các cơ chế chiến đấu và di chuyển cốt lõi.</li>
         <li>[x] Định hình phong cách nghệ thuật và thiết kế các Hero đầu tiên.</li>
     </ul>
-    <img src="/images/prototype-demo.gif" alt="GIF demo bản prototype của game" class="roadmap-image"/>
+    <img src="https://picsum.photos/1920/1080" alt="GIF demo bản prototype của game" class="roadmap-image"/>
     <small><em>Một trong những bản prototype đầu tiên của hệ thống chiến đấu.</em></small>
 </div>
 
@@ -117,7 +117,7 @@ Hành trình tạo ra **Extraction** là một chặng đường dài và đầy
             </ul>
         </li>
     </ul>
-    <img src="/images/level-design-screenshot.jpg" alt="Screenshot màn chơi đang phát triển" class="roadmap-image"/>
+    <img src="https://picsum.photos/1920/1080" alt="Screenshot màn chơi đang phát triển" class="roadmap-image"/>
     <small><em>Bản đồ "Khu Phố Bỏ Hoang" đang trong giai đoạn hoàn thiện.</em></small>
 </div>
 
